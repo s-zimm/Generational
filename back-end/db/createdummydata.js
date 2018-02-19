@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Prompt = require('../models/Prompt');
 const User_Book = require('../models/User_Book');
-const User_Written_Prompt = require('../models/User_Written_Prompt');
+const User_Entry = require('../models/User_Entry');
 
 User.bulkCreate([
     {
@@ -46,7 +46,7 @@ User.bulkCreate([
         }
     ])
 }).then(() => {
-    User_Written_Prompt.bulkCreate([
+    User_Entry.bulkCreate([
         {
             content: 'memmmmzmzzzzzzzzzzzz',
             userId: 1,

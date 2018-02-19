@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
-const User_Written_Prompt = require('./User_Written_Prompt');
+const User_Entry = require('./User_Entry');
 
 const Prompt = sequelize.define('prompt', {
     content: {
@@ -11,6 +11,6 @@ const Prompt = sequelize.define('prompt', {
     }
 });
 
-Prompt.hasMany(User_Written_Prompt);
+Prompt.hasMany(User_Entry);
 
 module.exports = Prompt;
