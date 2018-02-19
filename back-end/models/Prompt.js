@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../db/db');
 const User_Written_Prompt = require('./User_Written_Prompt');
 
 const Prompt = sequelize.define('prompt', {
@@ -7,12 +7,10 @@ const Prompt = sequelize.define('prompt', {
         type: Sequelize.STRING
     },
     chapter: {
-        type: {
-            type: Sequelize.INTEGER
-        }
+        type: Sequelize.INTEGER
     }
 });
 
-Prompt.hasOne(User_Written_Prompt);
+Prompt.hasMany(User_Written_Prompt);
 
 module.exports = Prompt;

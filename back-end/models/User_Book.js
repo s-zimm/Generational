@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../db');
+const sequelize = require('../db/db');
 const User = require('./User');
 
 const User_Book = sequelize.define('user_book', {
