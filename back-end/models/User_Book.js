@@ -8,6 +8,6 @@ const User_Book = sequelize.define('user_book', {
     }
 });
 
-User_Book.belongsTo(User);
+User_Book.belongsTo(User, { as: 'owner' });
 
 module.exports = User_Book;

@@ -35,13 +35,29 @@ User.bulkCreate([
         }
     ])
 }).then(() => {
+    Prompt.bulkCreate([
+        {
+            content: 'What sort of memz?',
+            chapter: 1
+        },
+        {
+            content: 'When did you meet?',
+            chapter: 1
+        }
+    ])
+}).then(() => {
     User_Written_Prompt.bulkCreate([
-
         {
             content: 'memmmmzmzzzzzzzzzzzz',
             userId: 1,
-            user_bookId: 1,
+            userBookId: 1,
+            promptId: 1
+        },
+        {
+            content: 'I remember when...',
+            userId: 2,
+            userBookId: 2,
             promptId: 2
         }
     ])
-})
+});

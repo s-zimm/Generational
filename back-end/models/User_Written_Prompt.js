@@ -11,6 +11,6 @@ const User_Written_Prompt = sequelize.define('user_written_prompt', {
 });
 
 User_Written_Prompt.belongsTo(User);
-User_Written_Prompt.belongsTo(User_Book);
+User_Written_Prompt.belongsTo(User_Book, { as: 'book' });
 
 module.exports = User_Written_Prompt;
