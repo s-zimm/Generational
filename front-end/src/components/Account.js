@@ -7,8 +7,11 @@ class Account extends Component {
         return(
             <React.Fragment>
                 <PageSubHeader heading='My Account' />
-                <div style={{ width: "100%", margin: '30px' }}>
+                <div style={{ margin: '30px', display: 'flex' }}>
                     <UserData />
+                    <div style={{ width: '30%'}}>
+                        Hey
+                    </div>
                 </div>
             </React.Fragment>
         )

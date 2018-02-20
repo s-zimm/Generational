@@ -6,7 +6,9 @@ const RelationshipItem = (props) => {
         border: 'solid black 1px',
         borderRadius: '50%',
         width: '75px',
-        textAlign: 'center'
+        textAlign: 'center',
+        cursor: 'pointer',
+        margin: '5px'
     }
 
     return (
