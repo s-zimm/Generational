@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import PageSubHeader from './PageSubHeader';
+import UserData from './UserData';
 
 class Account extends Component {
     render() {
         return(
-            <div>
+            <React.Fragment>
                 <PageSubHeader heading='My Account' />
-            </div>
+                <div style={{ width: "100%", margin: '30px' }}>
+                    <UserData />
+                </div>
+            </React.Fragment>
         )
     }
 }
