@@ -25,8 +25,7 @@ class AccountBooks extends Component {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        width: '60%',
-        padding: '5px'
+        width: '60%'
     }
 
     renderUserBooks = () => {
