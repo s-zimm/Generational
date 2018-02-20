@@ -21,7 +21,7 @@ class Prompt extends Component {
 
     handleNewPromptClick = (direction) => {
         console.log('click', direction)
-        if (direction === 'right' && this.state.currentIndex != this.state.prompts.length - 1) {
+        if (direction === 'right' && this.state.currentIndex !== this.state.prompts.length - 1) {
             return this.setState({
                 currentIndex: this.state.currentIndex + 1
             });
