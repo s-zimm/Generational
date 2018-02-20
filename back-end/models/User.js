@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../db/db');
+// const Relationship = require('./Relationship');
 
 const User = sequelize.define('user', {
     firstname: {
@@ -12,5 +13,7 @@ const User = sequelize.define('user', {
         type: Sequelize.STRING
     }
 });
+
+// User.hasMany(Relationship);
 
 module.exports = User;
