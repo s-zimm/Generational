@@ -13,5 +13,20 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   outline: solid 2px green;
+}
+
+button {
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px gray;
+  transition: .2s;
+}
+
+button:hover {
+  transition: .2s;
+  background-color: rgb(71, 101, 182);
+  box-shadow: rgba(71, 101, 182, 0.548);
+  border-color: rgba(71, 101, 182, 0.795);
 }
