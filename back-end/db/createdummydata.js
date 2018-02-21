@@ -36,15 +36,15 @@ User.bulkCreate([
     User_Book.bulkCreate([
         {
             whoFor: 'Dev',
-            userId: 1
+            ownerId: 1
         },
         {
             whoFor: 'Mom',
-            userId: 2
+            ownerId: 2
         },
         {
             whoFor: 'Grandmother',
-            userId: 3
+            ownerId: 3
         }
     ])
 }).then(() => {
@@ -74,17 +74,14 @@ User.bulkCreate([
         {
             content: 'My name means a beautiful little flower',
             userId: 1,
-            userBookId: 1,
+            bookId: 1,
             promptId: 1
         },
         {
             content: 'I remember when...',
             userId: 1,
-            userBookId: 1,
+            bookId: 1,
             promptId: 2
-        },
-        {
-            content: ''
         }
     ])
 }).then(() => {
@@ -95,9 +92,14 @@ User.bulkCreate([
             relatedUserId: 2
         },
         {
-            relation: 'Mother',
+            relation: 'Son',
             userId: 3,
             relatedUserId: 4
+        },
+        {
+            relation: 'Mother',
+            userId: 5,
+            relatedUserId: 2
         }
     ])
 });
