@@ -1,18 +1,11 @@
 import React, { Component } from 'react';
 import UserInfo from './UserInfo';
 import Relationships from './Relationships';
+import axios from 'axios';
 
-class UserData extends Component {
-    constructor(props) {
-        super(props);
+const UserData = ({ userData }) => {
 
-        this.state = {
-            userData: {},
-            userEntries: {}
-        }
-    }
-
-    containerStyle = {
+    let containerStyle = {
         display: 'flex',
         flexDirection: "column",
         alignItems: 'flex-start',
@@ -20,14 +13,15 @@ class UserData extends Component {
         width: '60%',
     }
 
-    render() {
-        return (
-            <div style={this.containerStyle}>
-                <UserInfo />
-                <Relationships />
-            </div>
-        )
-    }
+    return (
+        <div style={containerStyle}>
+            <UserInfo />
+            <Relationships 
+                userData={userData}
+            />
+        </div>
+    )
 }
+
 
 export default UserData;

@@ -23,13 +23,15 @@ router.route('/api/users')
 
 router.route('/api/user_entries')
     .get((req, res) => {
-        User_Entry.findAll({
-            include: [
-                { all: true },
-            ]
-        })
+        User_Entry.findAll()
         .then(allPrompts => res.json(allPrompts));
     });
+
+router.route('/api/user_books')
+    .get((req, res) => {
+        User_Book.findAll()
+            .then(allBooks => res.json(allBooks))
+    })
 
 module.exports = router;
 
