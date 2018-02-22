@@ -33,8 +33,8 @@ class AccountBooks extends Component {
             return this.state.books.map(book => {
                 return (
                     <UserBookCover
-                        title={book.title}
                         key={book.id}
+                        title={book.title}
                         id={book.id}
                     />
                 );

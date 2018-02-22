@@ -100,6 +100,11 @@ User.bulkCreate([
             relation: 'Mother',
             userId: 5,
             relatedUserId: 2
+        },
+        {
+            relation: 'Mother-In-Law',
+            userId: 1,
+            relatedUserId: 5
         }
     ])
 });
