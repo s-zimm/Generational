@@ -25,15 +25,6 @@ const AccountBooks = ({ userEntries, userBooks }) => {
             });
         }
     }
-            // return userEntries.map(entry => {
-            //     return (
-            //         <UserBookCover
-            //             key={entry.book.id}
-            //             title={entry.book.whoFor}
-            //             id={entry.book.id}
-            //         />
-            //     );
-            // });
 
     return (
         <div style={AccountBooksStyle}>

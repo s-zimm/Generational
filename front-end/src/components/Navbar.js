@@ -31,6 +31,7 @@ const Navbar = props => {
             <div style={signInAndMenu}>
                 <Link to="/">Home</Link>
                 <Link style={brandStyle} to="/account">Account</Link>
+                <Link style={brandStyle} to="/book/new">Create Book</Link>
                 <button style={brandStyle}>Sign Up</button>
             </div>
             <div>
