@@ -3,6 +3,7 @@ var router = express.Router();
 
 const User = require('../models/User');
 const Prompt = require('../models/Prompt');
+const Prompt_Topic = require('../models/Prompt_Topic');
 const User_Book = require('../models/User_Book');
 const User_Entry = require('../models/User_Entry');
 const Relationship = require('../models/Relationship');
@@ -31,7 +32,13 @@ router.route('/api/user_books')
     .get((req, res) => {
         User_Book.findAll()
             .then(allBooks => res.json(allBooks))
-    })
+    });
+
+router.route('/api/prompts') 
+    .get((req, res) => {
+        Prompt_Topic.findAll({ include: [{ all: true }]})
+            .then(allPrompts => res.json(allPrompts));
+    });
 
 module.exports = router;
 
