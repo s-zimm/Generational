@@ -36,10 +36,6 @@ class Prompt extends Component {
         }
     }
 
-    _renderPrompts = () => {
-        
-    }
-
     render = () => {
         if (this.state.prompts) {
             return (
@@ -48,7 +44,7 @@ class Prompt extends Component {
                     <h3>{this.props.topic}</h3>
                     <div>
                         {/* <p><i>{this.props.prompt}</i></p> */}
-                        <p><i>What does your name mean?</i></p>
+                        <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
                         <input style={this.inputStyling} placeholder="...." />
                     </div>
                     <h4 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle('right')}>next</h4>

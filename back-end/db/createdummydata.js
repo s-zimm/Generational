@@ -67,6 +67,14 @@ User.bulkCreate([
         {
             content: 'A childhood experience that stands out',
             topicId: 1
+        },
+        {
+            content: 'Who was your daddy?',
+            topicId: 2
+        },
+        {
+            content: 'Where were your parents from?',
+            topicId: 2
         }
     ])
 }).then(() => {
