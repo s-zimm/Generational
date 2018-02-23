@@ -27,6 +27,7 @@ class PromptPage extends Component {
             return (
                 <Prompt 
                     key={prompt.id}
+                    id={prompt.id}
                     prompts={prompt.prompts}
                     topic={prompt.content}
                 />

@@ -59,7 +59,8 @@ class Prompt extends Component {
         outline: '0',
         background: 'transparent',
         borderBottom: '1px solid gray',
-        width: '500px'
+        width: '500px',
+        marginBottom: '8px'
     }
 
     promptContainerStyle = {
@@ -71,8 +72,12 @@ class Prompt extends Component {
     }
 
     containerStyling = {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
         border: 'solid 2px black',
-        padding: '10px 90px 0 90px',
+        // padding: '10px 90px 0 90px',
+        width: '650px',
         height: '200px'
     }
 
