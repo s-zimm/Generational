@@ -14,7 +14,7 @@ class CreateBookForm extends Component {
             dropdownData: [],
             currentUserId: 1,
             selectedUserForBook: null,
-            canSubmit: false
+            canSubmit: true
         }
         
     }
@@ -70,7 +70,12 @@ class CreateBookForm extends Component {
     }
 
     _createBook = (event) => {
-        if (this.state.selectedUserForBook) {
+        let whoFor = this.state.searchValues;
+        let findExisting = () => this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
+        if (findExisting()) {
+            event.preventDefault();
+        }
+        else if (this.state.selectedUserForBook) {
             axios.post('http://localhost:3000/api/user_books', {
                 whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
                 ownerId: this.state.currentUserId
@@ -81,7 +86,6 @@ class CreateBookForm extends Component {
                 ownerId: this.state.currentUserId
             });
         }
-        
     }
 
     _handleLinkClick = (event) => {
@@ -104,9 +108,7 @@ class CreateBookForm extends Component {
         return (
             <div style={{position: 'relative', height: '350px'}}>
                 <form 
-                    action="/api/user_books"
                     style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}
-                    onSubmit={(event) => this._handleLinkClick(event)}
                 >
                     <input 
                         required="true"
@@ -118,8 +120,8 @@ class CreateBookForm extends Component {
                         style={{ width: '400px', padding: '10px', margin: '20px 0' }}
                     />
                     <CreateBookBtn 
-                        canSubmit={this.props.canSubmit}
-                        handleLinkClick={this._createBook}
+                        canSubmit={this.state.canSubmit}
+                        handleLinkClick={(event) => this._createBook(event)}
                     />
                 </form>
                 <div className={this.props.searchBoxHidden} style={this.searchBoxStyle}>

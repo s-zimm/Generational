@@ -7,6 +7,7 @@ import Home from './components/Home'
 import Navbar from './components/Navbar';
 import Account from './components/Account';
 import CreateBook from './components/CreateBook';
+import CreateBookSuccess from './components/CreateBookSuccess';
 
 class App extends Component {
   render() {
@@ -16,7 +17,8 @@ class App extends Component {
           <Navbar />
           <Route exact path="/" component={Home} />
           <Route path="/account" component={Account} />
-          <Route path="/book/new" component={CreateBook} />
+          <Route exact path="/book/new" component={CreateBook} />
+          <Route exact path="/book/new/success" component={CreateBookSuccess} />
         </div>
       </Router>
     );

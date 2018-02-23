@@ -25,6 +25,7 @@ button {
 }
 
 button:hover {
+  color: white;
   transition: .2s;
   background-color: rgb(71, 101, 182);
   box-shadow: rgba(71, 101, 182, 0.548);
