@@ -30,3 +30,11 @@ button:hover {
   box-shadow: rgba(71, 101, 182, 0.548);
   border-color: rgba(71, 101, 182, 0.795);
 }
+
+input {
+  height: 25px;
+}
+
+.hidden {
+  display: none;
+}

@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import CreateBookForm from './CreateBookForm';
 import StyleCarousel from './StyleCarousel';
+import PageSubHeader from './PageSubHeader';
 
 import axios from 'axios';
 
 class CreateBook extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            users: []
+        }
 
     }
 
@@ -22,8 +27,7 @@ class CreateBook extends Component {
                         return relation;
                     });
                     return { ...user, relationships }
-                })
-                console.log(newUsers);
+                });
                 return newUsers;
             })
             .then(users => this.setState({ users }))
@@ -35,13 +39,17 @@ class CreateBook extends Component {
         alignItems: 'center'
     }
 
-
     render() {    
         return (
-            <div style={this.containerStyling}>
-                <CreateBookForm />
-                <StyleCarousel />
-            </div>
+            <React.Fragment>
+                <PageSubHeader heading="Book Creation" />
+                <div style={this.containerStyling}>
+                    <CreateBookForm 
+                        userData={this.state.users}
+                    />
+                    <StyleCarousel />
+                </div>
+            </React.Fragment>
         )
     }
 }
