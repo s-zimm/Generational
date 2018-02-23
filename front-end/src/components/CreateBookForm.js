@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class CreateBookForm extends Component {
     constructor(props) {
@@ -45,7 +46,9 @@ class CreateBookForm extends Component {
 
     _handleNameClick = (i) => {
         this.setState({
-            searchValues: `${this.state.dropdownData[i].firstname} ${this.state.dropdownData[i].lastname}`
+            searchValues: `${this.state.dropdownData[i].firstname} ${this.state.dropdownData[i].lastname}`,
+            selectedUserForBook: this.state.dropdownData[i],
+            searchBoxHidden: 'hidden'
         })
     }
 
@@ -65,32 +68,49 @@ class CreateBookForm extends Component {
         return searchListItems;
     }
 
+    _createBookClick = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:3000/api/user_books', {
+            whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
+            ownerId: this.state.currentUserId
+        });
+    }
+
     searchBoxStyle = {
         position: 'relative',
-        bottom: '16px',
+        bottom: '50px',
         outline: '1px solid black',
-        zIndex: '0'
+        zIndex: '1',
+        backgroundColor: 'white'
     }
 
     render() {
-        
-
         return (
-            <div>
-                <div>
-                    <form>
-                        <input 
-                            placeholder='Enter name...' 
-                            onChange={this._handleFormInput}
-                            value={this.state.searchValues}
-                            style={{ width: '500px', padding: '10px', marginTop: '30px' }}
-                        />
-                    </form>
-                    <div className={this.state.searchBoxHidden} style={this.searchBoxStyle}>
-                        <ul style={{ zIndex: 1 }}>
-                            {this._populateSearchList()}
-                        </ul>
-                    </div>
+            <div style={{position: 'relative'}}>
+                <form 
+                    action="/api/user_books"
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+                    onSubmit={(event) => this._createBookClick(event)}
+                >
+                    <input 
+                        autoComplete="off"
+                        placeholder='Enter name...'
+                        name="user"
+                        onChange={this._handleFormInput}
+                        value={this.state.searchValues}
+                        style={{ width: '500px', padding: '10px', marginTop: '30px' }}
+                    />
+                    <button 
+                        style={{ width: '300px'}}
+                        type="submit"
+                    >
+                        Create
+                    </button>
+                </form>
+                <div className={this.state.searchBoxHidden} style={this.searchBoxStyle}>
+                    <ul>
+                        {this._populateSearchList()}
+                    </ul>
                 </div>
             </div>
         )

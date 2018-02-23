@@ -20,7 +20,10 @@ router.route('/api/users')
     .get((req, res) => {
         User.findAll({ include: [{ all: true }]})
             .then(allUsers => res.json(allUsers));
-    });
+    })
+    .post((req, res) => {
+        console.log(req.body)
+    })
 
 router.route('/api/user_entries')
     .get((req, res) => {
@@ -32,7 +35,14 @@ router.route('/api/user_books')
     .get((req, res) => {
         User_Book.findAll()
             .then(allBooks => res.json(allBooks))
-    });
+    })
+    .post((req, res) => {
+        console.log(req.body)
+        User_Book.create({
+            whoFor: req.body.whoFor,
+            ownerId: req.body.ownerId
+        });
+    })
 
 router.route('/api/prompts') 
     .get((req, res) => {
