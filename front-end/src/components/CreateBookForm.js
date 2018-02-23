@@ -7,14 +7,14 @@ class CreateBookForm extends Component {
         this.state = {
             searchValues: '',
             searchBoxHidden: '',
-            dropdownData: []
+            dropdownData: [],
+            currentUserId: 1,
+            selectedUserForBook: null
         }
-    }
 
-    componentDidMount() {
+        // this._handleNameClick = this._handleNameClick.bind(this);
         
     }
-
 
     _handleFormInput = (event) => {
         this.setState({
@@ -31,26 +31,49 @@ class CreateBookForm extends Component {
 
     _onSearchForUser = (searchTerm) => {
         let regex = new RegExp('^' + '.*?' + searchTerm, 'gi');
-        let firstAndLastnames = this.props.userData.reduce((total, current) => {
-            return [ ...total, `${current.firstname} ${current.lastname}` ];
-        }, []);
-        let filteredList = firstAndLastnames.filter(name => name.match(regex))
+        // let firstAndLastnames = this.props.userData.reduce((total, current) => {
+        //     return [ ...total, `${current.firstname} ${current.lastname}` ];
+        // }, []);
+        let filteredList = this.props.userData.filter(user => {
+            let firstAndLast = `${user.firstname} ${user.lastname}`
+            return firstAndLast.match(regex);
+        });
         this.setState({
             dropdownData: filteredList
         });
+    }
+
+    _handleNameClick = (i) => {
+        this.setState({
+            searchValues: `${this.state.dropdownData[i].firstname} ${this.state.dropdownData[i].lastname}`
+        })
+    }
+
+    _populateSearchList = () => {
+        let searchListItems = this.state.dropdownData.map((user, i) => {
+            return (
+                <div onClick={() => this._handleNameClick(i)} style={{ cursor: 'pointer' }}>
+                    <li 
+                        key={i}
+                        style={{ listStyle: 'none', textAlign: 'center' }}
+                    >
+                        {user.firstname} {user.lastname} <span>{}</span>
+                    </li>
+                </div>
+            )
+        });
+        return searchListItems;
     }
 
     searchBoxStyle = {
         position: 'relative',
         bottom: '16px',
         outline: '1px solid black',
-        zIndex: '-1'
+        zIndex: '0'
     }
 
     render() {
-        let searchListItems = this.state.dropdownData.map((name, i) => {
-            return <li style={{ listStyle: 'none', textAlign: 'center' }}>{name}</li>
-        });
+        
 
         return (
             <div>
@@ -65,7 +88,7 @@ class CreateBookForm extends Component {
                     </form>
                     <div className={this.state.searchBoxHidden} style={this.searchBoxStyle}>
                         <ul style={{ zIndex: 1 }}>
-                            {searchListItems}
+                            {this._populateSearchList()}
                         </ul>
                     </div>
                 </div>
