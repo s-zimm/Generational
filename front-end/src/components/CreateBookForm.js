@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import CreateBookBtn from './CreateBookBtn';
 
 class CreateBookForm extends Component {
     constructor(props) {
@@ -7,34 +10,32 @@ class CreateBookForm extends Component {
 
         this.state = {
             searchValues: '',
-            searchBoxHidden: '',
+            searchBoxHidden: this.props.searchBoxHidden,
             dropdownData: [],
             currentUserId: 1,
-            selectedUserForBook: null
+            selectedUserForBook: null,
+            canSubmit: false
         }
-
-        // this._handleNameClick = this._handleNameClick.bind(this);
         
     }
 
     _handleFormInput = (event) => {
+        this.props.revealSearchBox()
         this.setState({
             searchValues: event.target.value,
-            searchBoxHidden: ''
+            // searchBoxHidden: ''
         }, () => {
             if (this.state.searchValues === '' || !this.state.dropdownData) {
-                this.setState({
-                    searchBoxHidden: 'hidden'
-                });
+                // this.setState({
+                //     searchBoxHidden: 'hidden'
+                // });
+                this.props.hideSearchBox()
             }
         }, this._onSearchForUser(this.state.searchValues));
     }
 
     _onSearchForUser = (searchTerm) => {
         let regex = new RegExp('^' + '.*?' + searchTerm, 'gi');
-        // let firstAndLastnames = this.props.userData.reduce((total, current) => {
-        //     return [ ...total, `${current.firstname} ${current.lastname}` ];
-        // }, []);
         let filteredList = this.props.userData.filter(user => {
             let firstAndLast = `${user.firstname} ${user.lastname}`
             return firstAndLast.match(regex);
@@ -68,17 +69,32 @@ class CreateBookForm extends Component {
         return searchListItems;
     }
 
-    _createBookClick = (event) => {
-        event.preventDefault();
-        axios.post('http://localhost:3000/api/user_books', {
-            whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
-            ownerId: this.state.currentUserId
-        });
+    _createBook = (event) => {
+        if (this.state.selectedUserForBook) {
+            axios.post('http://localhost:3000/api/user_books', {
+                whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
+                ownerId: this.state.currentUserId
+            });
+        } else {
+            axios.post('http://localhost:3000/api/user_books', {
+                whoFor: this.state.searchValues,
+                ownerId: this.state.currentUserId
+            });
+        }
+        
+    }
+
+    _handleLinkClick = (event) => {
+        let whoFor = this.state.searchValues;
+        let findExisting = () => this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
+        if (findExisting()) {
+            event.preventDefault();
+        }
     }
 
     searchBoxStyle = {
         position: 'relative',
-        bottom: '50px',
+        bottom: '70.5px',
         outline: '1px solid black',
         zIndex: '1',
         backgroundColor: 'white'
@@ -86,28 +102,27 @@ class CreateBookForm extends Component {
 
     render() {
         return (
-            <div style={{position: 'relative'}}>
+            <div style={{position: 'relative', height: '350px'}}>
                 <form 
                     action="/api/user_books"
                     style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}
-                    onSubmit={(event) => this._createBookClick(event)}
+                    onSubmit={(event) => this._handleLinkClick(event)}
                 >
                     <input 
+                        required="true"
                         autoComplete="off"
                         placeholder='Enter name...'
                         name="user"
                         onChange={this._handleFormInput}
                         value={this.state.searchValues}
-                        style={{ width: '500px', padding: '10px', marginTop: '30px' }}
+                        style={{ width: '400px', padding: '10px', margin: '20px 0' }}
                     />
-                    <button 
-                        style={{ width: '300px'}}
-                        type="submit"
-                    >
-                        Create
-                    </button>
+                    <CreateBookBtn 
+                        canSubmit={this.props.canSubmit}
+                        handleLinkClick={this._createBook}
+                    />
                 </form>
-                <div className={this.state.searchBoxHidden} style={this.searchBoxStyle}>
+                <div className={this.props.searchBoxHidden} style={this.searchBoxStyle}>
                     <ul>
                         {this._populateSearchList()}
                     </ul>

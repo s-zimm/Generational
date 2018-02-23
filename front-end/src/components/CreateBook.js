@@ -10,7 +10,9 @@ class CreateBook extends Component {
         super(props);
 
         this.state = {
-            users: []
+            users: [],
+            books: [],
+            searchBoxHidden: 'hidden',
         }
 
     }
@@ -31,6 +33,9 @@ class CreateBook extends Component {
                 return newUsers;
             })
             .then(users => this.setState({ users }))
+
+        axios.get('http://localhost:3000/api/user_books')
+            .then(books => this.setState({ books }));
     }
 
     containerStyling = {
@@ -43,9 +48,14 @@ class CreateBook extends Component {
         return (
             <React.Fragment>
                 <PageSubHeader heading="Book Creation" />
-                <div style={this.containerStyling}>
-                    <CreateBookForm 
+                <div style={this.containerStyling} onClick={() => this.setState({ searchBoxHidden: 'hidden'})}>
+                    <CreateBookForm
+                        searchBoxHidden={this.state.searchBoxHidden}
                         userData={this.state.users}
+                        bookData={this.state.books.data}
+                        revealSearchBox={() => this.setState({ searchBoxHidden: ''})}
+                        hideSearchBox={() => this.setState({ searchBoxHidden: 'hidden'})}
+
                     />
                     <StyleCarousel />
                 </div>
