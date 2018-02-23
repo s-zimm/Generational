@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import RelationshipItem from './RelationshipItem';
-import axios from 'axios';
 
 const Relationships = ({ userData }) => {
 

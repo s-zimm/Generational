@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import NewBookBtn from './NewBookBtn';
 import UserBookCover from './UserBookCover';
-import _ from 'lodash';
 
 const AccountBooks = ({ userEntries, userBooks }) => {
 

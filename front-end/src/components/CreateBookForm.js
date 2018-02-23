@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import CreateBookBtn from './CreateBookBtn';
@@ -23,12 +22,8 @@ class CreateBookForm extends Component {
         this.props.revealSearchBox()
         this.setState({
             searchValues: event.target.value,
-            // searchBoxHidden: ''
         }, () => {
             if (this.state.searchValues === '' || !this.state.dropdownData) {
-                // this.setState({
-                //     searchBoxHidden: 'hidden'
-                // });
                 this.props.hideSearchBox()
             }
         }, this._onSearchForUser(this.state.searchValues));

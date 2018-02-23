@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import UserInfo from './UserInfo';
 import Relationships from './Relationships';
-import axios from 'axios';
 
 const UserData = ({ userData }) => {
 

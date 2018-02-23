@@ -26,6 +26,7 @@ class PromptPage extends Component {
         return this.state.promptData.map(prompt => {
             return (
                 <Prompt 
+                    key={prompt.id}
                     prompts={prompt.prompts}
                     topic={prompt.content}
                 />

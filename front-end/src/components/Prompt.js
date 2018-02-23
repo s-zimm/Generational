@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-
-import PromptInputField from './PromptInputField';
 
 class Prompt extends Component {
     constructor(props) {
@@ -16,7 +13,6 @@ class Prompt extends Component {
     
 
     handleNewPromptClick = (direction) => {
-        console.log('click', direction)
         if (direction === 'right' && this.state.promptIndex !== this.state.prompts.length - 1) {
             return this.setState({
                 promptIndex: this.state.promptIndex + 1
@@ -39,16 +35,17 @@ class Prompt extends Component {
     render = () => {
         if (this.state.prompts) {
             return (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+                <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
                 <div style={this.promptContainerStyle}>
-                    <h4 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle('left')}>prev</h4>
                     <h3>{this.props.topic}</h3>
-                    <div>
-                        {/* <p><i>{this.props.prompt}</i></p> */}
+                    <div style={this.containerStyling}>
                         <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
-                        <input style={this.inputStyling} placeholder="...." />
+                        <input style={this.inputStyling} placeholder="...." maxLength="75" />
                     </div>
-                    <h4 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle('right')}>next</h4>
                 </div>
+                    <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
+            </div>
             )
         } else {
             return <div>Loading</div>
@@ -70,24 +67,17 @@ class Prompt extends Component {
         flexDirection: 'column',
         justtifyContent: 'flex-start',
         alignItems: 'center',
-        outline: 'solid 2px red',
         height: '300px'
     }
 
-    buttonStyle = (direction) => {
-        if (direction === 'left') {
-            return { 
-                cursor: 'pointer',
-                position: 'absolute', 
-                left: 0
-            }
-        } else {
-            return { 
-                cursor: 'pointer', 
-                position: 'absolute', 
-                right: 0
-            }
-        }
+    containerStyling = {
+        border: 'solid 2px black',
+        padding: '10px 90px 0 90px',
+        height: '200px'
+    }
+
+    buttonStyle = {
+        cursor: 'pointer'
     }
 }
 
