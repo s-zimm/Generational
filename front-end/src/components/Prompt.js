@@ -1,71 +1,81 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+import PromptInputField from './PromptInputField';
 
 class Prompt extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            prompts: [
-                {
-                    topic: 'This is the Topic',
-                    content: 'Blah Blah Blah'
-                },
-                {
-                    topic: 'NEXT TOPOC',
-                    content: 'BBAKJSDBKSAJDJAKJDBAK'
-                }
-            ],
-            currentIndex: 0
+            prompts: this.props.prompts,
+            promptIndex: 0
         }
     }
+
+    
 
     handleNewPromptClick = (direction) => {
         console.log('click', direction)
-        if (direction === 'right' && this.state.currentIndex !== this.state.prompts.length - 1) {
+        if (direction === 'right' && this.state.promptIndex !== this.state.prompts.length - 1) {
             return this.setState({
-                currentIndex: this.state.currentIndex + 1
+                promptIndex: this.state.promptIndex + 1
             });
-        } else if (this.state.currentIndex === 0 && direction === 'left') {
+        } else if (this.state.promptIndex === 0 && direction === 'left') {
             return this.setState({
-                currentIndex: this.state.prompts.length - 1
+                promptIndex: this.state.prompts.length - 1
             });
         } else if (direction === 'left') {
             return this.setState({
-                currentIndex: this.state.currentIndex - 1
+                promptIndex: this.state.promptIndex - 1
             });
         } else {
             return this.setState({
-                currentIndex: 0
+                promptIndex: 0
             });
         }
     }
 
-    render() {
-        return (
-            <div style={this.promptContainerStyle}>
-                <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle('left')}>prev</h1>
-                <h2>{this.state.prompts[this.state.currentIndex].topic}</h2>
-                <p style={{ borderBottom: 'solid grey 1px' }}>{this.state.prompts[this.state.currentIndex].content}</p>
-                <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle('right')}>next</h1>
-            </div>
-        )
+    _renderPrompts = () => {
+        
+    }
+
+    render = () => {
+        if (this.state.prompts) {
+            return (
+                <div style={this.promptContainerStyle}>
+                    <h4 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle('left')}>prev</h4>
+                    <h3>{this.props.topic}</h3>
+                    <div>
+                        {/* <p><i>{this.props.prompt}</i></p> */}
+                        <p><i>What does your name mean?</i></p>
+                        <input style={this.inputStyling} placeholder="...." />
+                    </div>
+                    <h4 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle('right')}>next</h4>
+                </div>
+            )
+        } else {
+            return <div>Loading</div>
+        }
+        
     }
 
     // Styling
-    promptContainerStyle = {
-        display: 'flex',
-        justifyContent: 'space-around',
-        flexDirection: 'column',
-        alignItems: 'center',
-        outline: 'solid 2px red',
-        padding: '40px 0'
-    }
-
     inputStyling = {
         border: '0',
         outline: '0',
         background: 'transparent',
-        borderBottom: '1px solid gray'
+        borderBottom: '1px solid gray',
+        width: '500px'
+    }
+
+    promptContainerStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        justtifyContent: 'flex-start',
+        alignItems: 'center',
+        outline: 'solid 2px red',
+        height: '300px'
     }
 
     buttonStyle = (direction) => {

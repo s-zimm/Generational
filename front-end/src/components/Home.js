@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Navbar from './Navbar';
 import BookScrollView from './BookScrollView';
 import Prompt from './Prompt';
+import PageSubHeader from './PageSubHeader';
 
 class Home extends Component {
     constructor(props) {
@@ -12,6 +13,7 @@ class Home extends Component {
     render() {
         return (
             <React.Fragment>
+                <PageSubHeader heading="Let's build a book..." />
                 <BookScrollView />
                 <Prompt />
             </React.Fragment>

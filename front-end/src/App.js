@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Account from './components/Account';
 import CreateBook from './components/CreateBook';
 import CreateBookSuccess from './components/CreateBookSuccess';
+import PromptPage from './components/PromptPage'; 
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
           <Route path="/account" component={Account} />
           <Route exact path="/book/new" component={CreateBook} />
           <Route exact path="/book/new/success" component={CreateBookSuccess} />
+          <Route path="/book/prompts" component={PromptPage} />
         </div>
       </Router>
     );
