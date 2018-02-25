@@ -56,6 +56,18 @@ User.bulkCreate([
         {
             content: 'Family History',
             chapter: 1
+        },
+        {
+            content: 'Childhood Memories',
+            chapter: 1
+        },
+        {
+            content: 'Teenage Years',
+            chapter: 2
+        },
+        {
+            content: 'Crushes and Loves',
+            chapter: 2
         }
     ])
 }).then(() => {
@@ -75,6 +87,18 @@ User.bulkCreate([
         {
             content: 'Where were your parents from?',
             topicId: 2
+        },
+        {
+            content: 'Where did you play when you were young?',
+            topicId: 3
+        },
+        {
+            content: `Write about a time when you did something you weren't supposed to.`,
+            topicId: 4
+        },
+        {
+            content: 'Who was your first crush?',
+            topicId: 5
         }
     ])
 }).then(() => {

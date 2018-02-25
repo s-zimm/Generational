@@ -10,7 +10,9 @@ class PromptPage extends Component {
 
         this.state = {
             promptData: [],
-            topicIndex: 0
+            topicIndex: 0,
+            currentChapter: 2
+
         }
     }
 
@@ -18,7 +20,9 @@ class PromptPage extends Component {
         axios.get('http://localhost:3000/api/prompts')
             .then(data => {
                 let theData = data.data
-                this.setState({ promptData: theData });
+                let filteredData = theData.filter(data => data.chapter === this.state.currentChapter);
+                console.log(filteredData)
+                this.setState({ promptData: filteredData }, () => console.log(this.state.promptData));
             })
     }
 
@@ -39,7 +43,7 @@ class PromptPage extends Component {
     render() {
         return (
             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <PageSubHeader heading="A book for Carl: Chapter 1" />
+                <PageSubHeader heading={`A book for Carl: Chapter ${this.state.currentChapter}`} />
                 {this._renderPromptItems()}
             </div>
         )
