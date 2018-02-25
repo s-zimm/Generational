@@ -10,6 +10,23 @@ class Prompt extends Component {
         }
     }
 
+    componentDidMount() {
+        if (this.state.prompts) {
+            let newPrompts = this.state.prompts.map((prompt, i) => {
+                return {
+                    ...prompt,
+                    entry: ''
+                };
+            });
+            this.setState({
+                prompts: newPrompts
+            });
+        } else {
+            console.log('Loading prompts...')
+        }
+        
+    }
+
     
 
     handleNewPromptClick = (direction) => {
@@ -32,6 +49,13 @@ class Prompt extends Component {
         }
     }
 
+    _onTextareaChange = (value) => {
+        this.setState(oldState => {
+            let newState = oldState;
+            return newState.prompts[oldState.promptIndex].entry = value;
+        });
+    }
+
     render = () => {
         if (this.state.prompts) {
             return (
@@ -41,25 +65,26 @@ class Prompt extends Component {
                     <h3>{this.props.topic}</h3>
                     <div style={this.containerStyling}>
                         <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
-                        <input style={this.inputStyling} placeholder="...." maxLength="75" />
+                        <textarea value={this.state.prompts[this.state.promptIndex].entry} onChange={(event) => this._onTextareaChange(event.target.value)} style={this.textareaStyling} placeholder="............" />
                     </div>
                 </div>
                     <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
             </div>
             )
         } else {
-            return <div>Loading</div>
+            return <div>Loading...</div>
         }
         
     }
 
     // Styling
-    inputStyling = {
+    textareaStyling = {
         border: '0',
         outline: '0',
         background: 'transparent',
         borderBottom: '1px solid gray',
         width: '500px',
+        height: '120px',
         marginBottom: '8px'
     }
 

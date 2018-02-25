@@ -30,6 +30,7 @@ class PromptPage extends Component {
                     id={prompt.id}
                     prompts={prompt.prompts}
                     topic={prompt.content}
+                    topicIndex={this.state.topicIndex}
                 />
             )
         })
