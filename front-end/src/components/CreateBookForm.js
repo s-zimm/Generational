@@ -51,9 +51,8 @@ class CreateBookForm extends Component {
     _populateSearchList = () => {
         let searchListItems = this.state.dropdownData.map((user, i) => {
             return (
-                <div onClick={() => this._handleNameClick(i)} style={{ cursor: 'pointer' }}>
+                <div key={i} onClick={() => this._handleNameClick(i)} style={{ cursor: 'pointer' }}>
                     <li 
-                        key={i}
                         style={{ listStyle: 'none', textAlign: 'center' }}
                     >
                         {user.firstname} {user.lastname} <span>{}</span>
@@ -83,13 +82,13 @@ class CreateBookForm extends Component {
         }
     }
 
-    _handleLinkClick = (event) => {
-        let whoFor = this.state.searchValues;
-        let findExisting = () => this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
-        if (findExisting()) {
-            event.preventDefault();
-        }
-    }
+    // _handleLinkClick = (event) => {
+    //     let whoFor = this.state.searchValues;
+    //     let findExisting = () => this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
+    //     if (findExisting()) {
+    //         event.preventDefault();
+    //     }
+    // }
 
     searchBoxStyle = {
         position: 'relative',
@@ -117,6 +116,7 @@ class CreateBookForm extends Component {
                     <CreateBookBtn 
                         canSubmit={this.state.canSubmit}
                         handleLinkClick={(event) => this._createBook(event)}
+                        currentUserId={this.state.currentUserId}
                     />
                 </form>
                 <div className={this.props.searchBoxHidden} style={this.searchBoxStyle}>

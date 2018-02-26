@@ -14,7 +14,6 @@ const AccountBooks = ({ userEntries, userBooks }) => {
     let renderUserBooks = () => {
         if (userBooks) {
             return userBooks.map(book => {
-                console.log(book)
                 return (
                     <UserBookCover
                         key={book.id}

@@ -1,31 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 
-const CreateBookBtn = ({ canSubmit, handleLinkClick }) => {
+class CreateBookBtn extends Component {
+    constructor(props) {
+        super(props);
 
-    if (canSubmit) {
-        return (
-            <Link
-                to="/book/new/success" 
-                onClick={(event) => handleLinkClick(event)}
-            >
-            <button 
-                style={{ width: '300px'}}
-                type="submit"
-            >
-                Create
-            </button>
-            </Link>
-        )
-    } else {
-        return (
-            <button
-                style={{ width: '300px'}}
-                type="submit"
-            >
-                Create
-            </button>
-        )
+        this.state = {}
+    }
+
+    render() {
+        if (this.props.canSubmit) {
+            return (
+                <Link
+                    to={`/book/new/success/`}
+                    onClick={(event) => this.props.handleLinkClick(event)}
+                >
+                <button 
+                    style={{ width: '300px'}}
+                    type="submit"
+                >
+                    Create
+                </button>
+                </Link>
+            )
+        } else {
+            return (
+                <button
+                    style={{ width: '300px'}}
+                    type="submit"
+                >
+                    Create
+                </button>
+            )
+        }
     }
     
 }

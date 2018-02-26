@@ -40,7 +40,6 @@ router.route('/api/user_entries')
             }
         })
         .spread((entry, created) => {
-            // console.log(entry)
             entry.update({
                 content: req.body.content,
                 userId: req.body.userId,
@@ -50,11 +49,15 @@ router.route('/api/user_entries')
             .then(data => res.json(data))
             
         });
-    })
+    });
 
 router.route('/api/user_books')
     .get((req, res) => {
-        User_Book.findAll()
+        User_Book.findAll({
+            order: [
+                ['createdAt', 'DESC']
+            ]
+        })
             .then(allBooks => res.json(allBooks))
     })
     .post((req, res) => {
@@ -62,7 +65,7 @@ router.route('/api/user_books')
         User_Book.create({
             whoFor: req.body.whoFor,
             ownerId: req.body.ownerId
-        });
+        })
     })
 
 router.route('/api/prompts') 
