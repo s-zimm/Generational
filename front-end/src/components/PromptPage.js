@@ -13,7 +13,8 @@ class PromptPage extends Component {
             promptData: [],
             topicIndex: 0,
             currentChapter: 1,
-            bookId: this.props.match.params.id
+            bookId: Number(this.props.match.params.id),
+            currentUserId: 1
         }
     }
 
@@ -31,7 +32,7 @@ class PromptPage extends Component {
                 let theData = data.data;
                 return theData.find(book => book.id === bookId);
             })
-            .then(data => this.setState({ bookInfo: data }))
+            .then(data => this.setState({ bookInfo: data }));
     }
 
     _renderPromptItems = () => {
@@ -44,6 +45,8 @@ class PromptPage extends Component {
                     prompts={prompt.prompts}
                     topic={prompt.content}
                     topicIndex={this.state.topicIndex}
+                    currentUserId={this.state.currentUserId}
+                    bookId={this.state.bookId}
                 />
             );
         });

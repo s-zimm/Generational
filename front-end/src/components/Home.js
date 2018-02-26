@@ -15,7 +15,6 @@ class Home extends Component {
             <React.Fragment>
                 <PageSubHeader heading="Let's build a book..." />
                 <BookScrollView />
-                <Prompt />
             </React.Fragment>
         )
     }

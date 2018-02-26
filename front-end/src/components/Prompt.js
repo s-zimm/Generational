@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class Prompt extends Component {
     constructor(props) {
@@ -25,6 +26,19 @@ class Prompt extends Component {
             console.log('Loading prompts...')
         }
         
+        axios.get('http://localhost:3000/api/user_entries')
+            .then(data => {
+                let theData = data.data.filter(entry => entry.userId === this.props.currentUserId && entry.bookId === this.props.bookId);
+                return this.state.prompts.map(prompt => {
+                    let theEntry = theData.find(entry => entry.promptId === prompt.id);
+                    if (theEntry) {
+                        return { ...prompt, entry: theEntry.content, entryId: theEntry.id };
+                    } else {
+                        return prompt;
+                    } 
+                });
+            })
+            .then(prompts => this.setState({ prompts }));
     }
 
     
@@ -50,10 +64,39 @@ class Prompt extends Component {
     }
 
     _onTextareaChange = (value) => {
-        this.setState(oldState => {
-            let newState = oldState;
-            return newState.prompts[oldState.promptIndex].entry = value;
-        }, () => console.log(this.state.prompts[this.state.promptIndex]));
+        this.setState({
+            prompts: this.state.prompts.map((prompt, i) => {
+                if (i === this.state.promptIndex) {
+                    return { ...prompt, entry: value }
+                } else {
+                    return prompt
+                }
+            })
+        });
+    }
+
+    _handleAddToBook = (event) => {
+        event.preventDefault();
+        axios.post('http://localhost:3000/api/user_entries', {
+            content: this.state.prompts[this.state.promptIndex].entry,
+            userId: this.props.currentUserId,
+            bookId: this.props.bookId,
+            promptId: this.state.prompts[this.state.promptIndex].id,
+            entryId: this.state.prompts[this.state.promptIndex].entryId
+        })
+        .then(data => {
+            console.log(data)
+            this.setState({
+                prompts: this.state.prompts.map((prompt, i) => {
+                    if (i === this.state.promptIndex) {
+                        return { ...prompt, entryId: data.data.id }
+                    } else {
+                        return prompt
+                    }
+                })
+            }, () => console.log(this.state));
+        });
+
     }
 
     render = () => {
@@ -65,7 +108,13 @@ class Prompt extends Component {
                     <h3>{this.props.topic}</h3>
                     <div style={this.containerStyling}>
                         <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
-                        <textarea value={this.state.prompts[this.state.promptIndex].entry} onChange={(event) => this._onTextareaChange(event.target.value)} style={this.textareaStyling} placeholder="............" />
+                        <textarea 
+                            value={this.state.prompts[this.state.promptIndex].entry}
+                            onChange={(event) => this._onTextareaChange(event.target.value)} 
+                            style={this.textareaStyling} 
+                            placeholder="............" 
+                        />
+                        <button onClick={(event) => this._handleAddToBook(event)}>Add to book</button>
                     </div>
                 </div>
                     <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
@@ -101,9 +150,8 @@ class Prompt extends Component {
         flexDirection: 'column',
         alignItems: 'center',
         border: 'solid 2px black',
-        // padding: '10px 90px 0 90px',
         width: '650px',
-        height: '200px'
+        height: '230px'
     }
 
     buttonStyle = {

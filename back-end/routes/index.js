@@ -29,7 +29,28 @@ router.route('/api/user_entries')
     .get((req, res) => {
         User_Entry.findAll()
         .then(allPrompts => res.json(allPrompts));
-    });
+    })
+    .post((req, res) => {
+        User_Entry.findOrCreate({
+            where: { id: req.body.entryId }, defaults: {
+                content: req.body.content,
+                userId: req.body.userId,
+                bookId: req.body.bookId,
+                promptId: req.body.promptId
+            }
+        })
+        .spread((entry, created) => {
+            // console.log(entry)
+            entry.update({
+                content: req.body.content,
+                userId: req.body.userId,
+                bookId: req.body.bookId,
+                promptId: req.body.promptId
+            })
+            .then(data => res.json(data))
+            
+        });
+    })
 
 router.route('/api/user_books')
     .get((req, res) => {
