@@ -32,14 +32,15 @@ router.route('/api/users/relationships')
     })
     .post((req, res) => {
         User.findOne({
-            where: { email: req.body.userEmail }
+            where: { email: req.body.relatedUserEmail }
         })
         .then(relatedUser => {
             Relationship.create({
                 relation: req.body.relation,
                 userId: req.body.currentUserId,
                 relatedUserId: relatedUser.id
-            });
+            })
+            .then(data => res.json(data));
         }); 
     });
 

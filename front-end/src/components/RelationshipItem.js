@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
+import RelationshipUpdate from './RelationshipUpdate';
 
-const RelationshipItem = (props) => {
+class RelationshipItem extends Component {
+    constructor(props) {
+        super(props);
 
-    let circleContainerStyle = {
+        this.state = {
+            viewInfo: false,
+            editing: false
+        }
+    }
+
+    _handleRelItemClick = () => {
+        this.setState({ viewInfo: true });
+    }
+
+    _collapseViewRel = () => {
+        this.setState({ viewInfo: false });
+    }
+
+    circleContainerStyle = {
         border: 'solid black 1px',
         borderRadius: '50%',
         width: '75px',
@@ -11,11 +28,21 @@ const RelationshipItem = (props) => {
         margin: '5px'
     }
 
-    return (
-        <div style={circleContainerStyle}>
-            <p style={{ padding: '10px' }}>{props.name}</p>
-        </div>
-    )
+    render() {
+        return (
+            <div style={{ position: 'relative' }}>
+                {this.state.viewInfo 
+                                ? <RelationshipUpdate
+                                    userBooks={this.props.userBooks}
+                                    name={this.props.name}
+                                    collapseViewRel={this._collapseViewRel}/>
+                                : null}
+                <div style={this.circleContainerStyle} onClick={() => this._handleRelItemClick()}>
+                    <p style={{ padding: '10px' }}>{this.props.name}</p>
+                </div>
+            </div>
+        )
+    }
 }
 
 export default RelationshipItem;

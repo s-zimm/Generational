@@ -8,12 +8,13 @@ class RelationshipAdd extends Component {
 
         this.state = {
             relatedUserEmail: '',
-            relation: ''
+            relation: '',
+            emailError: false,
+            relatedError: false
         }
     }
 
     _handleRelAdd = (event) => {
-        event.preventDefault();
         // let currentUserRelations = this.props.relationships.filter(relation => relation.userId === this.props.userData.id);
         let relation = this.props.allUserData.filter(user => {
             return this.props.userData.relationships.find(relation => {
@@ -23,15 +24,17 @@ class RelationshipAdd extends Component {
         let relatedPerson = relation.find(user => user.email === this.state.relatedUserEmail);
         let emailExist = this.props.allUserData.find(user => user.email === this.state.relatedUserEmail);
         if (!emailExist) {
-            return console.log('this user does not exist')
+            return alert('This email does not exist')
         } else if (relatedPerson) {
-            return console.log('youre related to this person')
+            return alert('You are already related to this person')
         } else {
             axios.post('http://localhost:3000/api/users/relationships', {
                 relation: this.state.relation,
                 currentUserId: this.props.userData.id,
                 relatedUserEmail: this.state.relatedUserEmail 
-            });
+            })
+            .then(data => console.log(data));
+            
         }
         
     }

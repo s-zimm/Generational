@@ -23,6 +23,7 @@ class Relationships extends Component {
             return this.props.userData.relationships.map(person => {
                 return (
                     <RelationshipItem
+                        userBooks={this.props.userBooks}
                         name={person.name}
                         key={person.relatedUserId}
                         id={person.userId}

@@ -64,7 +64,8 @@ class Account extends Component {
             <React.Fragment>
                 <PageSubHeader heading='My Account' />
                 <div style={{ margin: '40px', display: 'flex' }}>
-                    <UserData 
+                    <UserData
+                        userBooks={this.state.userBooks}
                         userData={this.state.userData}
                         allUserData={this.state.allUserData}
                     />
