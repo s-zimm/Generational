@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BookScrollView = props => {
 
@@ -16,7 +17,7 @@ const BookScrollView = props => {
         <div className="BookScrollViewContainer">
             <div style={innerScrollViewContainer}>
                 <h1>Books will go here</h1>
-                <button style={{ marginTop: '20px' }}>Create Book</button>
+                <Link to="/book/new"><button style={{ marginTop: '20px' }}>Create Book</button></Link>
             </div>
         </div>
     )
