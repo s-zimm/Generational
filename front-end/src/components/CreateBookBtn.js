@@ -28,8 +28,7 @@ class CreateBookBtn extends Component {
             return (
                 <button
                     style={{ width: '300px'}}
-                    type="submit"
-                >
+                    type="submit">
                     Create
                 </button>
             )

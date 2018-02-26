@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import RelationshipItem from './RelationshipItem';
+import RelationshipAdd from './RelationshipAdd';
 
-const Relationships = ({ userData }) => {
+class Relationships extends Component {
+    constructor(props) {
+        super(props);
 
-    let setRelationshipItems = () => {
-        if (userData) {
-            return userData.relationships.map(person => {
+        this.state = {
+            addingRelationship: false
+        }
+    }
+
+    setRelationshipItems = () => {
+        if (this.props.userData) {
+            return this.props.userData.relationships.map(person => {
                 return (
                     <RelationshipItem
                         name={person.name}
@@ -20,27 +28,45 @@ const Relationships = ({ userData }) => {
         }
     }
 
-    let circleContainerStyle = {
+    _onRelationshipAdd = () => {
+        if (!this.state.addingRelationship) {
+            this.setState({ addingRelationship: true });
+        }
+    }
+
+    _handleCollapse = () => {
+        this.setState({ addingRelationship: false });
+    }
+
+    circleContainerStyle = {
         border: 'solid black 1px',
         borderRadius: '50%',
         width: '75px',
         textAlign: 'center',
         cursor: 'pointer',
-        margin: '5px'
+        margin: '5px',
+        position: 'relative'
     }
 
-    return (
-        <div>
-            <h3>My Relationships</h3>
-            <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-                {setRelationshipItems()}
-                {/* Div below needs onClick */}
-                <div style={circleContainerStyle}>
-                    <p style={{ padding: '10px' }}>+</p>
+    render() {
+        return (
+            <div>
+                <h3>My Relationships</h3>
+                <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
+                    <div 
+                        style={this.circleContainerStyle}
+                        onClick={() => this._onRelationshipAdd()}>
+                        {this.state.addingRelationship 
+                                    ? <RelationshipAdd userData={this.props.userData} collapseAddRel={this._handleCollapse}/>
+                                    : null}
+                        <p style={{ padding: '10px' }}>+</p>
+                    </div>
+                    {this.setRelationshipItems()}
+                    {/* Div below needs onClick */}
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Relationships;

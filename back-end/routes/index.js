@@ -23,7 +23,25 @@ router.route('/api/users')
     })
     .post((req, res) => {
         console.log(req.body)
+    });
+
+router.route('/api/users/relationships')
+    .get((req, res) => {
+        Relationship.findAll()
+            .then(allRelations => res.json(allRelations));
     })
+    .post((req, res) => {
+        User.findOne({
+            where: { email: req.body.userEmail }
+        })
+        .then(relatedUser => {
+            Relationship.create({
+                relation: req.body.relation,
+                userId: req.body.currentUserId,
+                relatedUserId: relatedUser.id
+            });
+        }); 
+    });
 
 router.route('/api/user_entries')
     .get((req, res) => {
