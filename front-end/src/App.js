@@ -20,7 +20,7 @@ class App extends Component {
           <Route path="/account" component={Account} />
           <Route exact path="/book/new" component={CreateBook} />
           <Route exact path="/book/new/success" component={CreateBookSuccess} />
-          <Route path="/book/prompts" component={PromptPage} />
+          <Route path="/book/prompts/:id" component={PromptPage} />
         </div>
       </Router>
     );

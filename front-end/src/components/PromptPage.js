@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Prompt from './Prompt';
 import PageSubHeader from './PageSubHeader';
+import { debug } from 'util';
 
 class PromptPage extends Component {
     constructor(props) {
@@ -11,18 +12,26 @@ class PromptPage extends Component {
         this.state = {
             promptData: [],
             topicIndex: 0,
-            currentChapter: 2
-
+            currentChapter: 1,
+            bookId: this.props.match.params.id
         }
     }
 
     componentDidMount = () => {
+        console.log(this.state.bookId)
+        const bookId = Number(this.state.bookId);
         axios.get('http://localhost:3000/api/prompts')
             .then(data => {
                 let theData = data.data;
-    
                 this.setState({ promptData: theData });
             });
+
+        axios.get('http://localhost:3000/api/user_books')
+            .then(data => {
+                let theData = data.data;
+                return theData.find(book => book.id === bookId);
+            })
+            .then(data => this.setState({ bookInfo: data }))
     }
 
     _renderPromptItems = () => {
@@ -51,17 +60,22 @@ class PromptPage extends Component {
     }
 
     render() {
-        return (
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <PageSubHeader heading={`A book for Carl: Chapter ${this.state.currentChapter}`} />
-                {this._renderPromptItems()}
-                <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '600px' }}>
-                    <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '200px', alignSelf: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
-                    <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '200px', alignSelf: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+        if (this.state.bookInfo) {
+            return (
+                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
+                    {this._renderPromptItems()}
+                    <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '600px' }}>
+                        <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '200px', alignSelf: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
+                        <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '200px', alignSelf: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+                    </div>
+                    
                 </div>
-                
-            </div>
-        )
+            )
+        } else {
+            return <div>Loading...</div>
+        }
+        
     }
 }
 

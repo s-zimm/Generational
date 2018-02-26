@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import PromptPage from './PromptPage';
 
 const UserBookCover = (props) => {
 
@@ -12,9 +14,11 @@ const UserBookCover = (props) => {
     }
 
     return (
-        <div style={bookCoverStyles}>
-            <p style={{ padding: '80px' }}>{props.title}</p>
-        </div>
+        <Link style={bookCoverStyles} to={`/book/prompts/${props.id}`}>
+            <div>
+                <p style={{ padding: '80px' }}>{props.title}</p>
+            </div>
+        </Link>
     )
 }
 

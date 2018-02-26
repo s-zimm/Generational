@@ -32,7 +32,7 @@ const Navbar = props => {
                 <Link to="/">Home</Link>
                 <Link style={brandStyle} to="/account">Account</Link>
                 <Link style={brandStyle} to="/book/new">Create Book</Link>
-                <Link style={brandStyle} to="/book/prompts">Prompts</Link>
+                <Link style={brandStyle} to="/book/prompts/1">Prompts</Link>
                 <button style={brandStyle}>Sign Up</button>
             </div>
             <div>

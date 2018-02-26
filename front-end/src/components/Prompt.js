@@ -53,7 +53,7 @@ class Prompt extends Component {
         this.setState(oldState => {
             let newState = oldState;
             return newState.prompts[oldState.promptIndex].entry = value;
-        });
+        }, () => console.log(this.state.prompts[this.state.promptIndex]));
     }
 
     render = () => {
