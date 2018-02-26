@@ -1,14 +1,21 @@
 import React, { Component } from 'react';
 import RelationshipItem from './RelationshipItem';
 import RelationshipAdd from './RelationshipAdd';
+import axios from 'axios';
 
 class Relationships extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            addingRelationship: false
+            addingRelationship: false,
+            relationships: []
         }
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:3000/api/users/relationships')
+            .then(data => this.setState({ relationships: data.data }));
     }
 
     setRelationshipItems = () => {
@@ -57,7 +64,11 @@ class Relationships extends Component {
                         style={this.circleContainerStyle}
                         onClick={() => this._onRelationshipAdd()}>
                         {this.state.addingRelationship 
-                                    ? <RelationshipAdd userData={this.props.userData} collapseAddRel={this._handleCollapse}/>
+                                    ? <RelationshipAdd
+                                        allUserData={this.props.allUserData}
+                                        userData={this.props.userData} 
+                                        collapseAddRel={this._handleCollapse}
+                                        relationships={this.state.relationships}/>
                                     : null}
                         <p style={{ padding: '10px' }}>+</p>
                     </div>

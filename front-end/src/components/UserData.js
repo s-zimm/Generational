@@ -2,7 +2,7 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import Relationships from './Relationships';
 
-const UserData = ({ userData }) => {
+const UserData = ({ userData, allUserData }) => {
 
     let containerStyle = {
         display: 'flex',
@@ -16,6 +16,7 @@ const UserData = ({ userData }) => {
         <div style={containerStyle}>
             <UserInfo />
             <Relationships 
+                allUserData={allUserData}
                 userData={userData}
             />
         </div>

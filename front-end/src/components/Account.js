@@ -19,6 +19,7 @@ class Account extends Component {
         axios.get('http://localhost:3000/api/users')
                 .then(data => {
                     let theData = data.data;
+                    this.setState({ allUserData: theData });
                     const newData = theData.map((user) => {
                         const relationships = user.relationships.map((relation) => {
                             let relatedUserObject = theData.find((obj) => obj.id === relation.relatedUserId);
@@ -65,6 +66,7 @@ class Account extends Component {
                 <div style={{ margin: '40px', display: 'flex' }}>
                     <UserData 
                         userData={this.state.userData}
+                        allUserData={this.state.allUserData}
                     />
                     <AccountBooks 
                         userEntries={this.state.userEntries}
