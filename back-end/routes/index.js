@@ -7,6 +7,7 @@ const Prompt_Topic = require('../models/Prompt_Topic');
 const User_Book = require('../models/User_Book');
 const User_Entry = require('../models/User_Entry');
 const Relationship = require('../models/Relationship');
+const User_Book_Contributor = require('../models/User_Book_Contributor');
 
 router.all('*', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -42,6 +43,19 @@ router.route('/api/users/relationships')
             })
             .then(data => res.json(data));
         }); 
+    });
+
+router.route('/api/books/contributors')
+    .get((req, res) => {
+        User_Book_Contributor.findAll()
+            .then(allContributors => res.json(allContributors));
+    })
+    .post((req, res) => {
+        User_Book_Contributor.create({
+            userId: req.body.contributorId,
+            bookId: req.body.bookId
+        })
+        .then(data => res.json(data));
     });
 
 router.route('/api/user_entries')

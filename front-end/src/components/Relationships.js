@@ -24,9 +24,10 @@ class Relationships extends Component {
                 return (
                     <RelationshipItem
                         userBooks={this.props.userBooks}
+                        currentUserId={this.props.userData.id}
                         name={person.name}
                         key={person.relatedUserId}
-                        id={person.userId}
+                        id={person.relatedUserId}
                         relation={person.relation}
                     />
                 );

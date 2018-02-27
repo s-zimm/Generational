@@ -35,6 +35,8 @@ class RelationshipItem extends Component {
                                 ? <RelationshipUpdate
                                     userBooks={this.props.userBooks}
                                     name={this.props.name}
+                                    id={this.props.id}
+                                    currentUserId={this.props.currentUserId}
                                     collapseViewRel={this._collapseViewRel}/>
                                 : null}
                 <div style={this.circleContainerStyle} onClick={() => this._handleRelItemClick()}>

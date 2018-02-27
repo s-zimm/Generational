@@ -41,3 +41,19 @@ input {
   display: none;
 }
 
+.delete-btn { 
+  background-color: white;
+  color: red;
+  border: 1px solid black;
+  transition: .2s all ease;
+}
+
+.delete-btn:hover {
+  background-color: red;
+  color: white;
+  transition: .2s all ease;
+}
+
+.invalid {
+  outline: red 1.5px solid;
+}
