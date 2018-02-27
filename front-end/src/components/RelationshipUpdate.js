@@ -37,7 +37,6 @@ class RelationshipUpdate extends Component {
     }
 
     _onContributorSubmit = (event) => {
-        console.log(this.props.id, this.state.selectedBookId)
         event.preventDefault();
         if (this.state.selectedBookId === 0) {
             return this.setState({ selectUserValidation: 'invalid' }, () => {
@@ -62,8 +61,8 @@ class RelationshipUpdate extends Component {
                 }).then(data => {
                     this.setState({
                         contributors: this.state.contributors.concat(data.data)
-                    }, () => console.log(this.state.contributors, this.state.selectedBookId))
-                })
+                    });
+                });
             });
             setTimeout(() => { this.setState({ addContributorSuccess: false, showOriginalButton: true })}, 1400)
         }

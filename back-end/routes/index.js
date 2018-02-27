@@ -16,7 +16,6 @@ router.all('*', (req, res, next) => {
     next();
 })
 
-/* GET home page. */
 router.route('/api/users')
     .get((req, res) => {
         User.findAll({ include: [{ all: true }]})
