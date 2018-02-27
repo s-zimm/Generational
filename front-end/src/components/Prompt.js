@@ -7,7 +7,8 @@ class Prompt extends Component {
 
         this.state = {
             prompts: this.props.prompts,
-            promptIndex: 0
+            promptIndex: 0,
+            clickedAdd: false
         }
     }
 
@@ -77,6 +78,9 @@ class Prompt extends Component {
 
     _handleAddToBook = (event) => {
         event.preventDefault();
+        this.setState({ clickedAdd: true }, () => {
+            setTimeout(() => { this.setState({ clickedAdd: false })}, 2000)
+        })
         axios.post('http://localhost:3000/api/user_entries', {
             content: this.state.prompts[this.state.promptIndex].entry,
             userId: this.props.currentUserId,
@@ -114,7 +118,10 @@ class Prompt extends Component {
                             style={this.textareaStyling} 
                             placeholder="............" 
                         />
-                        <button onClick={(event) => this._handleAddToBook(event)}>Add to book</button>
+                        {this.state.clickedAdd 
+                            ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
+                            : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleAddToBook(event)}>Add to book</button>}
+                        
                     </div>
                 </div>
                     <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
