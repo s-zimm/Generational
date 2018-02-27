@@ -33,11 +33,13 @@ class RelationshipItem extends Component {
             <div style={{ position: 'relative' }}>
                 {this.state.viewInfo 
                                 ? <RelationshipUpdate
+                                    relation={this.props.relation}
                                     userBooks={this.props.userBooks}
                                     name={this.props.name}
                                     id={this.props.id}
                                     currentUserId={this.props.currentUserId}
-                                    collapseViewRel={this._collapseViewRel}/>
+                                    collapseViewRel={this._collapseViewRel}
+                                    relationshipId={this.props.relationshipId}/>
                                 : null}
                 <div style={this.circleContainerStyle} onClick={() => this._handleRelItemClick()}>
                     <p style={{ padding: '10px' }}>{this.props.name}</p>

@@ -9,6 +9,7 @@ class RelationshipUpdate extends Component {
             selectedBookId: 0,
             addContributorSuccess: false,
             showOriginalButton: true,
+            deleteRelationshipConfirm: false,
             deleteRelationshipSuccess: false,
             userContributorExist: false,
             selectUserValidation: ''
@@ -19,7 +20,7 @@ class RelationshipUpdate extends Component {
         axios.get('http://localhost:3000/api/books/contributors')
             .then(data => {
                 this.setState({ contributors: data.data });
-            })
+            });
     }
 
     _renderUserBookSelect = () => {
@@ -28,7 +29,7 @@ class RelationshipUpdate extends Component {
             return (
                 <option key={book.id} value={book.id} required>{`Book for: ${book.whoFor}`}</option>
             )
-        })
+        });
     }
 
     _onSelectChange = (value) => {
@@ -68,6 +69,22 @@ class RelationshipUpdate extends Component {
         }
     }
 
+    _handleDeleteClick1 = (event) => {
+        event.preventDefault();
+        if (this.state.deleteRelationshipConfirm === false) {
+            this.setState({ deleteRelationshipConfirm: true })
+        }
+    }
+
+    _handleDeleteClick2 = () => {
+        axios.post('http://localhost:3000/api/users/relationships/delete', {
+            relationId: this.props.relationshipId,
+            relatedUserId: this.props.id
+        }).then(data => {
+            console.log(data)
+        })
+    }
+
     render() {
         return (
             <div style={this.containerStyle}>
@@ -88,7 +105,11 @@ class RelationshipUpdate extends Component {
                         ? <button style={{ width: '150px' }}>{`${this.props.name} added!`}</button>
                         : null}
                 </form>
-                <button className="delete-btn">Delete Relationship</button>
+                <form onSubmit={() => this._handleDeleteClick2()}>
+                {this.state.deleteRelationshipConfirm
+                    ? <button type="submit" className="delete-btn" style={{ width: '150px' }}>Are you sure?</button>
+                    : <button onClick={(event) => this._handleDeleteClick1(event)} className="delete-btn">Delete Relationship</button>}
+                </form>
             </div>
         )
     }

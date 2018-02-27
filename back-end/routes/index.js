@@ -31,6 +31,8 @@ router.route('/api/users/relationships')
         Relationship.findAll()
             .then(allRelations => res.json(allRelations));
     })
+
+router.route('/api/users/relationships/create')
     .post((req, res) => {
         User.findOne({
             where: { email: req.body.relatedUserEmail }
@@ -44,6 +46,14 @@ router.route('/api/users/relationships')
             .then(data => res.json(data));
         }); 
     });
+
+router.route('/api/users/relationships/delete')
+    .post((req, res) => {
+        Relationship.destroy({
+            where: { id: req.body.relationId }
+        })
+        .then(data => res.json(data))
+    })
 
 router.route('/api/books/contributors')
     .get((req, res) => {

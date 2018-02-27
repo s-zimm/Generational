@@ -30,7 +30,7 @@ class RelationshipAdd extends Component {
             event.preventDefault();
             return alert('You are already related to this person')
         } else {
-            axios.post('http://localhost:3000/api/users/relationships', {
+            axios.post('http://localhost:3000/api/users/relationships/create', {
                 relation: this.state.relation,
                 currentUserId: this.props.userData.id,
                 relatedUserEmail: this.state.relatedUserEmail 

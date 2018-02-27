@@ -29,6 +29,7 @@ class Relationships extends Component {
                         key={person.relatedUserId}
                         id={person.relatedUserId}
                         relation={person.relation}
+                        relationshipId={person.id}
                     />
                 );
             });
