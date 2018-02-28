@@ -4,6 +4,7 @@ import axios from 'axios';
 class Prompt extends Component {
     constructor(props) {
         super(props);
+       
         this.state = {
             prompts: this.props.prompts,
             promptIndex: 0,
@@ -13,19 +14,19 @@ class Prompt extends Component {
     }
 
     componentDidMount() {
-        if (this.state.prompts) {
-            let newPrompts = this.state.prompts.map((prompt, i) => {
-                return {
-                    ...prompt,
-                    entry: ''
-                };
-            });
-            this.setState({
-                prompts: newPrompts
-            });
-        } else {
-            console.log('Loading prompts...')
-        }
+        // if (this.state.prompts) {
+        //     let newPrompts = this.state.prompts.map((prompt, i) => {
+        //         return {
+        //             ...prompt,
+        //             entry: ''
+        //         };
+        //     });
+        //     this.setState({
+        //         prompts: newPrompts
+        //     });
+        // } else {
+        //     console.log('Loading prompts...')
+        // }
         
         // axios.get('http://localhost:3000/api/user_entries')
         //     .then(data => {
@@ -90,11 +91,10 @@ class Prompt extends Component {
             completed: false
         })
         .then(data => {
-            console.log(data)
             this.setState({
                 prompts: this.state.prompts.map((prompt, i) => {
                     if (i === this.state.promptIndex) {
-                        return { ...prompt, entryId: data.data.id }
+                        return { ...prompt, entry: data.data.content, entryId: data.data.id }
                     } else {
                         return prompt
                     }
@@ -115,7 +115,11 @@ class Prompt extends Component {
             entryId: this.state.prompts[this.state.promptIndex].entryId,
             completed: true
         })
-        .then(data => console.log(data))
+        .then(data => this.setState({ 
+            prompts: this.state.prompts.filter((prompt, i) => {
+                return prompt.entryId != data.data.id
+            })
+        }))
     }
 
     render = () => {

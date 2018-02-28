@@ -15,7 +15,8 @@ class PromptPage extends Component {
             currentChapter: 1,
             bookId: Number(this.props.match.params.id),
             currentUserId: 1,
-            incompleteEntries: []
+            completedEntries: [],
+            allEntries: []
         }
     }
 
@@ -30,10 +31,11 @@ class PromptPage extends Component {
             .then(data => this.setState({ bookInfo: data }, () => {
                 axios.get('http://localhost:3000/api/user_entries')
                     .then(data => {
-                        let theData = data.data.filter(entry => entry.userId === this.state.currentUserId && entry.bookId === this.state.bookId && entry.completed === false)
+                        this.setState({ allEntries: data.data.filter(entry => entry.userId === this.state.currentUserId)});
+                        let theData = data.data.filter(entry => entry.userId === this.state.currentUserId && entry.bookId === this.state.bookId && entry.completed === true)
                                                 .map(entry => entry.promptId);
                         console.log(theData)
-                        this.setState({ incompleteEntries: theData }, () => {
+                        this.setState({ completedEntries: theData }, () => {
                             axios.get('http://localhost:3000/api/prompts')
                                 .then(data => {
                                     let theData = data.data;
@@ -48,26 +50,38 @@ class PromptPage extends Component {
     _renderPromptItems = () => {
         let dataToRender;
         let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter);
-        if (this.state.incompleteEntries.length > 0) {
-            let incompletePrompts = filteredData.map(topic => {
+        let addedEntries = filteredData.map(topic => {
+            return {
+                ...topic,
+                prompts: topic.prompts.map(prompt => {
+                    let foundEntry = this.state.allEntries.find(entry => entry.promptId === prompt.id);
+                    if (foundEntry) {
+                        return { ...prompt, entry: foundEntry.content, entryId: foundEntry.id }
+                    } else {
+                        return { ...prompt, entry: '' }
+                    }
+                })
+            }
+        });
+        if (this.state.completedEntries.length > 0) {
+            let incompletePrompts = addedEntries.map(topic => {
                 return {
                     ...topic,
                     prompts: topic.prompts.filter(prompt => {
-                        return this.state.incompleteEntries.includes(prompt.id)
+                        return !this.state.completedEntries.includes(prompt.id)
                     })
                 }
-                
             });
             dataToRender = incompletePrompts;   
             console.log('I filtered stuff')         
         } else {
-            dataToRender = filteredData
+            dataToRender = addedEntries
         }
         
         console.log(dataToRender)
         return dataToRender.map(prompt => {
             return (
-                <Prompt 
+                <Prompt
                     key={prompt.id}
                     id={prompt.id}
                     prompts={prompt.prompts}

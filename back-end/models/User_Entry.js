@@ -9,7 +9,8 @@ const User_Entry = sequelize.define('user_entry', {
         type: Sequelize.STRING
     },
     completed: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
 });
 

@@ -102,23 +102,6 @@ User.bulkCreate([
         }
     ])
 }).then(() => {
-    User_Entry.bulkCreate([
-        {
-            content: 'My name means a beautiful little flower',
-            userId: 1,
-            bookId: 1,
-            promptId: 1,
-            completed: false
-        },
-        {
-            content: 'I remember when...',
-            userId: 1,
-            bookId: 1,
-            promptId: 2,
-            completed: false
-        }
-    ])
-}).then(() => {
     Relationship.bulkCreate([
         {
             relation: 'Spouse',

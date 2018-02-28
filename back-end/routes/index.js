@@ -125,10 +125,9 @@ router.route('/api/user_books')
                 ['createdAt', 'DESC']
             ]
         })
-            .then(allBooks => res.json(allBooks))
+        .then(allBooks => res.json(allBooks))
     })
     .post((req, res) => {
-        console.log(req.body)
         User_Book.create({
             whoFor: req.body.whoFor,
             ownerId: req.body.ownerId
