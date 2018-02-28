@@ -5,6 +5,7 @@ const User_Entry = require('../models/User_Entry');
 const User_Book_Contributor = require('../models/User_Book_Contributor');
 const Prompt_Topic = require('../models/Prompt_Topic');
 const Relationship = require('../models/Relationship');
+const Completed_Prompt = require('../models/Completed_Prompt');
 
 User.bulkCreate([
     {
@@ -139,4 +140,11 @@ User.bulkCreate([
             relatedUserId: 5
         }
     ])
+}).then(() => {
+    Completed_Prompt.bulkCreate([
+        {
+            userId: 1,
+            promptId: 2
+        }
+    ]);
 });

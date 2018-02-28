@@ -8,7 +8,8 @@ class Prompt extends Component {
         this.state = {
             prompts: this.props.prompts,
             promptIndex: 0,
-            clickedAdd: false
+            clickSave: false,
+            clickAdd: false
         }
     }
 
@@ -76,10 +77,10 @@ class Prompt extends Component {
         });
     }
 
-    _handleAddToBook = (event) => {
+    _handleSaveCLick = (event) => {
         event.preventDefault();
-        this.setState({ clickedAdd: true }, () => {
-            setTimeout(() => { this.setState({ clickedAdd: false })}, 2000)
+        this.setState({ clickSave: true }, () => {
+            setTimeout(() => { this.setState({ clickSave: false })}, 2000)
         })
         axios.post('http://localhost:3000/api/user_entries', {
             content: this.state.prompts[this.state.promptIndex].entry,
@@ -118,10 +119,15 @@ class Prompt extends Component {
                             style={this.textareaStyling} 
                             placeholder="............" 
                         />
-                        {this.state.clickedAdd 
-                            ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
-                            : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleAddToBook(event)}>Add to book</button>}
-                        
+                        <div style={{display: 'flex' }}>
+                            {this.state.clickSave 
+                                ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
+                                : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Save for later</button>}
+                            {this.state.clickAdd
+                                ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>This prompt will disappear</button>
+                                : <button className="addToBookBtn" onClick={() => this._handleAddClick()} style={{ width: '100px', transition: 'all ease .4s' }}>Add to book</button>
+                                }
+                        </div>
                     </div>
                 </div>
                     <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>

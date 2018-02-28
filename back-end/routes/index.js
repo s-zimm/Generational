@@ -8,6 +8,7 @@ const User_Book = require('../models/User_Book');
 const User_Entry = require('../models/User_Entry');
 const Relationship = require('../models/Relationship');
 const User_Book_Contributor = require('../models/User_Book_Contributor');
+const Completed_Prompt = require('../models/Completed_Prompt');
 
 router.all('*', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -53,6 +54,18 @@ router.route('/api/users/relationships/delete')
         })
         .then(data => res.json(data))
     })
+
+router.route('/api/prompts/completed')
+    .get((req, res) => {
+        Completed_Prompt.findAll()
+            .then(data => res.json(data));
+    })
+    .post((req, res) => {
+        Completed_Prompt.create({
+            userId: req.body.userId,
+            promptId: req.body.promptId
+        });
+    });
 
 router.route('/api/books/contributors')
     .get((req, res) => {

@@ -14,12 +14,12 @@ class PromptPage extends Component {
             topicIndex: 0,
             currentChapter: 1,
             bookId: Number(this.props.match.params.id),
-            currentUserId: 1
+            currentUserId: 1,
+            completedPrompts: []
         }
     }
 
     componentDidMount = () => {
-        console.log(this.state.bookId)
         const bookId = Number(this.state.bookId);
         axios.get('http://localhost:3000/api/prompts')
             .then(data => {
@@ -33,23 +33,41 @@ class PromptPage extends Component {
                 return theData.find(book => book.id === bookId);
             })
             .then(data => this.setState({ bookInfo: data }));
-    }
+
+        axios.get('http://localhost:3000/api/prompts/completed')
+            .then(data => {
+                let completedPrompts = data.data.filter(prompt => prompt.userId === this.state.currentUserId);
+                this.setState({ completedPrompts });
+            });
+        }
 
     _renderPromptItems = () => {
         let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter);
-        return filteredData.map(prompt => {
-            return (
-                <Prompt 
-                    key={prompt.id}
-                    id={prompt.id}
-                    prompts={prompt.prompts}
-                    topic={prompt.content}
-                    topicIndex={this.state.topicIndex}
-                    currentUserId={this.state.currentUserId}
-                    bookId={this.state.bookId}
-                />
-            );
-        });
+        console.log(filteredData)
+        // if (this.state.completedPrompts != []) {
+        //     console.log(this.state.completedPrompts)
+        //     let filteredIncomplete = filteredData.forEach(data => {
+        //         let fullNewPrompts = data.prompts.map(subPrompt => {
+                    
+        //         });
+        //         console.log(fullNewPrompts)
+        //     });
+        // } else {
+            return filteredData.map(prompt => {
+                return (
+                    <Prompt 
+                        key={prompt.id}
+                        id={prompt.id}
+                        prompts={prompt.prompts}
+                        topic={prompt.content}
+                        topicIndex={this.state.topicIndex}
+                        currentUserId={this.state.currentUserId}
+                        bookId={this.state.bookId}
+                    />
+                );
+            });
+        // }
+        
     }
 
     _handleChapterButtonClick = (direction) => {
@@ -63,7 +81,7 @@ class PromptPage extends Component {
     }
 
     render() {
-        if (this.state.bookInfo) {
+        if (this.state.bookInfo && this.state.promptData) {
             return (
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                     <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
