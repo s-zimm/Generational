@@ -5,7 +5,6 @@ const User_Entry = require('../models/User_Entry');
 const User_Book_Contributor = require('../models/User_Book_Contributor');
 const Prompt_Topic = require('../models/Prompt_Topic');
 const Relationship = require('../models/Relationship');
-const Completed_Prompt = require('../models/Completed_Prompt');
 
 User.bulkCreate([
     {
@@ -108,13 +107,15 @@ User.bulkCreate([
             content: 'My name means a beautiful little flower',
             userId: 1,
             bookId: 1,
-            promptId: 1
+            promptId: 1,
+            completed: false
         },
         {
             content: 'I remember when...',
             userId: 1,
             bookId: 1,
-            promptId: 2
+            promptId: 2,
+            completed: false
         }
     ])
 }).then(() => {
@@ -140,11 +141,4 @@ User.bulkCreate([
             relatedUserId: 5
         }
     ])
-}).then(() => {
-    Completed_Prompt.bulkCreate([
-        {
-            userId: 1,
-            promptId: 2
-        }
-    ]);
 });

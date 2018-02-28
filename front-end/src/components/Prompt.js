@@ -80,14 +80,15 @@ class Prompt extends Component {
     _handleSaveCLick = (event) => {
         event.preventDefault();
         this.setState({ clickSave: true }, () => {
-            setTimeout(() => { this.setState({ clickSave: false })}, 2000)
-        })
+            setTimeout(() => { this.setState({ clickSave: false })}, 2000);
+        });
         axios.post('http://localhost:3000/api/user_entries', {
             content: this.state.prompts[this.state.promptIndex].entry,
             userId: this.props.currentUserId,
             bookId: this.props.bookId,
             promptId: this.state.prompts[this.state.promptIndex].id,
-            entryId: this.state.prompts[this.state.promptIndex].entryId
+            entryId: this.state.prompts[this.state.promptIndex].entryId,
+            completed: false
         })
         .then(data => {
             console.log(data)
@@ -101,7 +102,21 @@ class Prompt extends Component {
                 })
             }, () => console.log(this.state));
         });
+    }
 
+    _handleAddClick = () => {
+        this.setState({ clickAdd: true }, () => {
+            setTimeout(() => { this.setState({ clickAdd: false })}, 2000);
+        });
+        axios.post('http://localhost:3000/api/entry/completed', {
+            content: this.state.prompts[this.state.promptIndex].entry,
+            userId: this.props.currentUserId,
+            bookId: this.props.bookId,
+            promptId: this.state.prompts[this.state.promptIndex].id,
+            entryId: this.state.prompts[this.state.promptIndex].entryId,
+            completed: true
+        })
+        .then(data => console.log(data))
     }
 
     render = () => {
@@ -124,7 +139,7 @@ class Prompt extends Component {
                                 ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
                                 : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Save for later</button>}
                             {this.state.clickAdd
-                                ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>This prompt will disappear</button>
+                                ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'blue', color: 'white' }}>Added!</button>
                                 : <button className="addToBookBtn" onClick={() => this._handleAddClick()} style={{ width: '100px', transition: 'all ease .4s' }}>Add to book</button>
                                 }
                         </div>

@@ -7,6 +7,9 @@ const Prompt = require('./Prompt');
 const User_Entry = sequelize.define('user_entry', {
     content: {
         type: Sequelize.STRING
+    },
+    completed: {
+        type: Sequelize.BOOLEAN
     }
 });
 

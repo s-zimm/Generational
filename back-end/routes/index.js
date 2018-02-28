@@ -8,7 +8,6 @@ const User_Book = require('../models/User_Book');
 const User_Entry = require('../models/User_Entry');
 const Relationship = require('../models/Relationship');
 const User_Book_Contributor = require('../models/User_Book_Contributor');
-const Completed_Prompt = require('../models/Completed_Prompt');
 
 router.all('*', (req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
@@ -53,18 +52,6 @@ router.route('/api/users/relationships/delete')
             where: { id: req.body.relationId }
         })
         .then(data => res.json(data))
-    })
-
-router.route('/api/prompts/completed')
-    .get((req, res) => {
-        Completed_Prompt.findAll()
-            .then(data => res.json(data));
-    })
-    .post((req, res) => {
-        Completed_Prompt.create({
-            userId: req.body.userId,
-            promptId: req.body.promptId
-        });
     });
 
 router.route('/api/books/contributors')
@@ -91,7 +78,8 @@ router.route('/api/user_entries')
                 content: req.body.content,
                 userId: req.body.userId,
                 bookId: req.body.bookId,
-                promptId: req.body.promptId
+                promptId: req.body.promptId,
+                completed: req.body.completed
             }
         })
         .spread((entry, created) => {
@@ -105,6 +93,28 @@ router.route('/api/user_entries')
             
         });
     });
+
+router.route('/api/entry/completed')
+    .post((req, res) => {
+        User_Entry.findOrCreate({
+            where: { id: req.body.entryId}, defaults: {
+                content: req.body.content,
+                userId: req.body.userId,
+                bookId: req.body.bookId,
+                promptId: req.body.promptId,
+                completed: req.body.completed
+            }
+        })
+        .spread((entry, created) => {
+            entry.update({
+                content: req.body.content,
+                userId: req.body.userId,
+                bookId: req.body.bookId,
+                promptId: req.body.promptId,
+                completed: req.body.completed
+            })
+        })
+    })
 
 router.route('/api/user_books')
     .get((req, res) => {

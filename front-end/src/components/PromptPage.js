@@ -14,8 +14,7 @@ class PromptPage extends Component {
             topicIndex: 0,
             currentChapter: 1,
             bookId: Number(this.props.match.params.id),
-            currentUserId: 1,
-            completedPrompts: []
+            currentUserId: 1
         }
     }
 
@@ -33,13 +32,7 @@ class PromptPage extends Component {
                 return theData.find(book => book.id === bookId);
             })
             .then(data => this.setState({ bookInfo: data }));
-
-        axios.get('http://localhost:3000/api/prompts/completed')
-            .then(data => {
-                let completedPrompts = data.data.filter(prompt => prompt.userId === this.state.currentUserId);
-                this.setState({ completedPrompts });
-            });
-        }
+    }
 
     _renderPromptItems = () => {
         let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter);
