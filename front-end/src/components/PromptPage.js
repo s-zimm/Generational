@@ -14,53 +14,70 @@ class PromptPage extends Component {
             topicIndex: 0,
             currentChapter: 1,
             bookId: Number(this.props.match.params.id),
-            currentUserId: 1
+            currentUserId: 1,
+            incompleteEntries: []
         }
     }
 
     componentDidMount = () => {
         const bookId = Number(this.state.bookId);
-        axios.get('http://localhost:3000/api/prompts')
-            .then(data => {
-                let theData = data.data;
-                this.setState({ promptData: theData });
-            });
 
         axios.get('http://localhost:3000/api/user_books')
             .then(data => {
                 let theData = data.data;
                 return theData.find(book => book.id === bookId);
             })
-            .then(data => this.setState({ bookInfo: data }));
+            .then(data => this.setState({ bookInfo: data }, () => {
+                axios.get('http://localhost:3000/api/user_entries')
+                    .then(data => {
+                        let theData = data.data.filter(entry => entry.userId === this.state.currentUserId && entry.bookId === this.state.bookId && entry.completed === false)
+                                                .map(entry => entry.promptId);
+                        console.log(theData)
+                        this.setState({ incompleteEntries: theData }, () => {
+                            axios.get('http://localhost:3000/api/prompts')
+                                .then(data => {
+                                    let theData = data.data;
+                                    this.setState({ promptData: theData });
+                                });
+                        });
+                    });
+            }));
+        
     }
 
     _renderPromptItems = () => {
+        let dataToRender;
         let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter);
-        console.log(filteredData)
-        // if (this.state.completedPrompts != []) {
-        //     console.log(this.state.completedPrompts)
-        //     let filteredIncomplete = filteredData.forEach(data => {
-        //         let fullNewPrompts = data.prompts.map(subPrompt => {
-                    
-        //         });
-        //         console.log(fullNewPrompts)
-        //     });
-        // } else {
-            return filteredData.map(prompt => {
-                return (
-                    <Prompt 
-                        key={prompt.id}
-                        id={prompt.id}
-                        prompts={prompt.prompts}
-                        topic={prompt.content}
-                        topicIndex={this.state.topicIndex}
-                        currentUserId={this.state.currentUserId}
-                        bookId={this.state.bookId}
-                    />
-                );
+        if (this.state.incompleteEntries.length > 0) {
+            let incompletePrompts = filteredData.map(topic => {
+                return {
+                    ...topic,
+                    prompts: topic.prompts.filter(prompt => {
+                        return this.state.incompleteEntries.includes(prompt.id)
+                    })
+                }
+                
             });
-        // }
+            dataToRender = incompletePrompts;   
+            console.log('I filtered stuff')         
+        } else {
+            dataToRender = filteredData
+        }
         
+        console.log(dataToRender)
+        return dataToRender.map(prompt => {
+            return (
+                <Prompt 
+                    key={prompt.id}
+                    id={prompt.id}
+                    prompts={prompt.prompts}
+                    topic={prompt.content}
+                    topicIndex={this.state.topicIndex}
+                    currentUserId={this.state.currentUserId}
+                    bookId={this.state.bookId}
+                />
+            );
+        });
     }
 
     _handleChapterButtonClick = (direction) => {

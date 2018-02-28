@@ -113,8 +113,10 @@ router.route('/api/entry/completed')
                 promptId: req.body.promptId,
                 completed: req.body.completed
             })
-        })
-    })
+            .then(data => res.json(data));
+        });
+        
+    });
 
 router.route('/api/user_books')
     .get((req, res) => {

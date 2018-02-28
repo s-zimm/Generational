@@ -4,7 +4,6 @@ import axios from 'axios';
 class Prompt extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             prompts: this.props.prompts,
             promptIndex: 0,
@@ -28,19 +27,19 @@ class Prompt extends Component {
             console.log('Loading prompts...')
         }
         
-        axios.get('http://localhost:3000/api/user_entries')
-            .then(data => {
-                let theData = data.data.filter(entry => entry.userId === this.props.currentUserId && entry.bookId === this.props.bookId);
-                return this.state.prompts.map(prompt => {
-                    let theEntry = theData.find(entry => entry.promptId === prompt.id);
-                    if (theEntry) {
-                        return { ...prompt, entry: theEntry.content, entryId: theEntry.id };
-                    } else {
-                        return prompt;
-                    } 
-                });
-            })
-            .then(prompts => this.setState({ prompts }));
+        // axios.get('http://localhost:3000/api/user_entries')
+        //     .then(data => {
+        //         let theData = data.data.filter(entry => entry.userId === this.props.currentUserId && entry.bookId === this.props.bookId);
+        //         return this.state.prompts.map(prompt => {
+        //             let theEntry = theData.find(entry => entry.promptId === prompt.id);
+        //             if (theEntry) {
+        //                 return { ...prompt, entry: theEntry.content, entryId: theEntry.id };
+        //             } else {
+        //                 return prompt;
+        //             } 
+        //         });
+        //     })
+        //     .then(prompts => this.setState({ prompts }));
     }
 
     
@@ -120,7 +119,7 @@ class Prompt extends Component {
     }
 
     render = () => {
-        if (this.state.prompts) {
+        if (this.state.prompts.length > 0) {
             return (
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
                 <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
@@ -149,7 +148,7 @@ class Prompt extends Component {
             </div>
             )
         } else {
-            return <div>Loading...</div>
+            return <div></div>
         }
         
     }
