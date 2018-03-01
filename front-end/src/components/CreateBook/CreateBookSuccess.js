@@ -8,7 +8,7 @@ class CreateBookSuccess extends Component {
         super(props);
 
         this.state = {
-            currentUserId: 1,
+            currentUserId: Number(this.props.match.params.userId),
             books: []
         }
     }
@@ -26,7 +26,7 @@ class CreateBookSuccess extends Component {
             return (
                 <div>
                     <PageSubHeader heading="You created a book!" />
-                    <Link to={`/book/prompts/${this.state.books[this.state.books.length - 1] + 1}`}><button>Start writing now</button></Link>
+                    <Link to={`/book/prompts/${this.state.currentUserId}/${this.state.books[this.state.books.length - 1] + 1}`}><button>Start writing now</button></Link>
                 </div>
             )
         } else {

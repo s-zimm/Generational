@@ -28,7 +28,7 @@ const AccountBooks = ({ userEntries, userBooks, currentUser }) => {
 
     return (
         <div style={AccountBooksStyle}>
-            <NewBookBtn />
+            <NewBookBtn currentUser={currentUser}/>
             {renderUserBooks()}
         </div>
     )

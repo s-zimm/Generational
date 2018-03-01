@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NewBookBtn = (props) => {
     return (
-        <Link to="/book/new">
+        <Link to={`/book/new/${props.currentUser}`}>
             <button>
                 Create New Book
             </button>

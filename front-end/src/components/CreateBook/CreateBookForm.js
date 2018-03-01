@@ -70,8 +70,10 @@ class CreateBookForm extends Component {
         if (findExisting) {
             event.preventDefault();
             alert(`You have aready written a book for ${whoFor}`)
-        }
-        else if (this.state.selectedUserForBook) {
+        } else if (this.state.searchValues.length === 0) {
+            event.preventDefault();
+            alert('Input a name in the text field.')
+        } else if (this.state.selectedUserForBook) {
             axios.post('http://localhost:3000/api/user_books', {
                 whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
                 ownerId: this.state.currentUserId
