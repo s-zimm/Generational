@@ -8,25 +8,30 @@ class CreateBookSuccess extends Component {
         super(props);
 
         this.state = {
-            currentUserId: 1
+            currentUserId: 1,
+            books: []
         }
     }
 
     componentDidMount = () => {
         axios.get('http://localhost:3000/api/user_books')
             .then(books => {
-                let latestBook = books.data.find(book => book.ownerId === this.state.currentUserId);
-                this.setState({ latestBookId: latestBook.id })
+                this.setState({ books: books.data })
             })
     }
 
     render() {
-        return (
-            <div>
-                <PageSubHeader heading="You created a book!" />
-                <Link to={`/book/prompts/${this.state.latestBookId + 1}`}><button>Start writing now</button></Link>
-            </div>
-        )
+        if (this.state.books.length > 0) {
+            return (
+                <div>
+                    <PageSubHeader heading="You created a book!" />
+                    <Link to={`/book/prompts/${this.state.books[this.state.books.length - 1].id + 1}`}><button>Start writing now</button></Link>
+                </div>
+            )
+        } else {
+            return <div> </div>
+        }
+        
     }
 }
 

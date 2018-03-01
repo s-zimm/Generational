@@ -13,7 +13,7 @@ class CreateBookBtn extends Component {
         if (this.props.canSubmit && this.props.bookData.length > 0) {
             return (
                 <Link
-                    to={`/book/new/success/${this.props.bookData[this.props.bookData.length - 1].id}`}
+                    to={`/book/new/success`}
                     onClick={(event) => this.props.handleLinkClick(event)}
                 >
                 <button 

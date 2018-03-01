@@ -22,7 +22,7 @@ class App extends Component {
           <Route exact path='/login' component={Login}/>
           <PrivateRoute path="/account" component={Account} />
           <PrivateRoute exact path="/book/new" component={CreateBook} />
-          <PrivateRoute path="/book/new/success/:id" component={CreateBookSuccess} />
+          <PrivateRoute path="/book/new/success" component={CreateBookSuccess} />
           <PrivateRoute path="/book/prompts/:id" component={PromptPage} />
         </div>
       </Router>
