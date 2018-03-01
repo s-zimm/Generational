@@ -17,7 +17,8 @@ const setupAuth = (app) => {
   passport.use(new FacebookStrategy({
     clientID: facebook.CLIENT_ID,
     clientSecret: facebook.CLIENT_SECRET,
-    callbackURL: facebook.callbackURL
+    callbackURL: facebook.callbackURL,
+    profileFields: facebook.profileFields
   }, (accessToken, refreshToken, profile, done) => {
     User.findOrCreate({where: {
       facebookId: profile.id
@@ -57,7 +58,7 @@ const setupAuth = (app) => {
   });
 
   app.get('/auth/facebook',
-    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    passport.authenticate('facebook', { failureRedirect: '/' }),
     (req, res) => {
       console.log('you just logged in');
       console.log(req.isAuthenticated());

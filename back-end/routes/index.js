@@ -14,7 +14,7 @@ router.all('*', (req, res, next) => {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     next();
-})
+});
 
 router.route('/api/users')
     .get((req, res) => {

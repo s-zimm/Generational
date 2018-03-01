@@ -33,7 +33,7 @@ const Navbar = props => {
                 <Link style={brandStyle} to={`/account/${props.currentUser}`}>Account</Link>
                 <Link style={brandStyle} to={`/book/new/${props.currentUser}`}>Create Book</Link>
                 <Link style={brandStyle} to={`/book/prompts/${props.currentUser}/1`}>Prompts</Link>
-                <button style={brandStyle}>Sign Up</button>
+                <a href="/logout"><button style={brandStyle}>Log Out</button></a>
             </div>
             <div>
                 {/* <Route path="/home" component={Home} /> */}

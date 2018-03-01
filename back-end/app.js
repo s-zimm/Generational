@@ -4,9 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const setupAuth = require('./auth');
+const ensureAuthenticated = require('./auth').ensureAuthenticated;
 
 var index = require('./routes/index');
-var users = require('./routes/users');
 
 var app = express();
 
@@ -20,6 +21,20 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+// PUT IN MIDDLEWARE FOR AUTH HERE
+
+setupAuth(app);
+
+
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) { next(); }
+  else { res.sendFile('login.html', { root: __dirname }); }
+});
+
+
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(index);
