@@ -122,7 +122,7 @@ router.route('/api/user_books')
     .get((req, res) => {
         User_Book.findAll({
             order: [
-                ['createdAt', 'DESC']
+                ['id', 'DESC']
             ]
         })
         .then(allBooks => res.json(allBooks))

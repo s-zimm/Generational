@@ -14,7 +14,8 @@ class PromptPage extends Component {
             topicIndex: 0,
             currentChapter: 1,
             bookId: Number(this.props.match.params.id),
-            currentUserId: 1,
+            ownerId: 1,
+            currentUserId: 2,
             completedEntries: [],
             allEntries: []
         }
@@ -31,8 +32,8 @@ class PromptPage extends Component {
             .then(data => this.setState({ bookInfo: data }, () => {
                 axios.get('http://localhost:3000/api/user_entries')
                     .then(data => {
-                        this.setState({ allEntries: data.data.filter(entry => entry.userId === this.state.currentUserId)});
-                        let theData = data.data.filter(entry => entry.userId === this.state.currentUserId && entry.bookId === this.state.bookId && entry.completed === true)
+                        this.setState({ allEntries: data.data.filter(entry => entry.userId === this.state.ownerId && entry.bookId === this.state.bookId)});
+                        let theData = data.data.filter(entry => entry.userId === this.state.ownerId && entry.bookId === this.state.bookId && entry.completed === true)
                                                 .map(entry => entry.promptId);
                         console.log(theData)
                         this.setState({ completedEntries: theData }, () => {
@@ -43,7 +44,16 @@ class PromptPage extends Component {
                                 });
                         });
                     });
-            }));
+            }))
+            .then(() => {
+                axios.get('http://localhost:3000/api/books/contributors')
+                    .then(data => {
+                        this.setState({
+                            contributors: data.data.filter(c => c.bookId === this.state.bookId)
+                                                    .map(c => c.userId)
+                        })
+                    })
+            });
         
     }
 
@@ -87,7 +97,7 @@ class PromptPage extends Component {
                     prompts={prompt.prompts}
                     topic={prompt.content}
                     topicIndex={this.state.topicIndex}
-                    currentUserId={this.state.currentUserId}
+                    ownerId={this.state.ownerId}
                     bookId={this.state.bookId}
                 />
             );
@@ -105,22 +115,31 @@ class PromptPage extends Component {
     }
 
     render() {
-        if (this.state.bookInfo && this.state.promptData) {
-            return (
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
-                    <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
-                    {this._renderPromptItems()}
-                    <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '600px' }}>
-                        <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '200px', alignSelf: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
-                        <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '200px', alignSelf: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
-                    </div>
-                    
-                </div>
-            )
+        if (this.state.ownerId && this.state.contributors && this.state.currentUserId) {
+            if (this.state.currentUserId === this.state.bookInfo.ownerId || this.state.contributors.includes(this.state.currentUserId)) {
+                if (this.state.bookInfo && this.state.promptData) {
+                    return (
+                        <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
+                            {this._renderPromptItems()}
+                            <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '600px' }}>
+                                <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '200px', alignSelf: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
+                                <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '200px', alignSelf: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+                            </div>
+                            
+                        </div>
+                    )
+                } else {
+                    return <div>Loading...</div>
+                }       
+            } else {
+                return (
+                    <div>You are not a contributor to this book. Please seek authorization from owner.</div>
+                )
+            } 
         } else {
             return <div>Loading...</div>
         }
-        
     }
 }
 

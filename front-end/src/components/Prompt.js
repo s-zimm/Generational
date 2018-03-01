@@ -84,7 +84,7 @@ class Prompt extends Component {
         });
         axios.post('http://localhost:3000/api/user_entries', {
             content: this.state.prompts[this.state.promptIndex].entry,
-            userId: this.props.currentUserId,
+            userId: this.props.ownerId,
             bookId: this.props.bookId,
             promptId: this.state.prompts[this.state.promptIndex].id,
             entryId: this.state.prompts[this.state.promptIndex].entryId,
@@ -109,17 +109,27 @@ class Prompt extends Component {
         });
         axios.post('http://localhost:3000/api/entry/completed', {
             content: this.state.prompts[this.state.promptIndex].entry,
-            userId: this.props.currentUserId,
+            userId: this.props.ownerId,
             bookId: this.props.bookId,
             promptId: this.state.prompts[this.state.promptIndex].id,
             entryId: this.state.prompts[this.state.promptIndex].entryId,
             completed: true
         })
-        .then(data => this.setState({ 
-            prompts: this.state.prompts.filter((prompt, i) => {
-                return prompt.entryId != data.data.id
-            })
-        }))
+        .then(data => {
+            this.setState({
+                prompts: this.state.prompts.map((prompt, i) => {
+                    if (i === this.state.promptIndex) {
+                        return { ...prompt, entry: data.data.content, entryId: data.data.id }
+                    } else {
+                        return prompt
+                    }
+                })
+            }, () => {
+                this.setState({
+                    prompts: this.state.prompts.filter(prompt => prompt.entryId != data.data.id)
+                })
+            });
+        })
     }
 
     render = () => {
