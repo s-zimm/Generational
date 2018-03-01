@@ -22,7 +22,7 @@ class CreateBookSuccess extends Component {
     }
 
     render() {
-        if (this.state.books.length > 0) {
+        if (this.state.books) {
             return (
                 <div>
                     <PageSubHeader heading="You created a book!" />

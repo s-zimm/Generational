@@ -10,7 +10,8 @@ User.bulkCreate([
     {
         firstname: 'Seth',
         lastname: 'Zimmerman',
-        email: 'szim@gmail.com'
+        email: 'szim@gmail.com',
+        facebookId: 10155887596446014
     },
     {
         firstname: 'Dev',
@@ -35,16 +36,7 @@ User.bulkCreate([
 ]).then(() => {
     User_Book.bulkCreate([
         {
-            whoFor: 'Dev',
-            ownerId: 1
-        },
-        {
-            whoFor: 'Mom',
-            ownerId: 2
-        },
-        {
-            whoFor: 'Grandmother',
-            ownerId: 3
+            whoFor: 'Durch'
         }
     ])
 }).then(() => {

@@ -10,7 +10,7 @@ class CreateBookBtn extends Component {
     }
 
     render() {
-        if (this.props.canSubmit && this.props.bookData.length > 0) {
+        if (this.props.canSubmit) {
             console.log(this.props.bookData)
             return (
                 <Link
@@ -19,7 +19,6 @@ class CreateBookBtn extends Component {
                 >
                 <button 
                     style={{ width: '300px'}}
-                    type="submit"
                 >
                     Create
                 </button>

@@ -65,6 +65,7 @@ class CreateBookForm extends Component {
     }
 
     _createBook = (event) => {
+        debugger
         let whoFor = this.state.searchValues;
         let findExisting = this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
         if (findExisting) {

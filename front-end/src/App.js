@@ -28,10 +28,10 @@ class App extends Component {
             <Navbar currentUser={this.state.currentUser} />
             <Route exact path="/" component={Home} />
             <Route exact path='/login' component={Login}/>
-            <PrivateRoute path="/account/:userId" component={Account} />
-            <PrivateRoute exact path="/book/new/:userId" component={CreateBook} />
-            <PrivateRoute exact path="/book/new/success/:userId" component={CreateBookSuccess} />
-            <PrivateRoute path="/book/prompts/:userId/:id" component={PromptPage} />
+            <Route path="/account/:userId" component={Account} />
+            <Route exact path="/book/new/:userId" component={CreateBook} />
+            <Route exact path="/book/new/success/:userId" component={CreateBookSuccess} />
+            <Route path="/book/prompts/:userId/:id" component={PromptPage} />
           </div>
         </Router>
       );
