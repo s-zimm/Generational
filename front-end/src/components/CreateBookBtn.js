@@ -5,15 +5,15 @@ import axios from 'axios';
 class CreateBookBtn extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {}
+        
+        
     }
 
     render() {
-        if (this.props.canSubmit) {
+        if (this.props.canSubmit && this.props.bookData.length > 0) {
             return (
                 <Link
-                    to={`/book/new/success/`}
+                    to={`/book/new/success/${this.props.bookData[this.props.bookData.length - 1].id}`}
                     onClick={(event) => this.props.handleLinkClick(event)}
                 >
                 <button 

@@ -13,7 +13,8 @@ class CreateBookForm extends Component {
             dropdownData: [],
             currentUserId: 1,
             selectedUserForBook: null,
-            canSubmit: true
+            canSubmit: true,
+            error: false
         }
         
     }
@@ -65,9 +66,10 @@ class CreateBookForm extends Component {
 
     _createBook = (event) => {
         let whoFor = this.state.searchValues;
-        let findExisting = () => this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
-        if (findExisting()) {
+        let findExisting = this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
+        if (findExisting) {
             event.preventDefault();
+            alert(`You have aready written a book for ${whoFor}`)
         }
         else if (this.state.selectedUserForBook) {
             axios.post('http://localhost:3000/api/user_books', {
@@ -82,14 +84,6 @@ class CreateBookForm extends Component {
         }
     }
 
-    // _handleLinkClick = (event) => {
-    //     let whoFor = this.state.searchValues;
-    //     let findExisting = () => this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
-    //     if (findExisting()) {
-    //         event.preventDefault();
-    //     }
-    // }
-
     searchBoxStyle = {
         position: 'relative',
         bottom: '70.5px',
@@ -99,33 +93,39 @@ class CreateBookForm extends Component {
     }
 
     render() {
-        return (
-            <div style={{position: 'relative', height: '350px'}}>
-                <form 
-                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}
-                >
-                    <input 
-                        required="true"
-                        autoComplete="off"
-                        placeholder='Enter name...'
-                        name="user"
-                        onChange={this._handleFormInput}
-                        value={this.state.searchValues}
-                        style={{ width: '400px', padding: '10px', margin: '20px 0' }}
-                    />
-                    <CreateBookBtn 
-                        canSubmit={this.state.canSubmit}
-                        handleLinkClick={(event) => this._createBook(event)}
-                        currentUserId={this.state.currentUserId}
-                    />
-                </form>
-                <div className={this.props.searchBoxHidden} style={this.searchBoxStyle}>
-                    <ul>
-                        {this._populateSearchList()}
-                    </ul>
+        if (this.props.bookData) {
+            return (
+                <div style={{position: 'relative', height: '350px'}}>
+                    <form 
+                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+                    >
+                        <input 
+                            required="true"
+                            autoComplete="off"
+                            placeholder='Enter name...'
+                            name="user"
+                            onChange={this._handleFormInput}
+                            value={this.state.searchValues}
+                            style={{ width: '400px', padding: '10px', margin: '20px 0' }}
+                        />
+                        <CreateBookBtn 
+                            canSubmit={this.state.canSubmit}
+                            handleLinkClick={(event) => this._createBook(event)}
+                            currentUserId={this.state.currentUserId}
+                            bookData={this.props.bookData}
+                        />
+                    </form>
+                    <div className={this.props.searchBoxHidden} style={this.searchBoxStyle}>
+                        <ul>
+                            {this._populateSearchList()}
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return <div></div>
+        }
+        
     }
 }
 

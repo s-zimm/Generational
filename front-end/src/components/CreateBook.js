@@ -8,11 +8,11 @@ import axios from 'axios';
 class CreateBook extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             users: [],
             books: [],
             searchBoxHidden: 'hidden',
+            currentUserId: 1
         }
 
     }
@@ -35,7 +35,9 @@ class CreateBook extends Component {
             .then(users => this.setState({ users }))
 
         axios.get('http://localhost:3000/api/user_books')
-            .then(books => this.setState({ books }));
+            .then(data => {
+                this.setState({ books: data.data });
+            });
     }
 
     containerStyling = {
@@ -44,23 +46,28 @@ class CreateBook extends Component {
         alignItems: 'center'
     }
 
-    render() {    
-        return (
-            <React.Fragment>
-                <PageSubHeader heading="Book Creation" />
-                <div style={this.containerStyling} onClick={() => this.setState({ searchBoxHidden: 'hidden'})}>
-                    <CreateBookForm
-                        searchBoxHidden={this.state.searchBoxHidden}
-                        userData={this.state.users}
-                        bookData={this.state.books.data}
-                        revealSearchBox={() => this.setState({ searchBoxHidden: ''})}
-                        hideSearchBox={() => this.setState({ searchBoxHidden: 'hidden'})}
-
-                    />
-                    <StyleCarousel />
-                </div>
-            </React.Fragment>
-        )
+    render() {
+        if (this.state.books) {
+            return (
+                <React.Fragment>
+                    <PageSubHeader heading="Book Creation" />
+                    <div style={this.containerStyling} onClick={() => this.setState({ searchBoxHidden: 'hidden'})}>
+                        <CreateBookForm
+                            searchBoxHidden={this.state.searchBoxHidden}
+                            userData={this.state.users}
+                            bookData={this.state.books}
+                            revealSearchBox={() => this.setState({ searchBoxHidden: ''})}
+                            hideSearchBox={() => this.setState({ searchBoxHidden: 'hidden'})}
+    
+                        />
+                        <StyleCarousel />
+                    </div>
+                </React.Fragment>
+            )
+        } else {
+            return <div></div>
+        }
+        
     }
 }
 
