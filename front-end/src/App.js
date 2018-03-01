@@ -6,27 +6,39 @@ import PrivateRoute from'./components/Routing/PrivateRoute';
 
 import Home from './components/Home'
 import Navbar from './components/Navbar';
-import Account from './components/Account';
-import CreateBook from './components/CreateBook';
-import CreateBookSuccess from './components/CreateBookSuccess';
-import PromptPage from './components/PromptPage';
+import Account from './components/Account/Account';
+import CreateBook from './components/CreateBook/CreateBook';
+import CreateBookSuccess from './components/CreateBook/CreateBookSuccess';
+import PromptPage from './components/Prompts/PromptPage';
 import Login from './components/Routing/Login';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentUser: 1
+    }
+  }
   render() {
-    return (
-      <Router>
-        <div className="App">
-          <Navbar />
-          <Route exact path="/" component={Home} />
-          <Route exact path='/login' component={Login}/>
-          <PrivateRoute path="/account" component={Account} />
-          <PrivateRoute exact path="/book/new" component={CreateBook} />
-          <PrivateRoute path="/book/new/success" component={CreateBookSuccess} />
-          <PrivateRoute path="/book/prompts/:id" component={PromptPage} />
-        </div>
-      </Router>
-    );
+    if (this.state.currentUser) {
+      return (
+        <Router>
+          <div className="App">
+            <Navbar currentUser={this.state.currentUser} />
+            <Route exact path="/" component={Home} />
+            <Route exact path='/login' component={Login}/>
+            <PrivateRoute path="/account/:userId" component={Account} />
+            <PrivateRoute exact path="/book/new/:userId" component={CreateBook} />
+            <PrivateRoute path="/book/new/success" component={CreateBookSuccess} />
+            <PrivateRoute path="/book/prompts/:userId/:id" component={PromptPage} />
+          </div>
+        </Router>
+      );
+    } else {
+      return <div></div>
+    }
+    
   }
 }
 

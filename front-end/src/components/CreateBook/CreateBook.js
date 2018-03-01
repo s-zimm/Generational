@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CreateBookForm from './CreateBookForm';
-import StyleCarousel from './StyleCarousel';
-import PageSubHeader from './PageSubHeader';
+import StyleCarousel from '../StyleCarousel';
+import PageSubHeader from '../PageSubHeader';
 
 import axios from 'axios';
 

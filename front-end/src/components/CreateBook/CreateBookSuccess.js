@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PageSubHeader from './PageSubHeader';
+import PageSubHeader from '../PageSubHeader';
 import axios from 'axios';
 
 class CreateBookSuccess extends Component {

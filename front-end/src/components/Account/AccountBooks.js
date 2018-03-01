@@ -2,7 +2,7 @@ import React from 'react';
 import NewBookBtn from './NewBookBtn';
 import UserBookCover from './UserBookCover';
 
-const AccountBooks = ({ userEntries, userBooks }) => {
+const AccountBooks = ({ userEntries, userBooks, currentUser }) => {
 
     let AccountBooksStyle = {
         display: 'flex',
@@ -16,6 +16,7 @@ const AccountBooks = ({ userEntries, userBooks }) => {
             return userBooks.map(book => {
                 return (
                     <UserBookCover
+                        currentUser={currentUser}
                         key={book.id}
                         title={book.whoFor}
                         id={book.id}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import Prompt from './Prompt';
-import PageSubHeader from './PageSubHeader';
+import PageSubHeader from '../PageSubHeader';
 import { debug } from 'util';
 
 class PromptPage extends Component {
@@ -15,7 +15,7 @@ class PromptPage extends Component {
             currentChapter: 1,
             bookId: Number(this.props.match.params.id),
             ownerId: 1,
-            currentUserId: 2,
+            currentUserId: Number(this.props.match.params.userId),
             completedEntries: [],
             allEntries: []
         }

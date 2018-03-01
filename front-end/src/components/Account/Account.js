@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PageSubHeader from './PageSubHeader';
+import PageSubHeader from '../PageSubHeader';
 import UserData from './UserData';
 import AccountBooks from './AccountBooks';
 import axios from 'axios';
@@ -9,9 +9,10 @@ class Account extends Component {
         super(props);
 
         this.state = {
-            currentUser: 1,
+            currentUser: Number(this.props.match.params.userId),
             userEntries: [],
-            userBooks: []
+            userBooks: [],
+            allUserData: []
         };
     }
 
@@ -72,6 +73,7 @@ class Account extends Component {
                     <AccountBooks 
                         userEntries={this.state.userEntries}
                         userBooks={this.state.userBooks}
+                        currentUser={this.state.currentUser}
                     />
                 </div>
             </React.Fragment>

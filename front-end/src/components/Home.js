@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import Navbar from './Navbar';
 import BookScrollView from './BookScrollView';
-import Prompt from './Prompt';
 import PageSubHeader from './PageSubHeader';
 
 class Home extends Component {
