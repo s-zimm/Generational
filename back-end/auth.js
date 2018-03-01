@@ -20,12 +20,18 @@ const setupAuth = (app) => {
     callbackURL: facebook.callbackURL,
     profileFields: facebook.profileFields
   }, (accessToken, refreshToken, profile, done) => {
-    User.findOrCreate({where: {
-      facebookId: profile.id
-    }}).then(result => {
+    User.findOrCreate({
+      where: { facebookId: profile.id },
+      defaults: {
+        firstname: profile._json.first_name,
+        lastname: profile._json.last_name,
+        avatar: profile._json.picture.data.url,
+        facebookId: profile._json.id
+      }
+  }).then(result => {
       // `findOrCreate` returns an array
       let user = result[0];
-      return done(null, user);
+      return done(null, profile._json);
     })
     .catch(err => {
       console.log('that did not work');
