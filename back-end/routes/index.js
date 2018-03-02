@@ -67,6 +67,13 @@ router.route('/api/books/contributors')
         .then(data => res.json(data));
     });
 
+router.route('/api/book/delete')
+    .post((req, res) => {
+        User_Book.destroy({ where: { id: req.body.id }})
+        .then(data => res.json({ id: req.body.id }))
+    })
+    
+
 router.route('/api/user_entries')
     .get((req, res) => {
         User_Entry.findAll()

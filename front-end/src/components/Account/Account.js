@@ -60,25 +60,36 @@ class Account extends Component {
                 });
     }
 
-    render() {
-        return(
-            <React.Fragment>
-                <PageSubHeader heading='My Account' />
-                <div style={{ margin: '40px', display: 'flex' }}>
-                    <UserData
-                        userBooks={this.state.userBooks}
-                        userData={this.state.userData}
-                        allUserData={this.state.allUserData}
-                    />
-                    <AccountBooks 
-                        userEntries={this.state.userEntries}
-                        userBooks={this.state.userBooks}
-                        currentUser={this.state.currentUser}
-                    />
-                </div>
-            </React.Fragment>
-        )
+    _filterDeletedBooks = (bookId) => {
+        debugger
+        this.setState({ userBooks: this.state.userBooks.filter(book => book.id != bookId )});
     }
+
+    render() {
+        if (this.state.userData) {
+            return(
+                <React.Fragment>
+                    <PageSubHeader heading={`${this.state.userData.firstname}'s Dashboard`} />
+                    <div style={{ margin: '40px', display: 'flex' }}>
+                        <UserData
+                            userBooks={this.state.userBooks}
+                            userData={this.state.userData}
+                            allUserData={this.state.allUserData}
+                        />
+                        <AccountBooks
+                            filterDeletedBooks={(data) => this._filterDeletedBooks(data)}
+                            userEntries={this.state.userEntries}
+                            userBooks={this.state.userBooks}
+                            currentUser={this.state.currentUser}
+                        />
+                    </div>
+                </React.Fragment>
+            )
+        } else {
+            return <div></div>
+        }
+    }
+        
 }
 
 export default Account;

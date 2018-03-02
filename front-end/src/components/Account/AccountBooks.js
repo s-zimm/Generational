@@ -2,7 +2,7 @@ import React from 'react';
 import NewBookBtn from './NewBookBtn';
 import UserBookCover from './UserBookCover';
 
-const AccountBooks = ({ userEntries, userBooks, currentUser }) => {
+const AccountBooks = ({ userEntries, userBooks, currentUser, filterDeletedBooks }) => {
 
     let AccountBooksStyle = {
         display: 'flex',
@@ -16,6 +16,7 @@ const AccountBooks = ({ userEntries, userBooks, currentUser }) => {
             return userBooks.map(book => {
                 return (
                     <UserBookCover
+                        filterDeletedBooks={filterDeletedBooks}
                         currentUser={currentUser}
                         key={book.id}
                         title={book.whoFor}

@@ -20,6 +20,7 @@ const setupAuth = (app) => {
     callbackURL: facebook.callbackURL,
     profileFields: facebook.profileFields
   }, (accessToken, refreshToken, profile, done) => {
+    console.log(profile)
     User.findOrCreate({
       where: { facebookId: profile.id },
       defaults: {

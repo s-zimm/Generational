@@ -11,7 +11,6 @@ class CreateBookBtn extends Component {
 
     render() {
         if (this.props.canSubmit) {
-            console.log(this.props.bookData)
             return (
                 <Link
                     to={`/book/new/success/${this.props.currentUserId}`}
