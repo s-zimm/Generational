@@ -99,7 +99,7 @@ class Prompt extends Component {
                         return prompt
                     }
                 })
-            }, () => console.log(this.state));
+            });
         });
     }
 

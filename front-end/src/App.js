@@ -11,6 +11,7 @@ import CreateBook from './components/CreateBook/CreateBook';
 import CreateBookSuccess from './components/CreateBook/CreateBookSuccess';
 import PromptPage from './components/Prompts/PromptPage';
 import Login from './components/Routing/Login';
+import AllFinishedPrompts from './components/FinishedPrompts/AllFinishedPrompts';
 
 class App extends Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class App extends Component {
             <Route exact path="/book/new/:userId" component={CreateBook} />
             <Route exact path="/book/new/success/:userId" component={CreateBookSuccess} />
             <Route exact path="/book/prompts/:userId/:id" component={PromptPage} />
+            <Route exact path="/book/prompts/complete/:userId/:id" component={AllFinishedPrompts} />
           </div>
         </Router>
       );
