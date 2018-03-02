@@ -27,7 +27,7 @@ const setupAuth = (app) => {
         lastname: profile._json.last_name,
         avatar: profile._json.picture.data.url,
         facebookId: profile._json.id,
-        email: profile._json.email
+        email: profile.emails
       }
   }).then(result => {
       // `findOrCreate` returns an array
@@ -74,7 +74,7 @@ const setupAuth = (app) => {
   );
 
   app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login', scope: ['public_profile', 'email'] }),
+  passport.authenticate('facebook', { failureRedirect: '/login', scope: ['email'] }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');

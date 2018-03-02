@@ -25,13 +25,13 @@ app.use(cookieParser());
 
 // PUT IN MIDDLEWARE FOR AUTH HERE
 
-// setupAuth(app);
+setupAuth(app);
 
 
-// app.use((req, res, next) => {
-//   if (req.isAuthenticated()) { next(); }
-//   else { res.sendFile('login.html', { root: __dirname }); }
-// });
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) { next(); }
+  else { res.sendFile('login.html', { root: __dirname }); }
+});
 
 
 
