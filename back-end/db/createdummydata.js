@@ -7,32 +7,7 @@ const Prompt_Topic = require('../models/Prompt_Topic');
 const Relationship = require('../models/Relationship');
 
 User.bulkCreate([
-    {
-        firstname: 'Seth',
-        lastname: 'Zimmerman',
-        email: 'szim@gmail.com',
-        facebookId: 10155887596446014
-    },
-    {
-        firstname: 'Dev',
-        lastname: 'Pascoe',
-        email: 'dp@gmail.com'
-    },
-    {
-        firstname: 'Chuster',
-        lastname: 'Grub',
-        email: 'cgrub@gmail.com'
-    },
-    {
-        firstname: 'Jen',
-        lastname: 'Grub',
-        email: 'jgrub@gmail.com'
-    },
-    {
-        firstname: 'Beverly',
-        lastname: 'Pascoe',
-        email: 'bpascoe@gmail.com'
-    }
+   
 ]).then(() => {
     User_Book.bulkCreate([
         {
@@ -93,27 +68,28 @@ User.bulkCreate([
             topicId: 5
         }
     ])
-}).then(() => {
-    Relationship.bulkCreate([
-        {
-            relation: 'Spouse',
-            userId: 1,
-            relatedUserId: 2
-        },
-        {
-            relation: 'Son',
-            userId: 3,
-            relatedUserId: 4
-        },
-        {
-            relation: 'Mother',
-            userId: 5,
-            relatedUserId: 2
-        },
-        {
-            relation: 'Mother-In-Law',
-            userId: 1,
-            relatedUserId: 5
-        }
-    ])
-});
+})
+// .then(() => {
+//     Relationship.bulkCreate([
+//         {
+//             relation: 'Spouse',
+//             userId: 1,
+//             relatedUserId: 2
+//         },
+//         {
+//             relation: 'Son',
+//             userId: 3,
+//             relatedUserId: 4
+//         },
+//         {
+//             relation: 'Mother',
+//             userId: 5,
+//             relatedUserId: 2
+//         },
+//         {
+//             relation: 'Mother-In-Law',
+//             userId: 1,
+//             relatedUserId: 5
+//         }
+//     ])
+// });

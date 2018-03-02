@@ -3,7 +3,7 @@ import UserInfo from './UserInfo';
 import Relationships from './Relationships';
 
 const UserData = ({ userData, allUserData, userBooks }) => {
-
+    
     let containerStyle = {
         display: 'flex',
         flexDirection: "column",
@@ -14,7 +14,7 @@ const UserData = ({ userData, allUserData, userBooks }) => {
 
     return (
         <div style={containerStyle}>
-            <UserInfo />
+            <UserInfo userData={userData}/>
             <Relationships
                 userBooks={userBooks}
                 allUserData={allUserData}
