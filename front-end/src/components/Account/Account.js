@@ -61,8 +61,11 @@ class Account extends Component {
     }
 
     _filterDeletedBooks = (bookId) => {
-        debugger
         this.setState({ userBooks: this.state.userBooks.filter(book => book.id != bookId )});
+    }
+
+    _handleAddEmail = (email) => {
+        this.setState({ userData: { ...this.state.userData, email }})
     }
 
     render() {
@@ -75,6 +78,7 @@ class Account extends Component {
                             userBooks={this.state.userBooks}
                             userData={this.state.userData}
                             allUserData={this.state.allUserData}
+                            handleAddEmail={this._handleAddEmail}
                         />
                         <AccountBooks
                             filterDeletedBooks={(data) => this._filterDeletedBooks(data)}

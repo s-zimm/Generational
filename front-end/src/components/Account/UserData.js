@@ -2,7 +2,7 @@ import React from 'react';
 import UserInfo from './UserInfo';
 import Relationships from './Relationships';
 
-const UserData = ({ userData, allUserData, userBooks }) => {
+const UserData = ({ userData, allUserData, userBooks, handleAddEmail }) => {
     
     let containerStyle = {
         display: 'flex',
@@ -14,7 +14,10 @@ const UserData = ({ userData, allUserData, userBooks }) => {
 
     return (
         <div style={containerStyle}>
-            <UserInfo userData={userData}/>
+            <UserInfo 
+                userData={userData}
+                handleAddEmail={handleAddEmail}
+            />
             <Relationships
                 userBooks={userBooks}
                 allUserData={allUserData}

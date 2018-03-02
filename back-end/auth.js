@@ -75,7 +75,7 @@ const setupAuth = (app) => {
   );
 
   app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login', scope: ['email'] }),
+  passport.authenticate('facebook', { failureRedirect: '/login', scope: 'email' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');

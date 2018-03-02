@@ -41,6 +41,7 @@ class UserBookCover extends Component {
     }
 
     bookCoverStyles = {
+        cursor: 'pointer',
         width: '90%',
         height: '240px',
         border: 'solid black 2px',

@@ -68,7 +68,6 @@ class AllFinishedPrompts extends Component {
         dataToRender = completePrompts;   
         console.log('I filtered stuff')         
         
-        console.log(dataToRender)
         return dataToRender.map(prompt => {
             return (
                 <Prompt
@@ -86,16 +85,14 @@ class AllFinishedPrompts extends Component {
     }
 
     _handleChapterChange = (value) => {
-        this.setState({ currentChapter: Number(value) }, () => console.log(this.state.currentChapter))
+        this.setState({ currentChapter: Number(value) });
     }
 
     render() {
         
         if (!this.state.completedEntries) {
-            console.log(this.state.completedEntries)
             return <div>You haven't written anything yet! Go to your dashboard to select a book and start writing.</div>
         } else if (this.state.promptData && this.state.allEntries.length > 0 && this.state.currentChapter && this.state.completedEntries) {
-            console.log(this.state.completedEntries)
             return (
                 <React.Fragment>
                     <PageSubHeader heading={`Your finished entries`} />
@@ -104,8 +101,9 @@ class AllFinishedPrompts extends Component {
                             <select onChange={(event) => this._handleChapterChange(event.target.value)}>
                                 <option value={0}>Filter by chapter</option>
                                 <option value={1}>Chapter 1</option>
-                            </select>
+                            </select>  
                         </div>
+                        <button>Head to checkout</button>
                         <div>
                             {this._renderPromptItems()}
                         </div>

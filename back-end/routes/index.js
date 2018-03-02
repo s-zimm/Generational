@@ -22,7 +22,13 @@ router.route('/api/users')
             .then(allUsers => res.json(allUsers));
     })
     .post((req, res) => {
-        console.log(req.body)
+        User.findOne({ where: { id: req.body.id }})
+            .then(theUser => {
+                theUser.update({
+                    email: req.body.email
+                })
+                .then(data => res.json(data));
+            });
     });
 
 router.route('/api/users/relationships')

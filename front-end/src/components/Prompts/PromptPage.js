@@ -35,7 +35,6 @@ class PromptPage extends Component {
                         this.setState({ allEntries: data.data.filter(entry => entry.userId === this.state.ownerId && entry.bookId === this.state.bookId)});
                         let theData = data.data.filter(entry => entry.userId === this.state.ownerId && entry.bookId === this.state.bookId && entry.completed === true)
                                                 .map(entry => entry.promptId);
-                        console.log(theData)
                         this.setState({ completedEntries: theData }, () => {
                             axios.get('http://localhost:3000/api/prompts')
                                 .then(data => {
@@ -88,7 +87,6 @@ class PromptPage extends Component {
             dataToRender = addedEntries
         }
         
-        console.log(dataToRender)
         return dataToRender.map(prompt => {
             return (
                 <Prompt
