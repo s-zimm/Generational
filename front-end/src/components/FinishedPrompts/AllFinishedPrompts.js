@@ -72,6 +72,7 @@ class AllFinishedPrompts extends Component {
         return dataToRender.map(prompt => {
             return (
                 <Prompt
+                    page="completed"
                     key={prompt.id}
                     id={prompt.id}
                     prompts={prompt.prompts}

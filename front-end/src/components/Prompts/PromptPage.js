@@ -92,6 +92,7 @@ class PromptPage extends Component {
         return dataToRender.map(prompt => {
             return (
                 <Prompt
+                    page="inProgress"
                     key={prompt.id}
                     id={prompt.id}
                     prompts={prompt.prompts}

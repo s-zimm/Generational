@@ -133,38 +133,67 @@ class Prompt extends Component {
     }
 
     render = () => {
-        if (this.state.prompts.length > 0) {
-            return (
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
-                <div style={this.promptContainerStyle}>
-                    <h3>{this.props.topic}</h3>
-                    <div style={this.containerStyling}>
-                        <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
-                        <textarea 
-                            value={this.state.prompts[this.state.promptIndex].entry}
-                            onChange={(event) => this._onTextareaChange(event.target.value)} 
-                            style={this.textareaStyling} 
-                            placeholder="............" 
-                        />
-                        <div style={{display: 'flex' }}>
-                            {this.state.clickSave 
-                                ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
-                                : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Save for later</button>}
-                            {this.state.clickAdd
-                                ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'blue', color: 'white' }}>Added!</button>
-                                : <button className="addToBookBtn" onClick={() => this._handleAddClick()} style={{ width: '100px', transition: 'all ease .4s' }}>Add to book</button>
-                                }
+        if (this.props.page === "inProgress") {
+            if (this.state.prompts.length > 0) {
+                return (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+                    <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
+                    <div style={this.promptContainerStyle}>
+                        <h3>{this.props.topic}</h3>
+                        <div style={this.containerStyling}>
+                            <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
+                            <textarea 
+                                value={this.state.prompts[this.state.promptIndex].entry}
+                                onChange={(event) => this._onTextareaChange(event.target.value)} 
+                                style={this.textareaStyling} 
+                                placeholder="............" 
+                            />
+                            <div style={{display: 'flex' }}>
+                                {this.state.clickSave 
+                                    ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
+                                    : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Save for later</button>}
+                                {this.state.clickAdd
+                                    ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'blue', color: 'white' }}>Added!</button>
+                                    : <button className="addToBookBtn" onClick={() => this._handleAddClick()} style={{ width: '100px', transition: 'all ease .4s' }}>Add to book</button>
+                                    }
+                            </div>
                         </div>
                     </div>
+                        <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
                 </div>
-                    <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
-            </div>
-            )
-        } else {
-            return <div></div>
+                )
+            } else {
+                return <div></div>
+            }
+        } else if (this.props.page === "completed") {
+            if (this.state.prompts.length > 0) {
+                return (
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
+                    <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
+                    <div style={this.promptContainerStyle}>
+                        <h3>{this.props.topic}</h3>
+                        <div style={this.containerStyling}>
+                            <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
+                            <textarea 
+                                value={this.state.prompts[this.state.promptIndex].entry}
+                                onChange={(event) => this._onTextareaChange(event.target.value)} 
+                                style={this.textareaStyling} 
+                                placeholder="............" 
+                            />
+                            <div style={{display: 'flex' }}>
+                                {this.state.clickSave 
+                                    ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
+                                    : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Add changes</button>}
+                            </div>
+                        </div>
+                    </div>
+                        <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
+                </div>
+                )
+            } else {
+                return <div></div>
+            }
         }
-        
     }
 
     // Styling
