@@ -70,3 +70,35 @@ input {
   background-color: rgb(78, 157, 226);
   color: aliceblue(235, 235, 235)
 }
+
+.fakePrompt {
+  width: 80%;
+  height: 300px;
+  /* border: rgba(0, 0, 0, 0.507) solid 1.5px; */
+  margin: 30px;
+  border-radius: 6px;
+  box-shadow: 0 2px 2px rgba(78, 87, 138, 0.616);
+  background-color: aliceblue;
+}
+
+.textareaStyling {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  border-bottom: 1px solid gray;
+  width: 80%;
+  height: 50%;
+  margin-bottom: 8px
+}
+
+.arrowStyle {
+  font-size: 40px; 
+  cursor: pointer;
+  color: rgba(64, 106, 214, 0.5);
+  transition: all ease .2s;
+}
+
+.arrowStyle:hover {
+  color: rgb(64, 107, 214);
+  transition: all ease .2s;
+}

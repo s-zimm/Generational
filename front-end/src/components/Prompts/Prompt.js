@@ -13,38 +13,6 @@ class Prompt extends Component {
         }
     }
 
-    componentDidMount() {
-        // if (this.state.prompts) {
-        //     let newPrompts = this.state.prompts.map((prompt, i) => {
-        //         return {
-        //             ...prompt,
-        //             entry: ''
-        //         };
-        //     });
-        //     this.setState({
-        //         prompts: newPrompts
-        //     });
-        // } else {
-        //     console.log('Loading prompts...')
-        // }
-        
-        // axios.get('http://localhost:3000/api/user_entries')
-        //     .then(data => {
-        //         let theData = data.data.filter(entry => entry.userId === this.props.currentUserId && entry.bookId === this.props.bookId);
-        //         return this.state.prompts.map(prompt => {
-        //             let theEntry = theData.find(entry => entry.promptId === prompt.id);
-        //             if (theEntry) {
-        //                 return { ...prompt, entry: theEntry.content, entryId: theEntry.id };
-        //             } else {
-        //                 return prompt;
-        //             } 
-        //         });
-        //     })
-        //     .then(prompts => this.setState({ prompts }));
-    }
-
-    
-
     handleNewPromptClick = (direction) => {
         if (direction === 'right' && this.state.promptIndex !== this.state.prompts.length - 1) {
             return this.setState({
@@ -137,7 +105,7 @@ class Prompt extends Component {
             if (this.state.prompts.length > 0) {
                 return (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                    <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
+                    <h1 onClick={() => this.handleNewPromptClick('left')} className='arrowStyle'>{"<"}</h1>
                     <div style={this.promptContainerStyle}>
                         <h3>{this.props.topic}</h3>
                         <div style={this.containerStyling}>
@@ -145,7 +113,7 @@ class Prompt extends Component {
                             <textarea 
                                 value={this.state.prompts[this.state.promptIndex].entry}
                                 onChange={(event) => this._onTextareaChange(event.target.value)} 
-                                style={this.textareaStyling} 
+                                className='textareaStyling'
                                 placeholder="............" 
                             />
                             <div style={{display: 'flex' }}>
@@ -159,7 +127,7 @@ class Prompt extends Component {
                             </div>
                         </div>
                     </div>
-                        <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
+                        <h1 onClick={() => this.handleNewPromptClick('right')} className='arrowStyle'>{">"}</h1>
                 </div>
                 )
             } else {
@@ -169,7 +137,7 @@ class Prompt extends Component {
             if (this.state.prompts.length > 0) {
                 return (
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-around'}}>
-                    <h1 onClick={() => this.handleNewPromptClick('left')} style={this.buttonStyle}>{"<"}</h1>
+                    <h1 onClick={() => this.handleNewPromptClick('left')} className='arrowStyle'>{"<"}</h1>
                     <div style={this.promptContainerStyle}>
                         <h3>{this.props.topic}</h3>
                         <div style={this.containerStyling}>
@@ -180,14 +148,14 @@ class Prompt extends Component {
                                 style={this.textareaStyling} 
                                 placeholder="............" 
                             />
-                            <div style={{display: 'flex' }}>
+                            <div style={{display: 'flex'}}>
                                 {this.state.clickSave 
                                     ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'green', color: 'white' }}>Saved!</button>
                                     : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Add changes</button>}
                             </div>
                         </div>
                     </div>
-                        <h1 onClick={() => this.handleNewPromptClick('right')} style={this.buttonStyle}>{">"}</h1>
+                        <h1 onClick={() => this.handleNewPromptClick('right')} className='arrowStyle'>{">"}</h1>
                 </div>
                 )
             } else {
@@ -197,35 +165,25 @@ class Prompt extends Component {
     }
 
     // Styling
-    textareaStyling = {
-        border: '0',
-        outline: '0',
-        background: 'transparent',
-        borderBottom: '1px solid gray',
-        width: '500px',
-        height: '120px',
-        marginBottom: '8px'
-    }
 
     promptContainerStyle = {
         display: 'flex',
         flexDirection: 'column',
         justtifyContent: 'flex-start',
         alignItems: 'center',
-        height: '300px'
+        height: '300px',
+        width: '80%'
     }
 
     containerStyling = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        border: 'solid 2px black',
-        width: '650px',
-        height: '230px'
-    }
-
-    buttonStyle = {
-        cursor: 'pointer'
+        boxShadow: '0 1px 2px rgba(78, 87, 138, 0.616)',
+        borderRadius: '6px',
+        backgroundColor: 'aliceblue',
+        width: '100%',
+        height: '90%'
     }
 }
 

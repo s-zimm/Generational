@@ -136,14 +136,43 @@
         .fakePrompt {
             width: 80%;
             height: 300px;
-            border: rgba(0, 0, 0, 0.507) solid 1.5px;
+            /* border: rgba(0, 0, 0, 0.507) solid 1.5px; */
             margin: 30px;
+            border-radius: 6px;
+            box-shadow: 0 2px 2px rgba(78, 87, 138, 0.616);
+            background-color: aliceblue;
         }
 
         .about1 {
             width: 80%;
             padding: 70px;
             color: rgb(64, 107, 214);
+        }
+
+        .arrowStyle {
+            font-size: 40px; 
+            cursor: pointer;
+            color: rgba(64, 106, 214, 0.5);
+            transition: all ease .2s;
+        }
+
+        .arrowStyle:hover {
+            color: rgb(64, 107, 214);
+            transition: all ease .2s;
+        }
+
+        .sectionHeading {
+            animation: fadeIn;
+            animation-duration: 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         @keyframes fadeInLeft {
@@ -191,20 +220,21 @@
 
     <div style="background-color: aliceblue;" class="sectionContainer">
         <div class="about1">
-            <h1>Recording Memories Should Be Easy</h1>
+            <h1 data-section-heading>Recording Memories Should Be Easy</h1>
             <p>Memory books are hard to fill. It's a daunting task that often pushes people away from even starting one at all. We always felt that there had to be a better option... How can we record our memories without the feeling of having to write an entire book? Here at Generational, we aim to fix that.</p>
             <p>With Generational, you don't have to write the entire book. You don't have to think of what to write; we help you out with that. Our innovative memory book will give you specific and pointed prompts to write about, so you'll spend less time worrying about what to write and spend more time writing. And the best part: when you feel you've written enough... Not a problem! You can print your book from home, only paying for the pages and prompts you've completed. No more stress from incompletion. With Generational, your book is complete when you say it is.</p>
         </div>
     </div>
 
-    <div class="sectionContainer">
-        <h1>Example Prompts</h1>
+    <div style="color:rgb(24, 83, 231)" class="sectionContainer">
+        <h1 data-section-heading>Example Prompts</h1>
         <div class="sectionContainerRow">
-            <i style="font-size:40px" class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-left arrowStyle"></i>
             <div class="fakePrompt sectionContainer">
                 <h3 style="margin-top:30px"><i>Write about your favorite place in your home     town.</i></h3>
+                <p>.........</p>
             </div>
-            <i style="font-size:40px" class="fas fa-arrow-right"></i>
+            <i class="fas fa-arrow-right arrowStyle"></i>
         </div>
     </div>
     <script src="public/splash.js"></script>

@@ -1,6 +1,7 @@
 const MAIN_IMG_TITLE = document.querySelector('[data-title-text]');
 const MAIN_IMG_MEM = document.querySelector('[data-memory-text]');
 const MAIN_IMG_BOOK = document.querySelector('[data-book-text]');
+const SECTION_HEADING = document.querySelectorAll('[data-section-heading]');
 
 let bookAnimation = () => {
     MAIN_IMG_BOOK.classList.add('bookText');
@@ -15,4 +16,4 @@ let titleAnimation = () => {
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(bookAnimation, 2000);
     setTimeout(titleAnimation, 4000);
-})
+});

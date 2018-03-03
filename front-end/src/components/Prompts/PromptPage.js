@@ -121,9 +121,9 @@ class PromptPage extends Component {
                         <div style={{ display: 'flex', flexDirection: 'column' }}>
                             <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
                             {this._renderPromptItems()}
-                            <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '600px' }}>
-                                <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '200px', alignSelf: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
-                                <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '200px', alignSelf: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+                            <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '30px 0' }}>
+                                <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '30%', alignSelf: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
+                                <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '30%', alignSelf: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
                             </div>
                             
                         </div>
