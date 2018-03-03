@@ -14,5 +14,5 @@ let titleAnimation = () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     setTimeout(bookAnimation, 2000);
-    setTimeout(titleAnimation, 4000)
+    setTimeout(titleAnimation, 4000);
 })

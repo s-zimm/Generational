@@ -4,13 +4,6 @@ import UserBookCover from './UserBookCover';
 
 const AccountBooks = ({ userEntries, userBooks, currentUser, filterDeletedBooks }) => {
 
-    let AccountBooksStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: '60%'
-    }
-
     let renderUserBooks = () => {
         if (userBooks) {
             return userBooks.map(book => {
@@ -28,7 +21,7 @@ const AccountBooks = ({ userEntries, userBooks, currentUser, filterDeletedBooks 
     }
 
     return (
-        <div style={AccountBooksStyle}>
+        <div className='AccountBooksStyle'>
             <NewBookBtn currentUser={currentUser}/>
             {renderUserBooks()}
         </div>

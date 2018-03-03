@@ -58,6 +58,13 @@ input {
   outline: red 1.5px solid;
 }
 
+.AccountBooksStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
 .addToBookBtn:hover {
   transition: .2s all ease;
   background-color: rgb(78, 157, 226);

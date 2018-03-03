@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
     <title>Login</title>
     <style>
         body {
@@ -22,8 +23,8 @@
 
         button:hover {
             color: white;
-            transition: .2s;
-            background-color: rgb(71, 101, 182);
+            transition: .3s;
+            background-color: rgb(64, 107, 214);
             border-color: rgba(71, 101, 182, 0.795);
         }
 
@@ -45,11 +46,11 @@
         .navbar a {
             text-decoration: none;
             transition: all ease .2s;
-            color: rgba(38, 38, 180, 0.651);
+            color: rgba(64, 106, 214, 0.527);
         }
 
         .navbar a:hover {
-            color: rgb(38, 38, 180);
+            color: rgb(64, 107, 214);
             transition: all ease .3s;
         }
 
@@ -91,11 +92,24 @@
             right: 70px;
         }
 
+        .sectionContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .sectionContainerRow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+
         .memoryText {
             font-size: 50px;
             position: relative;
             margin-top: 25px;
-            animation-name: fadeIn;
+            animation-name: fadeInLeft;
             animation-duration: 2.5s;
         }
 
@@ -104,14 +118,14 @@
             position: absolute;
             bottom: -25px;
             left: 45px;
-            animation-name: fadeIn;
+            animation-name: fadeInLeft;
             animation-duration: 2s;
         }
 
         .generationalOnImage {
             font-size: 70px;
             color:aliceblue;
-            animation-name: fadeIn;
+            animation-name: fadeInRight;
             animation-duration: 2.5s;
         }
 
@@ -119,10 +133,33 @@
             display: none;
         }
 
-        @keyframes fadeIn {
+        .fakePrompt {
+            width: 80%;
+            height: 300px;
+            border: rgba(0, 0, 0, 0.507) solid 1.5px;
+            margin: 30px;
+        }
+
+        .about1 {
+            width: 80%;
+            padding: 70px;
+            color: rgb(64, 107, 214);
+        }
+
+        @keyframes fadeInLeft {
             from {
                 opacity: 0;
                 transform: translateX(30px)
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px)
             }
             to {
                 opacity: 1;
@@ -149,6 +186,25 @@
         </div>
         <div class="mainBookImageGen">
             <h1 class="hidden" data-title-text>Generational</h1>
+        </div>
+    </div>
+
+    <div style="background-color: aliceblue;" class="sectionContainer">
+        <div class="about1">
+            <h1>Recording Memories Should Be Easy</h1>
+            <p>Memory books are hard to fill. It's a daunting task that often pushes people away from even starting one at all. We always felt that there had to be a better option... How can we record our memories without the feeling of having to write an entire book? Here at Generational, we aim to fix that.</p>
+            <p>With Generational, you don't have to write the entire book. You don't have to think of what to write; we help you out with that. Our innovative memory book will give you specific and pointed prompts to write about, so you'll spend less time worrying about what to write and spend more time writing. And the best part: when you feel you've written enough... Not a problem! You can print your book from home, only paying for the pages and prompts you've completed. No more stress from incompletion. With Generational, your book is complete when you say it is.</p>
+        </div>
+    </div>
+
+    <div class="sectionContainer">
+        <h1>Example Prompts</h1>
+        <div class="sectionContainerRow">
+            <i style="font-size:40px" class="fas fa-arrow-left"></i>
+            <div class="fakePrompt sectionContainer">
+                <h3 style="margin-top:30px"><i>Write about your favorite place in your home     town.</i></h3>
+            </div>
+            <i style="font-size:40px" class="fas fa-arrow-right"></i>
         </div>
     </div>
     <script src="public/splash.js"></script>
