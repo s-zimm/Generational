@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
     <title>Login</title>
     <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            font-family: 'Open Sans', sans-serif;
+        }
+
         button {
             padding: 10px;
             border-radius: 3px;
-            box-shadow: 0 1px 1px gray;
             transition: .2s;
         }
 
@@ -17,12 +24,133 @@
             color: white;
             transition: .2s;
             background-color: rgb(71, 101, 182);
-            box-shadow: rgba(71, 101, 182, 0.548);
             border-color: rgba(71, 101, 182, 0.795);
+        }
+
+        .signInAndMenu {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            width: 100%;
+            margin-right: 15px;
+            height: 100%;
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 2px rgba(43, 40, 136, 0.589);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            transition: all ease .2s;
+            color: rgba(38, 38, 180, 0.651);
+        }
+
+        .navbar a:hover {
+            color: rgb(38, 38, 180);
+            transition: all ease .3s;
+        }
+
+        .brandImageStyle {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .brandStyle {
+            margin-left: 15px;
+        }
+
+        .mainBookImageDiv {
+            display: flex;
+            width: 100%;
+            height: 500px;
+            position: relative;
+        }
+
+        .mainBookImage {
+            max-width: 100%;
+        }
+
+        .mainBookImageText {
+            display: flex;
+            position: absolute;
+            color: aliceblue;
+            top: 8px;
+            left: 30px;
+        }
+
+        .mainBookImageGen {
+            display: flex;
+            position: absolute;
+            color: aliceblue;
+            top: 68px;
+            right: 70px;
+        }
+
+        .memoryText {
+            font-size: 50px;
+            position: relative;
+            margin-top: 25px;
+            animation-name: fadeIn;
+            animation-duration: 2.5s;
+        }
+
+        .bookText {
+            font-size: 30px;
+            position: absolute;
+            bottom: -25px;
+            left: 45px;
+            animation-name: fadeIn;
+            animation-duration: 2s;
+        }
+
+        .generationalOnImage {
+            font-size: 70px;
+            color:aliceblue;
+            animation-name: fadeIn;
+            animation-duration: 2.5s;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(30px)
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
-    <a href="/login"><button>Sign In</button></a>
+    <div class="navbar">
+        <div class="brandImageStyle">
+            <h1 class="brandStyle"><a href='#'>Generational</a></h1>
+        </div>
+        <div class="signInAndMenu">
+            <a href="#about">About</a>
+            <a href="/login" class="brandStyle"><button>Sign In</button></a>
+        </div>
+    </div>
+
+    <div class="mainBookImageDiv">
+        <img class="mainBookImage" src="./public/large.jpg" alt="Your memory book">
+        <div class="mainBookImageText">
+            <h2 class="memoryText" data-memory-text>Make a memory.</h2>
+            <h3 class="hidden" data-book-text>Make a book.</h3>
+        </div>
+        <div class="mainBookImageGen">
+            <h1 class="hidden" data-title-text>Generational</h1>
+        </div>
+    </div>
+    <script src="public/splash.js"></script>
 </body>
 </html>
