@@ -3,7 +3,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const session = require('express-session');
 const cookieParser = require('cookie-parser')
 const User = require('./models/User');
-const facebook = require('./config');
+const facebook = require('./config').facebook;
 
 const setupAuth = (app) => {
   app.use(cookieParser());
@@ -75,7 +75,7 @@ const setupAuth = (app) => {
   );
 
   app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login', scope: 'email' }),
+  passport.authenticate('facebook', { failureRedirect: '/login', scope: ['email'] }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PageSubHeader from '../PageSubHeader';
 import axios from 'axios';
 import Prompt from '../Prompts/Prompt';
+import CheckoutForm from '../Stripe/CheckoutForm';
 
 class AllFinishedPrompts extends Component {
     constructor(props) {
@@ -10,7 +11,8 @@ class AllFinishedPrompts extends Component {
         this.state = {
             bookId: Number(this.props.match.params.id),
             currentUserId: Number(this.props.match.params.userId),
-            currentChapter: 1
+            currentChapter: 1,
+            completedEntries: []
         }
     }
 
@@ -90,20 +92,24 @@ class AllFinishedPrompts extends Component {
 
     render() {
         
-        if (!this.state.completedEntries) {
+        if (this.state.completedEntries.length <= 0) {
             return <div>You haven't written anything yet! Go to your dashboard to select a book and start writing.</div>
-        } else if (this.state.promptData && this.state.allEntries.length > 0 && this.state.currentChapter && this.state.completedEntries) {
+        } else if (this.state.promptData && this.state.allEntries.length > 0 && this.state.currentChapter && this.state.completedEntries && this.state.bookInfo) {
             return (
                 <React.Fragment>
                     <PageSubHeader heading={`Your finished entries`} />
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         <div>
-                            <select onChange={(event) => this._handleChapterChange(event.target.value)}>
-                                <option value={0}>Filter by chapter</option>
+                            <select style={{ fontSize: '20px'}} onChange={(event) => this._handleChapterChange(event.target.value)}>
+                                <option value={1}>Filter by chapter</option>
                                 <option value={1}>Chapter 1</option>
                             </select>  
                         </div>
-                        <button>Head to checkout</button>
+                        <CheckoutForm 
+                            name={`Generational`}
+                            description={`Print your book for ${this.state.bookInfo.whoFor}`}
+                            amount={this.state.completedEntries.length}
+                        />
                         <div>
                             {this._renderPromptItems()}
                         </div>

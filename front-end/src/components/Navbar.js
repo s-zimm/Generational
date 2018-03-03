@@ -26,7 +26,7 @@ const Navbar = props => {
     return (
         <div className="navbar">
             <div style={brandImageStyle}>
-                <h1 style={brandStyle}>Generational</h1>
+                <Link to="/"><h1 style={brandStyle}>Generational</h1></Link>
             </div>
             <div style={signInAndMenu}>
                 <Link to="/">Home</Link>

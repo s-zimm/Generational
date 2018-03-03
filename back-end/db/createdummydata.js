@@ -7,10 +7,7 @@ const Prompt_Topic = require('../models/Prompt_Topic');
 const Relationship = require('../models/Relationship');
 
 User.bulkCreate([
-   {
-       firstname: 'Seth',
-       lastname: 'Zimmerman',
-   }
+   
 ]).then(() => {
     User_Book.bulkCreate([
         {
