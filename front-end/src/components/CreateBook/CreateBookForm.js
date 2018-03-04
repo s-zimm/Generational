@@ -78,7 +78,7 @@ class CreateBookForm extends Component {
                 whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
                 ownerId: this.state.currentUserId
             });
-        } else {
+        } else if (this.state.searchValues.length > 0) {
             axios.post('http://localhost:3000/api/user_books', {
                 whoFor: this.state.searchValues,
                 ownerId: this.state.currentUserId

@@ -66,7 +66,7 @@ const setupAuth = (app) => {
   });
 
   app.get('/auth/facebook',
-    passport.authenticate('facebook', { failureRedirect: '/' }),
+    passport.authenticate('facebook', { failureRedirect: '/', scope: ['email'] }),
     (req, res) => {
       console.log('you just logged in');
       console.log(req.isAuthenticated());

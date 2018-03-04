@@ -30,7 +30,10 @@ app.use(cookieParser());
 
 // app.use((req, res, next) => {
 //   if (req.isAuthenticated()) { next(); }
-//   else { res.sendFile('public/login.html', { root: __dirname }); }
+//   else {
+//     app.use(express.static(path.join(__dirname, 'login')));
+//     res.sendFile('login/login.html', { root: __dirname }); 
+//   }  
 // });
 
 

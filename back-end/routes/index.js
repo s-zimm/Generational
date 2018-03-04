@@ -3,6 +3,7 @@ var router = express.Router();
 const STRIPE_SECRET_KEY = require('../config').STRIPE_SECRET_KEY;
 const cors = require('cors');
 const stripe = require('stripe')(STRIPE_SECRET_KEY);
+const path = require('path');
 
 const User = require('../models/User');
 const Prompt = require('../models/Prompt');
@@ -18,6 +19,7 @@ router.all('*', (req, res, next) => {
     res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
     next();
 });
+
 
 const postStripeCharge = res => (stripeErr, stripeRes) => {
     if (stripeErr) {
