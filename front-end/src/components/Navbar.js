@@ -16,6 +16,7 @@ const Navbar = props => {
         width: '100%',
         marginRight: '15px'
     }
+
     let brandImageStyle = {
         display: 'flex',
         flexDirection: 'column',
@@ -28,7 +29,7 @@ const Navbar = props => {
             <div style={brandImageStyle}>
                 <Link to="/"><h1 style={brandStyle}>Generational</h1></Link>
             </div>
-            <div style={signInAndMenu}>
+            <div className='signInAndMenu'>
                 <Link to="/">Home</Link>
                 <Link style={brandStyle} to={`/account/${props.currentUser}`}>Account</Link>
                 <Link style={brandStyle} to={`/book/new/${props.currentUser}`}>Create Book</Link>

@@ -117,7 +117,7 @@ class CreateBookForm extends Component {
                             bookData={this.props.bookData}
                         />
                     </form>
-                    <div className={this.props.searchBoxHidden} style={this.searchBoxStyle}>
+                    <div className={`searchBoxStyle ${this.props.searchBoxHidden}`}>
                         <ul>
                             {this._populateSearchList()}
                         </ul>

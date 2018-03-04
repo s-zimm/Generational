@@ -6,8 +6,9 @@ const PageSubHeader = (props) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        border: 'solid 1px black',
-        backgroundColor: 'aliceblue'
+        background: 'linear-gradient(white, aliceblue)',
+        boxShadow: '0 2px 2px rgba(43, 40, 136, 0.589)',
+        color: 'rgb(26, 65, 138)'
     }
 
     return (

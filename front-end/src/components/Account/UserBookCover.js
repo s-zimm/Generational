@@ -23,7 +23,7 @@ class UserBookCover extends Component {
 
     render() {
         return (
-            <div onClick={() => this.setState({ bookOptionsView: !this.state.bookOptionsView })} style={this.bookCoverStyles}>
+            <div onClick={() => this.setState({ bookOptionsView: !this.state.bookOptionsView })} className='bookCoverStyles'>
                 {this.state.bookOptionsView
                     ? <div style={{ height: '90%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around' }}>
                         <Link to={`/book/prompts/${this.props.currentUser}/${this.props.id}`}>
@@ -32,7 +32,7 @@ class UserBookCover extends Component {
                         <Link to={`/book/prompts/complete/${this.props.currentUser}/${this.props.id}`}>
                             <button>View completed entries</button>
                         </Link>
-                        <button onClick={() => this._handleBookDelete()}>Delete Book</button>
+                        <button className="delete-btn" onClick={() => this._handleBookDelete()}>Delete Book</button>
                     </div>
                     : <p>{this.props.title}</p>}
                     

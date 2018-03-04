@@ -9,27 +9,45 @@
   align-items: center;
 }
 
+.navbar a {
+  text-decoration: none;
+  transition: all ease .2s;
+  color: rgba(64, 106, 214, 0.527);
+}
+
+.navbar a:hover {
+  color: rgb(64, 107, 214);
+  transition: all ease .3s;
+}
+
 .BookScrollViewContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  outline: solid 2px green;
 }
 
 button {
   padding: 10px;
   border-radius: 3px;
-  box-shadow: 0 1px 1px gray;
   transition: .2s;
+  color: rgba(64, 106, 214, 0.527);
+  border: .5px solid rgba(71, 101, 182, 0.356);
 }
 
 button:hover {
   color: white;
-  transition: .2s;
-  background-color: rgb(71, 101, 182);
-  box-shadow: rgba(71, 101, 182, 0.548);
+  transition: .3s;
+  background-color: rgb(112, 136, 197);
   border-color: rgba(71, 101, 182, 0.795);
+}
+
+.signInAndMenu {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  margin-right: 15px;
 }
 
 input {
@@ -43,13 +61,13 @@ input {
 
 .delete-btn { 
   background-color: white;
-  color: red;
-  border: 1px solid black;
+  color: rgba(255, 0, 0, 0.589);
+  border: 1px solid rgba(0, 0, 0, 0.322);
   transition: .2s all ease;
 }
 
 .delete-btn:hover {
-  background-color: red;
+  background-color: rgb(235, 70, 70);
   color: white;
   transition: .2s all ease;
 }
@@ -69,6 +87,14 @@ input {
   transition: .2s all ease;
   background-color: rgb(78, 157, 226);
   color: aliceblue(235, 235, 235)
+}
+
+.searchBoxStyle {
+  position: relative;
+  bottom: 70.5px;
+  outline: 1px solid rgba(51, 61, 117, 0.363);
+  z-index: 1;
+  background-color: white;
 }
 
 .fakePrompt {
@@ -100,5 +126,25 @@ input {
 
 .arrowStyle:hover {
   color: rgb(64, 107, 214);
+  transition: all ease .2s;
+}
+
+.bookCoverStyles {
+  cursor: pointer;
+  width: 90%;
+  height: 240px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  transition: all ease .2s;
+  color: rgb(6, 55, 107);
+  font-size: 30px;
+  background-color: rgba(69, 151, 228, 0.212);
+}
+
+.bookCoverStyles:hover {
+  box-shadow: -2px 2px 5px rgba(113, 152, 189, 0.616);
   transition: all ease .2s;
 }
