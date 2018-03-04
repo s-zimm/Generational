@@ -172,7 +172,8 @@ class Prompt extends Component {
         justtifyContent: 'flex-start',
         alignItems: 'center',
         height: '300px',
-        width: '80%'
+        width: '80%',
+        color: 'rgb(9, 106, 162)'
     }
 
     containerStyling = {

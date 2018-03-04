@@ -37,6 +37,10 @@
             height: 100%;
         }
 
+        .signInAndMenu a {
+            cursor: pointer;
+        }
+
         .navbar {
             display: flex;
             align-items: center;
@@ -166,6 +170,26 @@
             animation-duration: 1s;
         }
 
+        .fbIconButton {
+            color: #395CA9;
+        }
+
+        .footer {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            height: 30px;
+            background-color: antiquewhite;
+            margin-bottom: 0;
+            padding: 10px;
+        }
+
+        .footerItem {
+            margin-left: 30px;
+            border-right: solid gray .5px;
+            padding-right: 22px;;
+        }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -202,8 +226,9 @@
             <h1 class="brandStyle"><a href='#'>Generational</a></h1>
         </div>
         <div class="signInAndMenu">
-            <a href="#about">About</a>
-            <a href="/login" class="brandStyle"><button>Sign In</button></a>
+            <a data-nav-about>About</a>
+            <a data-nav-examples class="brandStyle">Examples</a>
+            <a href="/login" class="brandStyle"><button class="fbIconButton"><i class="fab fa-facebook-square "></i> Sign In With Facebook</button></a>
         </div>
     </div>
 
@@ -219,23 +244,34 @@
     </div>
 
     <div style="background-color: aliceblue;" class="sectionContainer">
-        <div class="about1">
+        <div id='about' class="about1">
             <h1 data-section-heading>Recording Memories Should Be Easy</h1>
             <p>Memory books are hard to fill. It's a daunting task that often pushes people away from even starting one at all. We always felt that there had to be a better option... How can we record our memories without the feeling of having to write an entire book? Here at Generational, we aim to fix that.</p>
             <p>With Generational, you don't have to write the entire book. You don't have to think of what to write; we help you out with that. Our innovative memory book will give you specific and pointed prompts to write about, so you'll spend less time worrying about what to write and spend more time writing. And the best part: when you feel you've written enough... Not a problem! You can print your book from home, only paying for the pages and prompts you've completed. No more stress from incompletion. With Generational, your book is complete when you say it is.</p>
         </div>
     </div>
 
-    <div style="color:rgb(24, 83, 231)" class="sectionContainer">
-        <h1 data-section-heading>Example Prompts</h1>
+    <div style="color:rgb(9, 106, 162); padding:20px" class="sectionContainer">
+        <h1 id="example-prompts" style="color:rgb(26, 65, 138)" data-section-heading>Example Prompts</h1>
         <div class="sectionContainerRow">
-            <i class="fas fa-arrow-left arrowStyle"></i>
+            <a data-left-arrow><i class="fas fa-arrow-left arrowStyle"></i></a>
             <div class="fakePrompt sectionContainer">
-                <h3 style="margin-top:30px"><i>Write about your favorite place in your home     town.</i></h3>
+                <h3 style="margin-top:30px"><i data-prompt></i></h3>
                 <p>.........</p>
             </div>
-            <i class="fas fa-arrow-right arrowStyle"></i>
+            <a data-arrow-right><i class="fas fa-arrow-right arrowStyle"></i></a>
         </div>
+    </div>
+
+    <div style="margin:30px 0" class="sectionContainer">
+        <h1 style="color:rgb(41, 39, 190)">Start making memories with us today.</h1>
+        <a href="/login"><button class="fbIconButton"><i class="fab fa-facebook-square"></i> Sign Up With Facebook</button></a>
+    </div>
+
+    <div class="footer">
+        <h6 class="footerItem">Home</h6>
+        <h6 class="footerItem">About</h6>
+        <h6 class="footerItem">Privacy</h6>
     </div>
     <script src="public/splash.js"></script>
 </body>
