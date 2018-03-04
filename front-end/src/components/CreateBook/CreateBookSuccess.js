@@ -24,15 +24,26 @@ class CreateBookSuccess extends Component {
     render() {
         if (this.state.books) {
             return (
-                <div>
+                <React.Fragment>
                     <PageSubHeader heading="You created a book!" />
-                    <Link to={`/book/prompts/${this.state.currentUserId}/${this.state.books[this.state.books.length - 1] + 1}`}><button>Start writing now</button></Link>
-                </div>
+                    <div style={this.style} className="sectionContainer">
+                        <Link to={`/book/prompts/${this.state.currentUserId}/${this.state.books[this.state.books.length - 1] + 1}`}><button style={this.linkStyle} >Start writing now</button></Link>
+                    </div>
+                </React.Fragment>
             )
         } else {
             return <div> </div>
         }
         
+    }
+
+    style = {
+        margin: '40px'
+    }
+
+    linkStyle = {
+        padding: '50px',
+        fontSize: '20px'
     }
 }
 

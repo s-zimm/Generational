@@ -114,7 +114,7 @@ class PromptPage extends Component {
     }
 
     render() {
-        if (this.state.ownerId && this.state.contributors && this.state.currentUserId) {
+        if (this.state.ownerId && this.state.contributors && this.state.currentUserId && this.state.bookInfo) {
             if (this.state.currentUserId === this.state.bookInfo.ownerId || this.state.contributors.includes(this.state.currentUserId)) {
                 if (this.state.bookInfo && this.state.promptData) {
                     return (
