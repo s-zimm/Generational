@@ -102,7 +102,7 @@ class AllFinishedPrompts extends Component {
                     <PageSubHeader heading={`Your finished entries`} />
                     <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
                         <div style={{ margin: '20px'}}>
-                            <select style={{ fontSize: '20px'}} onChange={(event) => this._handleChapterChange(event.target.value)}>
+                            <select style={{ fontSize: '20px', color: 'rgb(91, 91, 91)', backgroundColor: 'rgb(213, 227, 242)'}} onChange={(event) => this._handleChapterChange(event.target.value)}>
                                 <option value={1}>Filter by chapter</option>
                                 <option value={1}>Chapter 1</option>
                             </select>  
