@@ -145,7 +145,7 @@ class Prompt extends Component {
                             <textarea 
                                 value={this.state.prompts[this.state.promptIndex].entry}
                                 onChange={(event) => this._onTextareaChange(event.target.value)} 
-                                style={this.textareaStyling} 
+                                className="textareaStyling"
                                 placeholder="............" 
                             />
                             <div style={{display: 'flex'}}>

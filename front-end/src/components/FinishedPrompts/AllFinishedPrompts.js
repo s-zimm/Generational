@@ -72,6 +72,7 @@ class AllFinishedPrompts extends Component {
         
         return dataToRender.map(prompt => {
             return (
+                <div style={{ marginBottom: '30px'}}>
                 <Prompt
                     page="completed"
                     key={prompt.id}
@@ -82,6 +83,7 @@ class AllFinishedPrompts extends Component {
                     ownerId={this.state.ownerId}
                     bookId={this.state.bookId}
                 />
+                </div>
             );
         });
     }
@@ -98,20 +100,22 @@ class AllFinishedPrompts extends Component {
             return (
                 <React.Fragment>
                     <PageSubHeader heading={`Your finished entries`} />
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                        <div>
+                    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'center' }}>
+                        <div style={{ margin: '20px'}}>
                             <select style={{ fontSize: '20px'}} onChange={(event) => this._handleChapterChange(event.target.value)}>
                                 <option value={1}>Filter by chapter</option>
                                 <option value={1}>Chapter 1</option>
                             </select>  
                         </div>
-                        <CheckoutForm 
+                        <div style={{width:"100%"}}>
+                            {this._renderPromptItems()}
+                        </div>
+                        <div style={{ marginBottom: '30px'}}>
+                        <CheckoutForm
                             name={`Generational`}
                             description={`Print your book for ${this.state.bookInfo.whoFor}`}
                             amount={this.state.completedEntries.length}
                         />
-                        <div>
-                            {this._renderPromptItems()}
                         </div>
                     </div>
                 </React.Fragment>
