@@ -39,6 +39,30 @@ router.route('/checkout')
         stripe.charges.create(req.body, postStripeCharge(res));
     });
 
+router.route('/api/user_entries/paid')
+    .post((req, res) => {
+        User_Entry.findAll({
+            where: {
+                ownerId: req.body.userId,
+                id: {
+                    [Op.or]: req.body.entryIdArray
+                }
+            }
+        })
+        .then(entries => {
+            entries.update({
+                paidFor: true
+            })
+            .then((data) => res.json(data))
+        });
+    })
+    .get((req, res) => {
+        User_Entry.findAll({
+            where: { paidFor: true }
+        })
+        .then(entries => res.json(entries));
+    });
+
 router.route('/api/users')
     .get((req, res) => {
         User.findAll({ include: [{ all: true }]})
@@ -168,6 +192,7 @@ router.route('/api/user_books')
             whoFor: req.body.whoFor,
             ownerId: req.body.ownerId
         })
+        .then(data => res.json(data));
     })
 
 router.route('/api/prompts') 

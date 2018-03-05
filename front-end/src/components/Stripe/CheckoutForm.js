@@ -25,6 +25,12 @@ class CheckoutForm extends Component {
     successPayment = data => {
         alert('Payment Successful');
         this.setState({ paid: true });
+        console.log(this.props.entryIdArray)
+        axios.post('http://localhost:3000/api/user_entries/paid', {
+            userId: this.props.userId,
+            entryIdArray: this.props.entryIdArray
+        })
+        .then(data => console.log(data))
     }
 
     errorPayment = data => {

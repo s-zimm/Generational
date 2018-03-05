@@ -25,26 +25,30 @@ app.use(cookieParser());
 
 // PUT IN MIDDLEWARE FOR AUTH HERE
 
-// setupAuth(app);
+setupAuth(app);
 
 
-// app.use((req, res, next) => {
-//   if (req.isAuthenticated()) { next(); }
-//   else {
-//     // app.use(express.static(path.join(__dirname, 'login')));
-//     res.sendFile('login/login.html', { root: __dirname }); 
-//   }  
-// });
+app.use(express.static(path.join(__dirname, 'login')));
 
+app.get('/signin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'login/login.html'))
+});
 
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) { next(); }
+  else {
+    // app.use(express.static(path.join(__dirname, 'login')));
+    console.log(__dirname)
+    
+    res.redirect('/signin')
+    
+  }  
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(index);
 
-app.get('/*', (req, res, next) => {
-  
-})
 
 
 // catch 404 and forward to error handler
@@ -53,6 +57,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

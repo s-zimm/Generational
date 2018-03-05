@@ -13,9 +13,9 @@ User.bulkCreate([
    }
 ]).then(() => {
     User_Book.bulkCreate([
-        {
-            whoFor: 'Durch'
-        }
+        // {
+        //     whoFor: 'Durch'
+        // }
     ])
 }).then(() => {
     Prompt_Topic.bulkCreate([

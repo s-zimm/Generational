@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import PrivateRoute from'./components/Routing/PrivateRoute';
+// import PrivateRoute from'./components/Routing/PrivateRoute';
 
 import Home from './components/Home'
 import Navbar from './components/Navbar';
@@ -30,7 +30,7 @@ class App extends Component {
           <div className="App">
             <Navbar currentUser={this.state.currentUser} />
             <Route exact path="/" component={Home} />
-            <Route exact path='/login' component={Login}/>
+            {/* <Route exact path='/login' component={Login}/> */}
             <Route exact path="/account/:userId" component={Account} />
             <Route exact path="/book/new/:userId" component={CreateBook} />
             <Route exact path="/book/new/success/:userId" component={CreateBookSuccess} />
