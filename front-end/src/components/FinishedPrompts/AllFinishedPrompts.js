@@ -35,7 +35,32 @@ class AllFinishedPrompts extends Component {
                                     axios.get('http://localhost:3000/api/prompts')
                                     .then(data => { 
                                         let theData = data.data;
-                                        this.setState({ promptData: theData });
+                                        this.setState({ promptData: theData }, () => {
+                                            let dataToRender;
+                                            let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter && data.paidFor === false);
+                                            let addedEntries = this.state.promptData.map(topic => {
+                                                return {
+                                                    ...topic,
+                                                    prompts: topic.prompts.map(prompt => {
+                                                        let foundEntry = this.state.allEntries.find(entry => entry.promptId === prompt.id);
+                                                        if (foundEntry) {
+                                                            return { ...prompt, entry: foundEntry.content, entryId: foundEntry.id }
+                                                        }
+                                                    })
+                                                }
+                                            });
+                                            let completePrompts = addedEntries.map(topic => {
+                                                return {
+                                                    ...topic,
+                                                    prompts: topic.prompts.filter(prompt => {
+                                                        if (prompt) {
+                                                            return this.state.completedEntries.includes(prompt.id)
+                                                        }
+                                                    })
+                                                }
+                                            });
+                                            this.setState({ allCompletedPrompts: completePrompts });
+                                        });
                                     });
                                 });
                         });
@@ -43,49 +68,26 @@ class AllFinishedPrompts extends Component {
             }));
     }
 
-    _renderPromptItems = () => {
-        let dataToRender;
-        let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter);
-        let addedEntries = filteredData.map(topic => {
-            return {
-                ...topic,
-                prompts: topic.prompts.map(prompt => {
-                    let foundEntry = this.state.allEntries.find(entry => entry.promptId === prompt.id);
-                    if (foundEntry) {
-                        return { ...prompt, entry: foundEntry.content, entryId: foundEntry.id }
-                    }
-                })
-            }
-        });
-        let completePrompts = addedEntries.map(topic => {
-            return {
-                ...topic,
-                prompts: topic.prompts.filter(prompt => {
-                    if (prompt) {
-                        return this.state.completedEntries.includes(prompt.id)
-                    }
-                })
-            }
-        });
-        dataToRender = completePrompts;   
-        console.log('I filtered stuff')         
-        
-        return dataToRender.map(prompt => {
-            return (
-                <div style={{ marginBottom: '30px'}}>
-                <Prompt
-                    page="completed"
-                    key={prompt.id}
-                    id={prompt.id}
-                    prompts={prompt.prompts}
-                    topic={prompt.content}
-                    topicIndex={this.state.topicIndex}
-                    ownerId={this.state.ownerId}
-                    bookId={this.state.bookId}
-                />
-                </div>
-            );
-        });
+    _renderPromptItems = () => {       
+        if (this.state.allCompletedPrompts) {
+            let filteredPrompts = this.state.allCompletedPrompts.filter(prompt => prompt.chapter === this.state.currentChapter)
+            return filteredPrompts.map(prompt => {
+                return (
+                    <div style={{ marginBottom: '30px'}}>
+                    <Prompt
+                        page="completed"
+                        key={prompt.id}
+                        id={prompt.id}
+                        prompts={prompt.prompts}
+                        topic={prompt.content}
+                        topicIndex={this.state.topicIndex}
+                        ownerId={this.state.ownerId}
+                        bookId={this.state.bookId}
+                    />
+                    </div>
+                );
+            });
+        }
     }
 
     _handleChapterChange = (value) => {
@@ -95,7 +97,7 @@ class AllFinishedPrompts extends Component {
     render() {
         
         if (this.state.completedEntries.length <= 0) {
-            return <div>You haven't written anything yet! Go to your dashboard to select a book and start writing.</div>
+            return <div style={{ textAlign: 'center' }}>You haven't added entries yet! Go to your dashboard to select a book and start writing.</div>
         } else if (this.state.promptData && this.state.allEntries.length > 0 && this.state.currentChapter && this.state.completedEntries && this.state.bookInfo) {
             return (
                 <React.Fragment>
@@ -105,6 +107,7 @@ class AllFinishedPrompts extends Component {
                             <select style={{ fontSize: '20px', color: 'rgb(91, 91, 91)', backgroundColor: 'rgb(213, 227, 242)'}} onChange={(event) => this._handleChapterChange(event.target.value)}>
                                 <option value={1}>Filter by chapter</option>
                                 <option value={1}>Chapter 1</option>
+                                <option value={2}>Chapter 2</option>
                             </select>  
                         </div>
                         <div style={{width:"100%"}}>
@@ -112,6 +115,7 @@ class AllFinishedPrompts extends Component {
                         </div>
                         <div style={{ marginBottom: '30px'}}>
                         <CheckoutForm
+                            allCompletedPrompts={this.state.allCompletedPrompts}
                             userId={this.state.currentUserId}
                             name={`Generational`}
                             description={`Print your book for ${this.state.bookInfo.whoFor}`}

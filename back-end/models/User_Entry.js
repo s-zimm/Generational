@@ -11,6 +11,10 @@ const User_Entry = sequelize.define('user_entry', {
     completed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false
+    },
+    paidFor: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
     }
 });
 

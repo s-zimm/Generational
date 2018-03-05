@@ -84,9 +84,10 @@ input {
 
 .AccountBooksStyle {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   align-items: center;
-  width: 60%;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .addToBookBtn:hover {
@@ -138,7 +139,7 @@ input {
 .bookCoverStyles {
   font-family: 'Dancing Script', cursive;
   cursor: pointer;
-  width: 90%;
+  width: 30%;
   height: 240px;
   border-radius: 6px;
   display: flex;
