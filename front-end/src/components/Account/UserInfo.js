@@ -45,7 +45,6 @@ class UserInfo extends Component {
     infoStyling = {
         display: 'flex',
         flexDirection: 'column',
-        width: '80%'
     }
 }
 

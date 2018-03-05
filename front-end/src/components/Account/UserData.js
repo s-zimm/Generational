@@ -6,10 +6,9 @@ const UserData = ({ userData, allUserData, userBooks, handleAddEmail }) => {
     
     let containerStyle = {
         display: 'flex',
-        flexDirection: "column",
         alignItems: 'flex-start',
-        justifyContent: 'flex-start',
-        width: '60%',
+        justifyContent: 'space-around',
+        width: '100%'
     }
 
     return (

@@ -73,7 +73,7 @@ class Account extends Component {
             return(
                 <React.Fragment>
                     <PageSubHeader heading={`${this.state.userData.firstname}'s Dashboard`} />
-                    <div style={{ margin: '40px', display: 'flex' }}>
+                    <div className="sectionContainer" style={{ margin: '20px' }}>
                         <UserData
                             userBooks={this.state.userBooks}
                             userData={this.state.userData}

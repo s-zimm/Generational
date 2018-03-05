@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import StripeCheckout from 'react-stripe-checkout';
 import STRIPE_PUBLISHABLE from '../../config';
 
@@ -28,17 +29,39 @@ const onToken = (amount, description) => token =>
     .then(successPayment)
     .catch(errorPayment);
 
-const CheckoutForm = ({ name, description, amount }) => {
-    return (
-        <StripeCheckout 
-            name={name}
-            description={description}
-            amount={fromEuroToCent(amount)}
-            token={onToken(amount, description)}
-            currency={CURRENCY}
-            stripeKey={STRIPE_PUBLISHABLE} 
-        />
-    )
+class CheckoutForm extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            paid: false
+        }
+    }
+
+    _handlePayRender = () => {
+        this.setState({ paid: true })
+    }
+
+    render() {
+        if (this.state.paid === false) {
+            return (
+                <StripeCheckout 
+                    name={this.props.name}
+                    description={this.props.description}
+                    amount={fromEuroToCent(this.props.amount)}
+                    token={onToken(this.props.amount, this.props.description)}
+                    currency={CURRENCY}
+                    stripeKey={STRIPE_PUBLISHABLE}
+                    handlePayRender={this._handlePayRender}
+                    zipCode={true}
+                    closed={this._handlePayRender}
+                />
+            )
+        } else {
+            return <Redirect to={`/account/${this.props.userId}`} />
+        }
+        
+    }
 }
 
 export default CheckoutForm;

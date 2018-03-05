@@ -60,7 +60,7 @@ class Relationships extends Component {
 
     render() {
         return (
-            <div>
+            <div className="sectionContainer">
                 <h3>My Relationships</h3>
                 <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
                     <div 

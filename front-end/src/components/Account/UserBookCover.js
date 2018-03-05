@@ -30,7 +30,7 @@ class UserBookCover extends Component {
                             <button>Write entries</button>
                         </Link>
                         <Link to={`/book/prompts/complete/${this.props.currentUser}/${this.props.id}`}>
-                            <button>View completed entries</button>
+                            <button>Purchase completed entries</button>
                         </Link>
                         <button className="delete-btn" onClick={() => this._handleBookDelete()}>Delete Book</button>
                     </div>
@@ -38,17 +38,6 @@ class UserBookCover extends Component {
                     
             </div>
         )
-    }
-
-    bookCoverStyles = {
-        cursor: 'pointer',
-        width: '90%',
-        height: '240px',
-        border: 'solid black 2px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: '20px'
     }
 }
 

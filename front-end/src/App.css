@@ -136,6 +136,7 @@ input {
 }
 
 .bookCoverStyles {
+  font-family: 'Dancing Script', cursive;
   cursor: pointer;
   width: 90%;
   height: 240px;

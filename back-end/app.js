@@ -31,7 +31,7 @@ app.use(cookieParser());
 // app.use((req, res, next) => {
 //   if (req.isAuthenticated()) { next(); }
 //   else {
-//     app.use(express.static(path.join(__dirname, 'login')));
+//     // app.use(express.static(path.join(__dirname, 'login')));
 //     res.sendFile('login/login.html', { root: __dirname }); 
 //   }  
 // });
@@ -41,6 +41,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(index);
+
+app.get('/*', (req, res, next) => {
+  
+})
 
 
 // catch 404 and forward to error handler

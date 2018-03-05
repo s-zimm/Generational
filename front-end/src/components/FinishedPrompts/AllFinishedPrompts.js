@@ -112,6 +112,7 @@ class AllFinishedPrompts extends Component {
                         </div>
                         <div style={{ marginBottom: '30px'}}>
                         <CheckoutForm
+                            userId={this.state.currentUserId}
                             name={`Generational`}
                             description={`Print your book for ${this.state.bookInfo.whoFor}`}
                             amount={this.state.completedEntries.length}
