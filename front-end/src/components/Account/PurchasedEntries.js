@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-class PurchasedBooks extends Component {
+class PurchasedEntries extends Component {
     constructor(props) {
         super(props);
+
+    }
+
+    componentDidMount = () => {
 
     }
 
@@ -12,3 +17,5 @@ class PurchasedBooks extends Component {
         )
     }
 }
+
+export default PurchasedEntries;

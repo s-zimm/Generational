@@ -11,7 +11,7 @@ class CreateBookForm extends Component {
             searchValues: '',
             searchBoxHidden: this.props.searchBoxHidden,
             dropdownData: [],
-            currentUserId: 1,
+            currentUserId: this.props.currentUserId,
             selectedUserForBook: null,
             canSubmit: true,
             error: false

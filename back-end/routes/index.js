@@ -1,9 +1,11 @@
 var express = require('express');
+const Sequelize = require('sequelize');
 var router = express.Router();
 const STRIPE_SECRET_KEY = require('../config').STRIPE_SECRET_KEY;
 const cors = require('cors');
 const stripe = require('stripe')(STRIPE_SECRET_KEY);
 const path = require('path');
+const Op = Sequelize.Op;
 
 const User = require('../models/User');
 const Prompt = require('../models/Prompt');
@@ -41,20 +43,16 @@ router.route('/checkout')
 
 router.route('/api/user_entries/paid')
     .post((req, res) => {
-        User_Entry.findAll({
-            where: {
-                ownerId: req.body.userId,
-                id: {
-                    [Op.or]: req.body.entryIdArray
-                }
-            }
-        })
-        .then(entries => {
-            entries.update({
-                paidFor: true
+        Promise.all(req.body.entryIdArray.map(id => {
+            return User_Entry.findOne({
+                where: { userId: req.body.userId, id: id }
             })
-            .then((data) => res.json(data))
-        });
+            .then(entry => entry.update({ paidFor: true }).then(data => {
+                return data
+            }))
+        }))
+        .then(data => res.json(data))
+        .catch(err => console.log(err))
     })
     .get((req, res) => {
         User_Entry.findAll({

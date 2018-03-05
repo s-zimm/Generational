@@ -11,7 +11,7 @@ class CreateBook extends Component {
             users: [],
             books: [],
             searchBoxHidden: 'hidden',
-            currentUserId: 1
+            currentUserId: Number(this.props.match.params.userId)
         }
 
     }
@@ -46,12 +46,13 @@ class CreateBook extends Component {
     }
 
     render() {
-        if (this.state.books) {
+        if (this.state.books && this.state.currentUserId) {
             return (
                 <React.Fragment>
                     <PageSubHeader heading="Book Creation" />
                     <div style={this.containerStyling} onClick={() => this.setState({ searchBoxHidden: 'hidden'})}>
                         <CreateBookForm
+                            currentUserId={this.state.currentUserId}
                             searchBoxHidden={this.state.searchBoxHidden}
                             userData={this.state.users}
                             bookData={this.state.books}

@@ -101,7 +101,7 @@ class AllFinishedPrompts extends Component {
             let justPrompts = this.state.allCompletedPrompts.map(prompt => prompt.prompts);
             console.log(justPrompts)
             let reduced = justPrompts.reduce((idList, currentArrayItem) => {
-                let subId = currentArrayItem.map(item => item.id);
+                let subId = currentArrayItem.map(item => item.entryId);
                 return idList.concat(subId);
             },[])
             console.log(reduced)
@@ -121,7 +121,7 @@ class AllFinishedPrompts extends Component {
                         </div>
                         <div style={{ marginBottom: '30px'}}>
                         <CheckoutForm
-                            // entryIdArray={}
+                            entryIdArray={reduced}
                             allCompletedPrompts={this.state.allCompletedPrompts}
                             userId={this.state.currentUserId}
                             name={`Generational`}
