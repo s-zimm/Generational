@@ -37,7 +37,6 @@ router.route('/checkout')
         res.send({ message: 'Hello Stripe checkout server!', timestamp: new Date().toISOString()})
     })
     .post((req, res) => {
-        console.log(req.body)
         stripe.charges.create(req.body, postStripeCharge(res));
     });
 
@@ -197,6 +196,12 @@ router.route('/api/prompts')
     .get((req, res) => {
         Prompt_Topic.findAll({ include: [{ all: true }]})
             .then(allPrompts => res.json(allPrompts));
+    });
+
+router.route('/api/justprompts')
+    .get((req, res) => {
+        Prompt.findAll()
+            .then(prompts => res.json(prompts));
     });
 
 module.exports = router;

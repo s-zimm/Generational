@@ -39,10 +39,8 @@ class CreateBook extends Component {
             });
     }
 
-    containerStyling = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center'
+    _handleNewBook = (data) => {
+        this.setState({ books: this.state.books.concat(data.data)})
     }
 
     render() {
@@ -50,7 +48,7 @@ class CreateBook extends Component {
             return (
                 <React.Fragment>
                     <PageSubHeader heading="Book Creation" />
-                    <div style={this.containerStyling} onClick={() => this.setState({ searchBoxHidden: 'hidden'})}>
+                    <div className="sectionContainer" onClick={() => this.setState({ searchBoxHidden: 'hidden'})}>
                         <CreateBookForm
                             currentUserId={this.state.currentUserId}
                             searchBoxHidden={this.state.searchBoxHidden}
@@ -58,6 +56,7 @@ class CreateBook extends Component {
                             bookData={this.state.books}
                             revealSearchBox={() => this.setState({ searchBoxHidden: ''})}
                             hideSearchBox={() => this.setState({ searchBoxHidden: 'hidden'})}
+                            handleNewBook={(data) => this._handleNewBook(data)}
     
                         />
                     </div>

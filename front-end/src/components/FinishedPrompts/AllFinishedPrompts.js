@@ -30,14 +30,14 @@ class AllFinishedPrompts extends Component {
                     .then(data => {
                         let theData = data.data;
                         this.setState({ allEntries: theData.filter(entry => entry.userId === currentUserId && entry.bookId === bookId)}, () => {
-                            this.setState({ completedEntries: theData.filter(entry => entry.userId === currentUserId && entry.bookId === bookId && entry.completed === true)
+                            this.setState({ completedEntries: theData.filter(entry => entry.userId === currentUserId && entry.bookId === bookId && entry.completed === true && entry.paidFor === false)
                                                                     .map(entry => entry.promptId) }, () => {
                                     axios.get('http://localhost:3000/api/prompts')
                                     .then(data => { 
                                         let theData = data.data;
                                         this.setState({ promptData: theData }, () => {
                                             let dataToRender;
-                                            let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter && data.paidFor === false);
+                                            let filteredData = this.state.promptData.filter(data => data.chapter === this.state.currentChapter);
                                             let addedEntries = this.state.promptData.map(topic => {
                                                 return {
                                                     ...topic,

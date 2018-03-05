@@ -6,10 +6,6 @@ import STRIPE_PUBLISHABLE from '../../config';
 
 const CURRENCY = 'USD';
 const PAYMENT_SERVER_URL = 'http://localhost:3000/checkout';
-// TEST KEY
-
-
-
 
 class CheckoutForm extends Component {
     constructor(props) {
