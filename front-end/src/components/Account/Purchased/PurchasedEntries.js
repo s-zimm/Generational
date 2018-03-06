@@ -8,7 +8,8 @@ class PurchasedEntries extends Component {
 
         this.state = {
             currentUserId: Number(this.props.match.params.userId),
-            bookId: Number(this.props.match.params.id)
+            bookId: Number(this.props.match.params.id),
+            paidEntries: []
         }
     }
 
@@ -45,7 +46,7 @@ class PurchasedEntries extends Component {
     }
 
     render() {
-        if (this.state.paidEntries) {
+        if (this.state.paidEntries.length > 0) {
             return (
                 <React.Fragment>
                     <div className="purchasedContainer sectionContainer">
@@ -56,7 +57,7 @@ class PurchasedEntries extends Component {
                 </React.Fragment>
             )
         } else {
-            return <div></div>
+            return <div className="sectionContainer">No purchased prompts found.</div>
         }
     }
 }

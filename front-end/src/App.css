@@ -20,6 +20,16 @@
   transition: all ease .3s;
 }
 
+.subHeaderStyles {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Comfortaa', cursive;
+  align-items: center;
+  background: linear-gradient(white, aliceblue);
+  box-shadow: 0 2px 2px rgba(43, 40, 136, 0.589);
+  color: rgb(26, 65, 138);
+}
+
 .BookScrollViewContainer {
   display: flex;
   justify-content: center;

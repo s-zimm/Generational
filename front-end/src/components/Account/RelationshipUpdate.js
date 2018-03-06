@@ -123,7 +123,7 @@ class RelationshipUpdate extends Component {
         textAlign: 'center',
         width: '200px',
         height: '200px',
-        border: 'solid black 1px',
+        boxShadow: '0 2px 2px gray',
         position: 'absolute',
         backgroundColor: 'white',
         borderRadius: '8px',

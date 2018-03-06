@@ -95,7 +95,7 @@ class RelationshipAdd extends Component {
         alignItems: 'center',
         width: '200px',
         height: '200px',
-        border: 'solid black 1px',
+        boxShadow: '0 2px 2px gray',
         position: 'absolute',
         top: '-180px',
         left: '45px',

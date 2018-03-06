@@ -1,6 +1,7 @@
 import React from 'react';
 
 const IndividualEntry = ({ prompt, entry }) => {
+
     return (
         <div className="sectionContainer individualEntry">
             <p className="dashes">----</p>
