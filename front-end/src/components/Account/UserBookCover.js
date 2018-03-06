@@ -32,6 +32,9 @@ class UserBookCover extends Component {
                         <Link to={`/book/prompts/complete/${this.props.currentUser}/${this.props.id}`}>
                             <button>Purchase completed entries</button>
                         </Link>
+                        <Link to={`/book/prompts/paid/${this.props.currentUser}/${this.props.id}`}>
+                            <button>View purchased prompts</button>
+                        </Link>
                         <button className="delete-btn" onClick={() => this._handleBookDelete()}>Delete Book</button>
                     </div>
                     : <p>{this.props.title}</p>}

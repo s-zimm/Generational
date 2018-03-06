@@ -75,8 +75,8 @@ class AllFinishedPrompts extends Component {
                 return (
                     <div style={{ marginBottom: '30px'}}>
                     <Prompt
-                        page="completed"
                         key={prompt.id}
+                        page="completed"
                         id={prompt.id}
                         prompts={prompt.prompts}
                         topic={prompt.content}

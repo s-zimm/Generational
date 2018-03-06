@@ -157,3 +157,42 @@ input {
   box-shadow: -2px 2px 5px rgba(113, 152, 189, 0.616);
   transition: all ease .2s;
 }
+
+.purchasedContainer {
+  margin: 65px 0 105px 0;
+}
+
+.purchasedTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 70px;
+  color: rgb(60, 86, 201);
+}
+
+.fancyUnderline {
+  width: 200px;
+  filter: brightness(.25);
+  margin-bottom: 50px;
+}
+
+.individualEntry {
+  margin: 65px 0;
+  width: 85%;
+}
+
+.individualEntryTitle {
+  color: rgb(60, 86, 201);
+  margin-top: 70px;
+}
+
+.dashes {
+  font-family: 'Monoton', cursive;
+  font-size: 55px;
+  color: rgb(159, 157, 175);
+  margin: 0;
+}
+
+.individualEntryText {
+  font-family: 'Poiret One', cursive;
+  margin-bottom: 70px;
+  color: rgb(77, 77, 77);
+}
