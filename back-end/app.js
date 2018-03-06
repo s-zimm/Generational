@@ -48,7 +48,8 @@ app.get('/fbid', (req, res) => {
   res.json({ fbId: req.user })
 });
 
-app.get('/*', (req, res, next) => {
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'))
 });
 
 

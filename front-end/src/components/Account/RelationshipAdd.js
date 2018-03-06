@@ -16,7 +16,6 @@ class RelationshipAdd extends Component {
     }
 
     _handleRelAdd = (event) => {
-        // let currentUserRelations = this.props.relationships.filter(relation => relation.userId === this.props.userData.id);
         let relation = this.props.allUserData.filter(user => {
             return this.props.userData.relationships.find(relation => {
                 return user.id === relation.relatedUserId
@@ -37,8 +36,7 @@ class RelationshipAdd extends Component {
                 relatedUserEmail: this.state.relatedUserEmail,
                 relation: this.state.relation
             })
-            .then(data => console.log(data));
-            
+            .then(data => this.props.handleNewRel(data));
         }
         
     }
@@ -60,7 +58,7 @@ class RelationshipAdd extends Component {
     render() {
         return (
             <div style={this.containerStyle}>
-                <p onClick={() => this.props.collapseAddRel()} style={{ alignSelf: 'flex-end', margin: '4px', cursor: 'pointer' }}>X</p>
+                <p onClick={() => this.props.collapseAddRel()} style={{ alignSelf: 'flex-end', margin: '4px', cursor: 'pointer', color: 'black' }}>X</p>
                 <h5 style={{ margin: '5px' }}>Add a relationship</h5>
                 <form style={this.formStyle} onSubmit={(event) => this._handleRelAdd(event)}>
                     <input style={{ marginBottom: '6px' }} value={this.state.relatedUserEmail} onChange={(event) => this.setState({ relatedUserEmail: event.target.value })} placeholder="Enter user email" />
@@ -95,6 +93,7 @@ class RelationshipAdd extends Component {
         alignItems: 'center',
         width: '200px',
         height: '200px',
+        border: 'solid 1px gray',
         boxShadow: '0 2px 2px gray',
         position: 'absolute',
         top: '-180px',

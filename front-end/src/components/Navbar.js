@@ -33,7 +33,7 @@ class Navbar extends Component {
                 </div>
                 <div className='signInAndMenu'>
                     <Link to="/">Home</Link>
-                    <Link style={this.brandStyle} to={`/account/${this.props.currentUser}`}>Account</Link>
+                    <Link style={this.brandStyle} to={`/account/${this.props.currentUser}`}>Dashboard</Link>
                     <Link style={this.brandStyle} to={`/book/new/${this.props.currentUser}`}>Create Book</Link>
                     <a href="/logout"><button style={this.brandStyle}>Log Out</button></a>
                 </div>
