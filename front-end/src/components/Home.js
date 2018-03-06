@@ -20,7 +20,7 @@ class Home extends Component {
                         <div className="homepageBoxRight"></div>
                     </div>
                 </div>
-                <Link style={this.brandStyle} to={`/book/new/${this.props.currentUser}`}><button>Create Book</button></Link>
+                <Link style={this.brandStyle} to={`/book/new/${this.props.currentUser}`}><button className="newBookBtn">Create Book</button></Link>
             </div>
         )
     }

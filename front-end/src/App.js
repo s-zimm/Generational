@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import axios from 'axios';
 
 import Home from './components/Home'
 import Navbar from './components/Navbar';
@@ -19,10 +20,13 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      currentUser: 1
-    }
   }
+
+  componentDidMount() {
+    axios.get('http://localhost:3000/fbid')
+      .then(data => this.setState({ currentUser: Number(data.data)}));
+  }
+  
   render() {
     if (this.state.currentUser) {
       return (

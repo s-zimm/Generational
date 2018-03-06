@@ -318,6 +318,10 @@ input {
   background-color: rgba(22, 47, 189, 0.486);
 }
 
+.newBookBtn {
+  padding: 40px;
+}
+
 @media (min-width: 800px) {
   .homeTitle {
     font-size: 70px;
