@@ -93,15 +93,16 @@ class CreateBookForm extends Component {
         bottom: '70.5px',
         outline: '1px solid black',
         zIndex: '1',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        width: '60%'
     }
 
     render() {
         if (this.props.bookData) {
             return (
-                <div style={{position: 'relative', height: '350px'}}>
+                <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '350px', width: '100%'}}>
                     <form 
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}
+                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '75%'}}
                     >
                         <input 
                             required="true"
@@ -110,7 +111,7 @@ class CreateBookForm extends Component {
                             name="user"
                             onChange={this._handleFormInput}
                             value={this.state.searchValues}
-                            style={{ width: '400px', padding: '10px', margin: '20px 0' }}
+                            style={{ width: '75%', padding: '10px', margin: '20px 0', minWidth: '280px' }}
                         />
                         <CreateBookBtn 
                             canSubmit={this.state.canSubmit}

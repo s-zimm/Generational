@@ -109,7 +109,7 @@ class Prompt extends Component {
                     <div style={this.promptContainerStyle}>
                         <h3>{this.props.topic}</h3>
                         <div style={this.containerStyling}>
-                            <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
+                            <p className="promptTitleText"><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
                             <textarea 
                                 value={this.state.prompts[this.state.promptIndex].entry}
                                 onChange={(event) => this._onTextareaChange(event.target.value)} 
@@ -141,7 +141,7 @@ class Prompt extends Component {
                     <div style={this.promptContainerStyle}>
                         <h3>{this.props.topic}</h3>
                         <div style={this.containerStyling}>
-                            <p><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
+                            <p className="promptTitleText"><i>{this.state.prompts[this.state.promptIndex].content}</i></p>
                             <textarea 
                                 value={this.state.prompts[this.state.promptIndex].entry}
                                 onChange={(event) => this._onTextareaChange(event.target.value)} 
@@ -169,7 +169,7 @@ class Prompt extends Component {
     promptContainerStyle = {
         display: 'flex',
         flexDirection: 'column',
-        justtifyContent: 'flex-start',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         height: '300px',
         width: '80%',

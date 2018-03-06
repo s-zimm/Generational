@@ -27,13 +27,13 @@ class UserBookCover extends Component {
                 {this.state.bookOptionsView
                     ? <div style={{ height: '90%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-around' }}>
                         <Link to={`/book/prompts/${this.props.currentUser}/${this.props.id}`}>
-                            <button>Write entries</button>
+                            <button>Add new entries</button>
                         </Link>
                         <Link to={`/book/prompts/complete/${this.props.currentUser}/${this.props.id}`}>
                             <button>Purchase completed entries</button>
                         </Link>
                         <Link to={`/book/prompts/paid/${this.props.currentUser}/${this.props.id}`}>
-                            <button>View purchased prompts</button>
+                            <button>View my book</button>
                         </Link>
                         <button className="delete-btn" onClick={() => this._handleBookDelete()}>Delete Book</button>
                     </div>

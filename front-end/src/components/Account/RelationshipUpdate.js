@@ -115,7 +115,7 @@ class RelationshipUpdate extends Component {
 
     containerStyle = {
         bottom: '55px',
-        left: '50px',
+        left: '-58px',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-around',

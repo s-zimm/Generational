@@ -98,7 +98,7 @@ class RelationshipAdd extends Component {
         boxShadow: '0 2px 2px gray',
         position: 'absolute',
         top: '-180px',
-        left: '45px',
+        left: '-62px',
         backgroundColor: 'white',
         borderRadius: '8px',
         zIndex: '1',
