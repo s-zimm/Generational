@@ -62,7 +62,7 @@ class CheckoutForm extends Component {
                 />
             )
         } else {
-            return <Redirect to={`/account/${this.props.userId}`} />
+            return <Redirect to={`/book/prompts/paid/${this.props.currentUser}/${this.props.id}`} />
         }
         
     }

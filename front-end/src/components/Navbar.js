@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './Home';
 import { Link } from 'react-router-dom';
+import logo from '../Generational-logo.png'
 
 const Navbar = props => {
 
@@ -27,7 +28,7 @@ const Navbar = props => {
     return (
         <div className="navbar">
             <div style={brandImageStyle}>
-                <Link to="/"><h1 style={brandStyle}>Generational</h1></Link>
+                <Link to="/"><img className="brandImage" src={logo} /></Link>
             </div>
             <div className='signInAndMenu'>
                 <Link to="/">Home</Link>

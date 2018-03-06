@@ -41,6 +41,12 @@
             cursor: pointer;
         }
 
+        .brandImage {
+            width: 330px;
+            height: 110px;
+            padding: 10px 5px;
+        }
+
         .navbar {
             display: flex;
             align-items: center;
@@ -222,8 +228,8 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="brandImageStyle">
-            <h1 class="brandStyle"><a href='#'>Generational</a></h1>
+        <div class="brandImageStyle" data-brand-image>
+            <a href='#'><img class="brandImage" src="Generational-logo.png" alt="Generational logo"></a>
         </div>
         <div class="signInAndMenu">
             <a data-nav-about>About</a>
@@ -285,6 +291,7 @@ const RIGHT_ARROW = document.querySelector('[data-arrow-right]');
 const LEFT_ARROW = document.querySelector('[data-left-arrow]');
 const NAV_ABOUT = document.querySelector('[data-nav-about]');
 const NAV_EXAMPLES = document.querySelector('[data-nav-examples]');
+const BRAND_IMAGE = document.querySelector('[data-brand-image]');
 
 const prompts =['Write about your favorite place in your home town.', 'What is the meaning of your name?', 'Write about your favorite memory with your sibling(s).', 'What was a major news event from the year you were born?', 'How did your parents meet?'];
 let i = 0;
