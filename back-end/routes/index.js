@@ -32,6 +32,11 @@ const postStripeCharge = res => (stripeErr, stripeRes) => {
     }
 }
 
+router.route('/fbid')
+    .get((req, res) => {
+        res.json({ fbId: req.user })
+      });
+
 router.route('/checkout')
     .get((req, res) => {
         res.send({ message: 'Hello Stripe checkout server!', timestamp: new Date().toISOString()})

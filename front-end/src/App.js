@@ -20,11 +20,28 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      currentUser: 1
+    }
+
   }
 
   componentDidMount() {
     axios.get('http://localhost:3000/fbid')
-      .then(data => this.setState({ currentUser: Number(data.data)}));
+      .then(data => {
+        debugger
+        console.log(data)
+        let fbId = Number(data.data);
+        return fbId;
+      })
+      .then(fbId => {
+        axios.get('http://localhost:3000/api/users')
+          .then(data => {
+            debugger
+            let theUser = data.data.find(user => user.facebookId === fbId);
+            this.setState({ currentUser: theUser.id });
+          });
+      })
   }
   
   render() {
