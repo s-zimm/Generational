@@ -290,6 +290,7 @@ input {
 }
 
 .userInfo {
+  height: 325px;
   padding: 20px 0;
   display: flex;
   flex-direction: column;

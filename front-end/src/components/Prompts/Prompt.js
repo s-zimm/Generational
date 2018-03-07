@@ -13,24 +13,29 @@ class Prompt extends Component {
         }
     }
 
+    componentDidMount() {
+        
+    }
+
     handleNewPromptClick = (direction) => {
         if (direction === 'right' && this.state.promptIndex !== this.state.prompts.length - 1) {
-            return this.setState({
+            this.setState({
                 promptIndex: this.state.promptIndex + 1
             });
         } else if (this.state.promptIndex === 0 && direction === 'left') {
-            return this.setState({
+            this.setState({
                 promptIndex: this.state.prompts.length - 1
             });
         } else if (direction === 'left') {
-            return this.setState({
+            this.setState({
                 promptIndex: this.state.promptIndex - 1
             });
         } else {
-            return this.setState({
+            this.setState({
                 promptIndex: 0
             });
         }
+        setTimeout(() => {console.log(this.state.prompts, this.state.promptIndex)}, 500)
     }
 
     _onTextareaChange = (value) => {
@@ -71,7 +76,8 @@ class Prompt extends Component {
         });
     }
 
-    _handleAddClick = () => {
+    _handleAddClick = (event) => {
+        event.preventDefault();
         this.setState({ clickAdd: true }, () => {
             setTimeout(() => { this.setState({ clickAdd: false })}, 2000);
         });
@@ -84,18 +90,10 @@ class Prompt extends Component {
             completed: true
         })
         .then(data => {
+            console.log(data)
             this.setState({
-                prompts: this.state.prompts.map((prompt, i) => {
-                    if (i === this.state.promptIndex) {
-                        return { ...prompt, entry: data.data.content, entryId: data.data.id }
-                    } else {
-                        return prompt
-                    }
-                })
-            }, () => {
-                this.setState({
-                    prompts: this.state.prompts.filter(prompt => prompt.entryId != data.data.id)
-                })
+                promptIndex: this.state.promptIndex - 1,
+                prompts: this.state.prompts.filter((prompt) => prompt.id !== data.data.promptId)
             });
         })
     }
@@ -122,7 +120,7 @@ class Prompt extends Component {
                                     : <button style={{ width: '100px', transition: 'all ease .4s' }} onClick={(event) => this._handleSaveCLick(event)}>Save for later</button>}
                                 {this.state.clickAdd
                                     ? <button style={{ width: '100px', transition: 'all ease .4s', backgroundColor: 'blue', color: 'white' }}>Added!</button>
-                                    : <button className="addToBookBtn" onClick={() => this._handleAddClick()} style={{ width: '100px', transition: 'all ease .4s' }}>Add to book</button>
+                                    : <button className="addToBookBtn" onClick={(event) => this._handleAddClick(event)} style={{ width: '100px', transition: 'all ease .4s' }}>Add to book</button>
                                     }
                             </div>
                         </div>
