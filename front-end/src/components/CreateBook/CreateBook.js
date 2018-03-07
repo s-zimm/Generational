@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CreateBookForm from './CreateBookForm';
 import PageSubHeader from '../PageSubHeader';
+import { Redirect } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -39,10 +40,6 @@ class CreateBook extends Component {
             });
     }
 
-    _handleNewBook = (data) => {
-        this.setState({ books: this.state.books.concat(data.data)})
-    }
-
     render() {
         if (this.state.books && this.state.currentUserId) {
             return (
@@ -56,8 +53,6 @@ class CreateBook extends Component {
                             bookData={this.state.books}
                             revealSearchBox={() => this.setState({ searchBoxHidden: ''})}
                             hideSearchBox={() => this.setState({ searchBoxHidden: 'hidden'})}
-                            handleNewBook={(data) => this._handleNewBook(data)}
-    
                         />
                     </div>
                 </React.Fragment>

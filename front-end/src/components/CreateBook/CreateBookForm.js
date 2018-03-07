@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+
 
 import CreateBookBtn from './CreateBookBtn';
 
@@ -14,7 +16,8 @@ class CreateBookForm extends Component {
             currentUserId: this.props.currentUserId,
             selectedUserForBook: null,
             canSubmit: true,
-            error: false
+            error: false,
+            newBook: false
         }
         
     }
@@ -65,26 +68,25 @@ class CreateBookForm extends Component {
     }
 
     _createBook = (event) => {
+        event.preventDefault();
         let whoFor = this.state.searchValues;
         let findExisting = this.props.bookData.find(book => book.whoFor === whoFor && book.ownerId === this.state.currentUserId);
         if (findExisting) {
-            event.preventDefault();
-            alert(`You have aready written a book for ${whoFor}`)
+            return alert(`You have aready written a book for ${whoFor}`)
         } else if (this.state.searchValues.length === 0) {
-            event.preventDefault();
-            alert('Input a name in the text field.')
+            return alert('Input a name in the text field.')
         } else if (this.state.selectedUserForBook) {
-            axios.post('http://localhost:3000/api/user_books', {
+            return axios.post('http://localhost:3000/api/user_books', {
                 whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
                 ownerId: this.state.currentUserId
             })
-            .then(data => this.props.handleNewBook(data));
+            .then(data => this.setState({ newBookData: data.data }, () => this.setState({ newBook: true })));
         } else if (this.state.searchValues.length > 0) {
-            axios.post('http://localhost:3000/api/user_books', {
+            return axios.post('http://localhost:3000/api/user_books', {
                 whoFor: this.state.searchValues,
                 ownerId: this.state.currentUserId
             })
-            .then(data => this.props.handleNewBook(data));
+            .then(data => this.setState({ newBookData: data.data }, () => this.setState({ newBook: true })));
         }
     }
 
@@ -98,7 +100,7 @@ class CreateBookForm extends Component {
     }
 
     render() {
-        if (this.props.bookData) {
+        if (this.props.bookData && this.state.newBook === false) {
             return (
                 <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', height: '350px', width: '100%'}}>
                     <form 
@@ -127,6 +129,8 @@ class CreateBookForm extends Component {
                     </div>
                 </div>
             )
+        } else if (this.state.newBook === true) {
+            return <Redirect to={`/book/prompts/${this.state.currentUserId}/${this.state.newBookData.id}`} />
         } else {
             return <div></div>
         }

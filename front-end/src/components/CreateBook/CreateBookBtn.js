@@ -12,16 +12,17 @@ class CreateBookBtn extends Component {
     render() {
         if (this.props.canSubmit) {
             return (
-                <Link
-                    to={`/book/new/success/${this.props.currentUserId}`}
+                // <Link
+                //     to={`/book/new/success/${this.props.currentUserId}`}
+                //     onClick={(event) => this.props.handleLinkClick(event)}
+                // >
+                <button
                     onClick={(event) => this.props.handleLinkClick(event)}
-                >
-                <button 
                     style={{ width: '300px'}}
                 >
                     Create
                 </button>
-                </Link>
+                // </Link>
             )
         } else {
             return (
