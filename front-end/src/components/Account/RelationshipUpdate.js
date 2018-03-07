@@ -87,8 +87,8 @@ class RelationshipUpdate extends Component {
     render() {
         return (
             <div style={this.containerStyle}>
-                <p onClick={() => this.props.collapseViewRel()} style={{ alignSelf: 'flex-end', margin: '4px', cursor: 'pointer' }}>X</p>
-                <h5 style={{ margin: '5px' }}>{`Invite ${this.props.name} to contribute to books`}</h5>
+                <p onClick={() => this.props.collapseViewRel()} style={{ alignSelf: 'flex-end', margin: '4px', cursor: 'pointer', color: 'black' }}>X</p>
+                <h5 style={{ margin: '5px', color: 'black' }}>{`Invite ${this.props.name} to contribute to books`}</h5>
                 <form style={{ margin: '5px' }} onSubmit={(event) => this._onContributorSubmit(event)}>
                     <select style={{ margin: '5px' }} className={this.state.selectUserValidation} onChange={(event) => this._onSelectChange(event.target.value)} required>
                         <option value={0}>Select book</option>

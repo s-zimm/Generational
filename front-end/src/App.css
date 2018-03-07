@@ -322,6 +322,24 @@ input {
   padding: 40px;
 }
 
+.circleContainerStyle {
+  border: .5px solid #8b8b8b;
+  border-radius: 50%;
+  width: 75px;
+  text-align: center;
+  cursor: pointer;
+  margin: 5px;
+  transition: all ease .3s;
+  position: relative;
+}
+
+.circleContainerStyle:hover {
+  box-shadow: 0 1.5px #b0b0b0;
+  color: rgba(108, 156, 247, 0.774);
+  background-color: rgb(204, 204, 204);
+  transition: all ease .3s;
+}
+
 @media (min-width: 800px) {
   .homeTitle {
     font-size: 70px;

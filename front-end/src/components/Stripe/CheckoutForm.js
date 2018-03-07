@@ -19,14 +19,12 @@ class CheckoutForm extends Component {
     fromEuroToCent = amount => amount * 100
 
     successPayment = data => {
-        alert('Payment Successful');
-        this.setState({ paid: true });
-        console.log(this.props.entryIdArray)
+        alert('Payment Successful!'); 
         axios.post('http://localhost:3000/api/user_entries/paid', {
             userId: this.props.userId,
             entryIdArray: this.props.entryIdArray
         })
-        .then(data => console.log(data))
+        .then(data => this.setState({ paid: true }))
     }
 
     errorPayment = data => {
@@ -43,10 +41,6 @@ class CheckoutForm extends Component {
         .then(this.successPayment)
         .catch(this.errorPayment);
 
-    _handlePayRender = () => {
-        this.setState({ paid: true })
-    }
-
     render() {
         if (this.state.paid === false) {
             return (
@@ -57,7 +51,6 @@ class CheckoutForm extends Component {
                     token={this.onToken(this.props.amount, this.props.description)}
                     currency={CURRENCY}
                     stripeKey={STRIPE_PUBLISHABLE}
-                    handlePayRender={() => this._handlePayRender()}
                     zipCode={true}
                 />
             )

@@ -20,7 +20,7 @@ class RelationshipItem extends Component {
     }
 
     circleContainerStyle = {
-        border: 'solid black 1px',
+        border: '.5px solid #8b8b8b',
         borderRadius: '50%',
         width: '75px',
         textAlign: 'center',
@@ -41,7 +41,7 @@ class RelationshipItem extends Component {
                                     collapseViewRel={this._collapseViewRel}
                                     relationshipId={this.props.relationshipId}/>
                                 : null}
-                <div style={this.circleContainerStyle} onClick={() => this._handleRelItemClick()}>
+                <div className="circleContainerStyle" onClick={() => this._handleRelItemClick()}>
                     <p style={{ padding: '10px' }}>{this.props.name}</p>
                 </div>
             </div>

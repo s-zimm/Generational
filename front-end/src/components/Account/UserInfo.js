@@ -33,7 +33,7 @@ class UserInfo extends Component {
                             {this.props.userData.email
                             ? <p>{this.props.userData.email}</p>
                             : <form onSubmit={(event) => this._handleEmailSubmit(event)}>
-                                <input value={this.state.emailValue} onChange={(event) => this.setState({ emailValue: event.target.value })} style={{width: '70%'}} placeholder="Add email to create relationships"/>
+                                <input value={this.state.emailValue} onChange={(event) => this.setState({ emailValue: event.target.value })} style={{width: '70%'}} placeholder="Add email..."/>
                                 <button>Submit</button>
                             </form>}
                             <h4>25, Atlanta, GA</h4>

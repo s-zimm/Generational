@@ -59,7 +59,7 @@ class RelationshipAdd extends Component {
         return (
             <div style={this.containerStyle}>
                 <p onClick={() => this.props.collapseAddRel()} style={{ alignSelf: 'flex-end', margin: '4px', cursor: 'pointer', color: 'black' }}>X</p>
-                <h5 style={{ margin: '5px' }}>Add a relationship</h5>
+                <h5 style={{ margin: '5px', color: 'black' }}>Add a relationship</h5>
                 <form style={this.formStyle} onSubmit={(event) => this._handleRelAdd(event)}>
                     <input style={{ marginBottom: '6px' }} value={this.state.relatedUserEmail} onChange={(event) => this.setState({ relatedUserEmail: event.target.value })} placeholder="Enter user email" />
                     <select onChange={(event) => this._onRelationChange(event.target.value)}>

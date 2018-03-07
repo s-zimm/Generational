@@ -64,7 +64,7 @@ class Relationships extends Component {
                 <h3>My Relationships</h3>
                 <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap' }}>
                     <div 
-                        style={this.circleContainerStyle}
+                        className="circleContainerStyle"
                         onClick={() => this._onRelationshipAdd()}>
                         {this.state.addingRelationship 
                                     ? <RelationshipAdd

@@ -8,6 +8,8 @@ const CheckoutPage = (props) => {
                 name={`Road to learn React`}
                 description={`Only the Book`}
                 amount={1}
+                currentUser={props.match.userId}
+                id={props.match.id}
             />
         </div>
     )
