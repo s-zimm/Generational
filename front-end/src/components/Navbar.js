@@ -38,7 +38,10 @@ class Navbar extends Component {
                     <Link to="/"><img className="brandImage" src={logo} /></Link>
                 </div>
                 <div className='signInAndMenu'>
-                    <div className="theHamburger" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div>
+                    {this.state.clicked
+                        ? <div className="theHamburger rotate" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div>
+                        : <div className="theHamburger" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div>}
+                    {/* <div className="theHamburger" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div> */}
                     {this.state.clicked
                         ? (<div className="dropdownMenu">
                             <Link to={`/account/${this.props.currentUser}`}>Dashboard</Link>
