@@ -24,7 +24,7 @@ class CheckoutForm extends Component {
             userId: this.props.userId,
             entryIdArray: this.props.entryIdArray
         })
-        .then(data => this.setState({ paid: true }))
+        .then(data => this.setState({ newEntryData: data.data }, () => this.setState({ paid: true })))
     }
 
     errorPayment = data => {
@@ -55,7 +55,7 @@ class CheckoutForm extends Component {
                 />
             )
         } else {
-            return <Redirect to={`/book/prompts/paid/${this.props.currentUser}/${this.props.id}`} />
+            return <Redirect to={`/book/prompts/paid/${this.state.newEntryData[0].userId}/${this.state.newEntryData[0].bookId}`} />
         }
         
     }
