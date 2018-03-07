@@ -21,7 +21,7 @@ const AccountBooks = ({ userEntries, userBooks, currentUser, filterDeletedBooks 
     }
 
     return (
-        <div className="sectionContainer" style={{ width: '100%' }}>
+        <div className="sectionContainer" style={{ width: '100%', paddingBottom: '40px' }}>
             <NewBookBtn currentUser={currentUser}/>
             <div className='AccountBooksStyle'>
                 {renderUserBooks()}
