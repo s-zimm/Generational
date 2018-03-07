@@ -4,10 +4,16 @@ import { Link } from 'react-router-dom';
 import logo from '../Generational-logo.png'
 
 class Navbar extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            clicked: false
+        }
+    }
 
     brandStyle = { 
-        // alignSelf: 'flex-start',
-        marginLeft: '15px',
+        color: 'aliceblue',
     }
 
     signInAndMenu = {
@@ -32,10 +38,17 @@ class Navbar extends Component {
                     <Link to="/"><img className="brandImage" src={logo} /></Link>
                 </div>
                 <div className='signInAndMenu'>
-                    <Link style={this.brandStyle} to={`/account/${this.props.currentUser}`}>Dashboard</Link>
-                    <Link style={this.brandStyle} to={`/book/new/${this.props.currentUser}`}>Create Book</Link>
-                    <a href="/logout"><button style={this.brandStyle}>Log Out</button></a>
+                    <div className="theHamburger" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div>
+                    {this.state.clicked
+                        ? (<div className="dropdownMenu">
+                            <Link to={`/account/${this.props.currentUser}`}>Dashboard</Link>
+                            <Link to={`/book/new/${this.props.currentUser}`}>Create Book</Link>
+                            <a href="/logout"><button>Log Out</button></a>
+                            </div>
+                        )
+                        : <div></div>}
                 </div>
+                
                 <div>
                     {/* <Route path="/home" component={Home} /> */}
                 </div>

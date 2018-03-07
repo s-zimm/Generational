@@ -18,11 +18,11 @@
 .navbar a {
   text-decoration: none;
   transition: all ease .2s;
-  color: rgba(64, 106, 214, 0.527);
+  color: rgba(240, 248, 255, 0.603);
 }
 
 .navbar a:hover {
-  color: rgb(64, 107, 214);
+  color: aliceblue;
   transition: all ease .3s;
 }
 
@@ -58,11 +58,57 @@ button:hover {
 }
 
 .signInAndMenu {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   width: 100%;
   margin-right: 15px;
+}
+
+.dropdownMenu {
+  padding: 10px;
+  bottom: -100px;
+  width: 160px;
+  height: 80px;
+  border-radius: 3px;
+  position: absolute;
+  background-color: rgba(66, 98, 180, 0.815);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.theHamburger {
+  background-color: rgba(66, 98, 180, 0.548);
+  border-radius: 4px;
+  font-size: 20px;
+  width: 35px;
+  height: 35px;
+  color: rgba(240, 248, 255, 0.589);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all ease .3s;
+}
+
+.theHamburger:hover {
+  background-color: rgb(66, 98, 180);
+  color: aliceblue;
+  transition: all ease .3s;
+}
+
+.navbar button {
+  background-color: rgba(133, 151, 196, 0.493);
+  color: rgba(240, 248, 255, 0.603);
+  transition: all ease .3s;
+}
+
+.navbar button:hover {
+  background-color: rgba(139, 210, 219, 0.671);
+  color: aliceblue;
+  transition: all ease .3s;
 }
 
 input {
