@@ -99,12 +99,10 @@ class AllFinishedPrompts extends Component {
             return <div style={{ textAlign: 'center' }}>You haven't added entries yet! Go to your dashboard to select a book and start writing.</div>
         } else if (this.state.promptData && this.state.allEntries.length > 0 && this.state.currentChapter && this.state.completedEntries && this.state.bookInfo && this.state.allCompletedPrompts) {
             let justPrompts = this.state.allCompletedPrompts.map(prompt => prompt.prompts);
-            console.log(justPrompts)
             let reduced = justPrompts.reduce((idList, currentArrayItem) => {
                 let subId = currentArrayItem.map(item => item.entryId);
                 return idList.concat(subId);
             },[])
-            console.log(reduced)
             return (
                 <React.Fragment>
                     <PageSubHeader heading={`Your finished entries`} />

@@ -35,7 +35,6 @@ class Prompt extends Component {
                 promptIndex: 0
             });
         }
-        setTimeout(() => {console.log(this.state.prompts, this.state.promptIndex)}, 500)
     }
 
     _onTextareaChange = (value) => {
@@ -90,7 +89,6 @@ class Prompt extends Component {
             completed: true
         })
         .then(data => {
-            console.log(data)
             this.setState({
                 promptIndex: this.state.promptIndex - 1,
                 prompts: this.state.prompts.filter((prompt) => prompt.id !== data.data.promptId)

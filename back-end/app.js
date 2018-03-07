@@ -44,7 +44,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(index);
 
 app.get('/fbid', (req, res) => {
-  console.log(req.user, 'asfbdhjsbfjewabjkfnakjenfk.jdanfk.jnask.jn')
   res.json({ fbId: req.user })
 });
 
