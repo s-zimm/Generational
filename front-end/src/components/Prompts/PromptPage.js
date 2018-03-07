@@ -106,7 +106,7 @@ class PromptPage extends Component {
     _handleChapterButtonClick = (direction) => {
         if (direction === 'left' && this.state.currentChapter != 1) {
             this.setState({ currentChapter: this.state.currentChapter - 1 });
-        } else if (direction === 'right' && this.state.currentChapter != 2) {
+        } else if (direction === 'right' && this.state.currentChapter != 3) {
             this.setState({ currentChapter: this.state.currentChapter + 1})
         } else {
             this.setState({ currentChapter: 1 })
@@ -117,17 +117,41 @@ class PromptPage extends Component {
         if (this.state.ownerId && this.state.contributors && this.state.currentUserId && this.state.bookInfo) {
             if (this.state.currentUserId === this.state.bookInfo.ownerId || this.state.contributors.includes(this.state.currentUserId)) {
                 if (this.state.bookInfo && this.state.promptData) {
-                    return (
-                        <div style={{ display: 'flex', flexDirection: 'column' }}>
-                            <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
-                            {this._renderPromptItems()}
-                            <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '30px 0' }}>
-                                <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '30%', textAlign: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
-                                <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '30%', textAlign: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+                    if (this.state.currentChapter === 1) {
+                        return (
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
+                                {this._renderPromptItems()}
+                                <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '30px 0' }}>
+                                    <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '30%', textAlign: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+                                </div>
+                                
                             </div>
-                            
-                        </div>
-                    )
+                        )
+                    } else if (this.state.currentChapter === 3) {
+                        return (
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
+                                {this._renderPromptItems()}
+                                <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '30px 0' }}>
+                                    <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '30%', textAlign: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
+                                </div>
+                                
+                            </div>
+                        )
+                    } else {
+                        return (
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                                <PageSubHeader heading={`A book for ${this.state.bookInfo.whoFor}: Chapter ${this.state.currentChapter}`} />
+                                {this._renderPromptItems()}
+                                <div style={{ alignSelf: 'center', display: 'flex', justifyContent: 'space-around', width: '60%', margin: '30px 0' }}>
+                                    <button onClick={() => this._handleChapterButtonClick('left')} style={{width: '30%', textAlign: 'center'}}>{`Previous Chapter: ${this.state.currentChapter - 1}`}</button>
+                                    <button onClick={() => this._handleChapterButtonClick('right')} style={{width: '30%', textAlign: 'center'}}>{`Next Chapter: ${this.state.currentChapter + 1}`}</button>
+                                </div>
+                                
+                            </div>
+                        )
+                    }
                 } else {
                     return <div>Loading...</div>
                 }       
