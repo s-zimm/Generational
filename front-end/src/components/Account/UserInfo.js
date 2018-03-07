@@ -36,7 +36,6 @@ class UserInfo extends Component {
                                 <input value={this.state.emailValue} onChange={(event) => this.setState({ emailValue: event.target.value })} style={{width: '70%'}} placeholder="Add email..."/>
                                 <button>Submit</button>
                             </form>}
-                            <h4>25, Atlanta, GA</h4>
                         </div>
                     </div>
                 </div>

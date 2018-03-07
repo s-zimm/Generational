@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 // PUT IN MIDDLEWARE FOR AUTH HERE
 
-// setupAuth(app);
+setupAuth(app);
 
 
 app.use(express.static(path.join(__dirname, 'login')));
@@ -34,10 +34,10 @@ app.get('/signin', (req, res) => {
   res.sendFile(path.join(__dirname, 'login/login.html'))
 });
 
-// app.use((req, res, next) => {
-//   if (req.isAuthenticated()) { next(); }
-//   else { res.redirect('/signin') }  
-// });
+app.use((req, res, next) => {
+  if (req.isAuthenticated()) { next(); }
+  else { res.redirect('/signin') }  
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
 

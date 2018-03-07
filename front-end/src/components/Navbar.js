@@ -43,7 +43,7 @@ class Navbar extends Component {
                         : <div className="theHamburger" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div>}
                     {/* <div className="theHamburger" onClick={() => this.setState({clicked: !this.state.clicked})}>+</div> */}
                     {this.state.clicked
-                        ? (<div className="dropdownMenu">
+                        ? (<div className="dropdownMenu" onClick={() => this.setState({ clicked: false })}>
                             <Link to={`/account/${this.props.currentUser}`}>Dashboard</Link>
                             <Link to={`/book/new/${this.props.currentUser}`}>Create Book</Link>
                             <a href="/logout"><button>Log Out</button></a>

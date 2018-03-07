@@ -428,6 +428,7 @@ input {
   }
 
   .userInfo {
+    box-shadow: 3px 0 2px #c1c1c1;
     width: 50%;
     flex-direction: row;
     justify-content: space-between;
