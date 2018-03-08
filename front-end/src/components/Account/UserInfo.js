@@ -29,7 +29,7 @@ class UserInfo extends Component {
                             <img src={this.props.userData.avatar} className="dashboardPic" />
                         </div>
                         <div className="sectionContainer" style={{ marginLeft: '15px'}}>
-                            <h3>Seth Z</h3>
+                            <h3>{this.props.userData.firstname} {this.props.userData.lastname}</h3>
                             {this.props.userData.email
                             ? <p>{this.props.userData.email}</p>
                             : <form onSubmit={(event) => this._handleEmailSubmit(event)}>

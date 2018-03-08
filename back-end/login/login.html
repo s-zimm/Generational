@@ -44,8 +44,8 @@
         }
 
         .brandImage {
-            width: 330px;
-            height: 110px;
+            width: 100px;
+            height: 40px;
             padding: 10px 5px;
         }
 
@@ -59,6 +59,7 @@
             text-decoration: none;
             transition: all ease .2s;
             color: rgba(64, 106, 214, 0.527);
+            font-size: 12px;
         }
 
         .navbar a:hover {
@@ -118,7 +119,7 @@
         }
 
         .memoryText {
-            font-size: 50px;
+            font-size: 35px;
             position: relative;
             margin-top: 25px;
             animation-name: fadeInLeft;
@@ -126,7 +127,7 @@
         }
 
         .bookText {
-            font-size: 30px;
+            font-size: 20px;
             position: absolute;
             bottom: -25px;
             left: 45px;
@@ -135,7 +136,7 @@
         }
 
         .generationalOnImage {
-            font-size: 70px;
+            font-size: 47px;
             font-family: 'Lobster', cursive;
             color:aliceblue;
             animation-name: fadeInRight;
@@ -190,13 +191,39 @@
             height: 30px;
             background-color: rgb(215, 224, 250);
             margin-bottom: 0;
-            padding: 10px;
+            padding: 10px 0;
         }
 
         .footerItem {
             margin-left: 30px;
             border-right: solid gray .5px;
             padding-right: 22px;;
+        }
+
+        @media (min-width: 700px) {
+
+            .brandImage {
+            width: 330px;
+            height: 110px;
+            padding: 10px 5px;
+        }
+
+            .memoryText {
+            font-size: 50px;
+        }
+
+        .bookText {
+            font-size: 30px;
+        }
+
+        .generationalOnImage {
+            font-size: 70px;
+        }
+
+        .navbar a {
+            font-size: 17px;
+        }
+
         }
 
         @keyframes fadeIn {
