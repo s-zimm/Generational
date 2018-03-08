@@ -112,6 +112,7 @@ class AllFinishedPrompts extends Component {
                                 <option value={1}>Filter by chapter</option>
                                 <option value={1}>Chapter 1</option>
                                 <option value={2}>Chapter 2</option>
+                                <option value={3}>Chapter 3</option>
                             </select>  
                         </div>
                         <div style={{width:"100%"}}>

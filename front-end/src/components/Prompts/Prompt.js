@@ -90,8 +90,13 @@ class Prompt extends Component {
         })
         .then(data => {
             this.setState({
-                promptIndex: this.state.promptIndex - 1,
                 prompts: this.state.prompts.filter((prompt) => prompt.id !== data.data.promptId)
+            }, () => {
+                if (this.state.promptIndex !== 0) {
+                    this.setState({ promptIndex: this.state.promptIndex - 1});
+                } else {
+                    this.setState({ promptIndex: 0 });
+                }
             });
         })
     }
