@@ -14,7 +14,7 @@ class CreateBookSuccess extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:3000/api/user_books')
+        axios.get('/api/user_books')
             .then(books => {
                 let bookId = books.data.map(book => book.id)
                 this.setState({ books: bookId.sort() })

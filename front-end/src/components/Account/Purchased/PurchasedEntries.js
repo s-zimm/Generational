@@ -14,17 +14,17 @@ class PurchasedEntries extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:3000/api/user_entries/paid')
+        axios.get('/api/user_entries/paid')
         .then(paidEntries => {
             this.setState({ paidEntries: paidEntries.data.filter(entry => entry.userId === this.state.currentUserId && entry.paidFor === true && entry.bookId === this.state.bookId)}, () => {
-                axios.get('http://localhost:3000/api/justprompts')
+                axios.get('/api/justprompts')
                     .then(prompts => {
                         let newEntries = this.state.paidEntries.map(entry => {
                             let thePrompt = prompts.data.find(prompt => prompt.id === entry.promptId);
                             return { ...entry, prompt: thePrompt.content }
                         });
                         this.setState({ paidEntries: newEntries }, () => {
-                            axios.get('http://localhost:3000/api/user_books')
+                            axios.get('/api/user_books')
                                 .then(data => data.data.find(book => book.id === this.state.bookId))
                                 .then(book => this.setState({ whoFor: book.whoFor }));
                         });

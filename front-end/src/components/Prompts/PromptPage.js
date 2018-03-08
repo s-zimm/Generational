@@ -24,19 +24,19 @@ class PromptPage extends Component {
     componentDidMount = () => {
         const bookId = Number(this.state.bookId);
 
-        axios.get('http://localhost:3000/api/user_books')
+        axios.get('/api/user_books')
             .then(data => {
                 let theData = data.data;
                 return theData.find(book => book.id === bookId);
             })
             .then(data => this.setState({ bookInfo: data }, () => {
-                axios.get('http://localhost:3000/api/user_entries')
+                axios.get('/api/user_entries')
                     .then(data => {
                         this.setState({ allEntries: data.data.filter(entry => entry.userId === this.state.ownerId && entry.bookId === this.state.bookId)});
                         let theData = data.data.filter(entry => entry.userId === this.state.ownerId && entry.bookId === this.state.bookId && entry.completed === true)
                                                 .map(entry => entry.promptId);
                         this.setState({ completedEntries: theData }, () => {
-                            axios.get('http://localhost:3000/api/prompts')
+                            axios.get('/api/prompts')
                                 .then(data => {
                                     let theData = data.data;
                                     this.setState({ promptData: theData });
@@ -45,7 +45,7 @@ class PromptPage extends Component {
                     });
             }))
             .then(() => {
-                axios.get('http://localhost:3000/api/books/contributors')
+                axios.get('/api/books/contributors')
                     .then(data => {
                         this.setState({
                             contributors: data.data.filter(c => c.bookId === this.state.bookId)

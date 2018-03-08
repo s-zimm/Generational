@@ -13,11 +13,11 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/fbid')
+        axios.get('/fbid')
           .then(data => {
             let facebookId = data.data.fbId;
             this.setState({ facebookId }, () => {
-              axios.get('http://localhost:3000/api/users')
+              axios.get('/api/users')
               .then(data => {
                 let theUser = data.data.find(user => user.facebookId === this.state.facebookId);
                 this.setState({ currentUser: theUser });

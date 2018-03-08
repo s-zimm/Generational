@@ -54,7 +54,7 @@ class Prompt extends Component {
         this.setState({ clickSave: true }, () => {
             setTimeout(() => { this.setState({ clickSave: false })}, 2000);
         });
-        axios.post('http://localhost:3000/api/user_entries', {
+        axios.post('/api/user_entries', {
             content: this.state.prompts[this.state.promptIndex].entry,
             userId: this.props.ownerId,
             bookId: this.props.bookId,
@@ -80,7 +80,7 @@ class Prompt extends Component {
         this.setState({ clickAdd: true }, () => {
             setTimeout(() => { this.setState({ clickAdd: false })}, 2000);
         });
-        axios.post('http://localhost:3000/api/entry/completed', {
+        axios.post('/api/entry/completed', {
             content: this.state.prompts[this.state.promptIndex].entry,
             userId: this.props.ownerId,
             bookId: this.props.bookId,

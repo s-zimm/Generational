@@ -5,7 +5,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import STRIPE_PUBLISHABLE from '../../config';
 
 const CURRENCY = 'USD';
-const PAYMENT_SERVER_URL = 'http://localhost:3000/checkout';
+const PAYMENT_SERVER_URL = '/checkout';
 
 class CheckoutForm extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class CheckoutForm extends Component {
 
     successPayment = data => {
         alert('Payment Successful!'); 
-        axios.post('http://localhost:3000/api/user_entries/paid', {
+        axios.post('/api/user_entries/paid', {
             userId: this.props.userId,
             entryIdArray: this.props.entryIdArray
         })

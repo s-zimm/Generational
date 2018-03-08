@@ -17,7 +17,7 @@ class RelationshipUpdate extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/books/contributors')
+        axios.get('/api/books/contributors')
             .then(data => {
                 this.setState({ contributors: data.data });
             });
@@ -55,7 +55,7 @@ class RelationshipUpdate extends Component {
         } else if (this.state.addContributorSuccess === false) {
             this.setState({ addContributorSuccess: true, showOriginalButton: false }, 
                 () => {
-                    axios.post('http://localhost:3000/api/books/contributors', {
+                    axios.post('/api/books/contributors', {
                     bookId: this.state.selectedBookId,
                     contributorId: this.props.id
                 }).then(data => {
@@ -76,7 +76,7 @@ class RelationshipUpdate extends Component {
     }
 
     _handleDeleteClick2 = () => {
-        axios.post('http://localhost:3000/api/users/relationships/delete', {
+        axios.post('/api/users/relationships/delete', {
             relationId: this.props.relationshipId,
             relatedUserId: this.props.id
         }).then(data => {

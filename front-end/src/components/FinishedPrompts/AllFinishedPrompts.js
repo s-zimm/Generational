@@ -20,19 +20,19 @@ class AllFinishedPrompts extends Component {
         var bookId = Number(this.props.match.params.id);
         var currentUserId = Number(this.props.match.params.userId);
 
-        axios.get('http://localhost:3000/api/user_books')
+        axios.get('/api/user_books')
             .then(data => {
                 let theData = data.data;
                 return theData.find(book => book.id === bookId);
             })
             .then(data => this.setState({ bookInfo: data }, () => {
-                axios.get('http://localhost:3000/api/user_entries')
+                axios.get('/api/user_entries')
                     .then(data => {
                         let theData = data.data;
                         this.setState({ allEntries: theData.filter(entry => entry.userId === currentUserId && entry.bookId === bookId)}, () => {
                             this.setState({ completedEntries: theData.filter(entry => entry.userId === currentUserId && entry.bookId === bookId && entry.completed === true && entry.paidFor === false)
                                                                     .map(entry => entry.promptId) }, () => {
-                                    axios.get('http://localhost:3000/api/prompts')
+                                    axios.get('/api/prompts')
                                     .then(data => { 
                                         let theData = data.data;
                                         this.setState({ promptData: theData }, () => {

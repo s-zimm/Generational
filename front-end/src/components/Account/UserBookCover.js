@@ -15,7 +15,7 @@ class UserBookCover extends Component {
     }
 
     _handleBookDelete = () => {
-        axios.post('http://localhost:3000/api/book/delete', {
+        axios.post('/api/book/delete', {
             id: this.props.id
         })
         .then(data => this.props.filterDeletedBooks(data.data.id))

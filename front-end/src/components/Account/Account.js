@@ -17,7 +17,7 @@ class Account extends Component {
     }
 
     componentDidMount = () => {
-        axios.get('http://localhost:3000/api/users')
+        axios.get('/api/users')
                 .then(data => {
                     let theData = data.data;
                     this.setState({ allUserData: theData });
@@ -39,7 +39,7 @@ class Account extends Component {
                     this.setState({ userData });
                 });
         
-        axios.get('http://localhost:3000/api/user_entries')
+        axios.get('/api/user_entries')
                 .then(data => {
                     let theData = data.data;
                     theData.map(entry => {
@@ -49,7 +49,7 @@ class Account extends Component {
                     });
                 });
 
-        axios.get('http://localhost:3000/api/user_books')
+        axios.get('/api/user_books')
                 .then(data => {
                     let theData = data.data;
                     theData.map(book => {

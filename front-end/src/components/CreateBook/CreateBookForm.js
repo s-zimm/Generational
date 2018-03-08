@@ -76,13 +76,13 @@ class CreateBookForm extends Component {
         } else if (this.state.searchValues.length === 0) {
             return alert('Input a name in the text field.')
         } else if (this.state.selectedUserForBook) {
-            return axios.post('http://localhost:3000/api/user_books', {
+            return axios.post('/api/user_books', {
                 whoFor: `${this.state.selectedUserForBook.firstname} ${this.state.selectedUserForBook.lastname}`,
                 ownerId: this.state.currentUserId
             })
             .then(data => this.setState({ newBookData: data.data }, () => this.setState({ newBook: true })));
         } else if (this.state.searchValues.length > 0) {
-            return axios.post('http://localhost:3000/api/user_books', {
+            return axios.post('/api/user_books', {
                 whoFor: this.state.searchValues,
                 ownerId: this.state.currentUserId
             })

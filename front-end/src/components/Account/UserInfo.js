@@ -13,7 +13,7 @@ class UserInfo extends Component {
 
     _handleEmailSubmit = (event) => {
         event.preventDefault();
-        axios.post('http://localhost:3000/api/users', {
+        axios.post('/api/users', {
             id: this.props.userData.id,
             email: this.state.emailValue
         })

@@ -18,7 +18,7 @@ class CreateBook extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/users')
+        axios.get('/api/users')
             .then(users => {
                 let userData = users.data;
                 let newUsers = userData.map(user => {
@@ -34,7 +34,7 @@ class CreateBook extends Component {
             })
             .then(users => this.setState({ users }))
 
-        axios.get('http://localhost:3000/api/user_books')
+        axios.get('/api/user_books')
             .then(data => {
                 this.setState({ books: data.data });
             });

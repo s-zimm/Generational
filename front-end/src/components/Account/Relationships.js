@@ -14,7 +14,7 @@ class Relationships extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3000/api/users/relationships')
+        axios.get('/api/users/relationships')
             .then(data => this.setState({ relationships: data.data }));
     }
 
