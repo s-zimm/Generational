@@ -68,6 +68,7 @@ class RelationshipAdd extends Component {
                         <option value="Grandchild">Grandchild</option>
                         <option value="Parent">Parent</option>
                         <option value="Sibling">Sibling</option>
+                        <option value="Friend">Friend</option>
                         <option value="other">other</option>
                     </select>
                     {this.state.isOther
