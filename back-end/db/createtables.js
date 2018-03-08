@@ -10,8 +10,8 @@ User.sync({ force: true })
     .then(() => Relationship.sync({ force: true }))
     .then(() => Prompt_Topic.sync({ force: true }))
     .then(() => Prompt.sync({ force: true }))
-    .then(() => User_Entry.sync({ force: true }))
     .then(() => User_Book.sync({ force: true }))
+    .then(() => User_Entry.sync({ force: true }))
     .then(() => User_Book_Contributor.sync({ force: true }))
     .then(() => {
         Prompt.bulkCreate([
