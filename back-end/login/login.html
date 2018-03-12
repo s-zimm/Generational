@@ -191,7 +191,7 @@
             width: 100%;
             display: flex;
             align-items: center;
-            height: 30px;
+            height: 45px;
             background-color: rgb(215, 224, 250);
             margin-bottom: 0;
             padding: 10px 0;
@@ -200,7 +200,15 @@
         .footerItem {
             margin-left: 30px;
             border-right: solid gray .5px;
-            padding-right: 22px;;
+            padding-right: 22px;
+        }
+
+        .footerItem a {
+            text-decoration: none;
+        }
+
+        .footerItem a:hover {
+            color: aliceblue;
         }
 
         @media (min-width: 700px) {
@@ -261,7 +269,7 @@
 </head>
 <body>
     <div class="navbar">
-        <div class="brandImageStyle" data-brand-image>
+        <div id="top" class="brandImageStyle" data-brand-image>
             <a href='#'><img class="brandImage" src="Generational-logo.png" alt="Generational logo"></a>
         </div>
         <div class="signInAndMenu">
@@ -309,9 +317,8 @@
     </div>
 
     <div class="footer">
-        <h6 class="footerItem">Home</h6>
-        <h6 class="footerItem">About</h6>
-        <h6 class="footerItem">Privacy</h6>
+        <h6 class="footerItem"><a href="#top">Home</a></h6>
+        <h6 class="footerItem"><a href="#about">About</a></h6>
     </div>
 
 
