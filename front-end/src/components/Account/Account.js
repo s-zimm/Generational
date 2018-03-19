@@ -76,6 +76,13 @@ class Account extends Component {
         })
     }
 
+    _handleDeleteRelationship = (data) => {
+        this.setState({ userData: {
+            ...this.state.userData,
+            relationships: this.state.userData.relationships.filter(rel => rel.id === data.id)
+        }})
+    }
+
     render() {
         if (this.state.userData) {
             return(
@@ -88,6 +95,7 @@ class Account extends Component {
                             userData={this.state.userData}
                             allUserData={this.state.allUserData}
                             handleAddEmail={this._handleAddEmail}
+                            deleteRelationship={(data) => this._handleDeleteRelationship(data)}
                         />
                         <AccountBooks
                             filterDeletedBooks={(data) => this._filterDeletedBooks(data)}

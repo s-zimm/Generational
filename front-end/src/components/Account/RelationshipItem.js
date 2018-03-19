@@ -39,7 +39,8 @@ class RelationshipItem extends Component {
                                     id={this.props.id}
                                     currentUserId={this.props.currentUserId}
                                     collapseViewRel={this._collapseViewRel}
-                                    relationshipId={this.props.relationshipId}/>
+                                    relationshipId={this.props.relationshipId}
+                                    deleteRelationship={this.props.deleteRelationship}/>
                                 : null}
                 <div className="circleContainerStyle" onClick={() => this._handleRelItemClick()}>
                     <p style={{ padding: '10px' }}>{this.props.name}</p>
