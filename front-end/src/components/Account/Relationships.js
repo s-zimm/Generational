@@ -48,6 +48,11 @@ class Relationships extends Component {
         this.setState({ addingRelationship: false });
     }
 
+    _handleNewRel = (data) => {
+        debugger;
+        console.log(this.props.userData, data)
+    }
+
     circleContainerStyle = {
         border: 'solid black 1px',
         borderRadius: '50%',
@@ -71,7 +76,9 @@ class Relationships extends Component {
                                         allUserData={this.props.allUserData}
                                         userData={this.props.userData} 
                                         collapseAddRel={this._handleCollapse}
-                                        relationships={this.state.relationships}/>
+                                        relationships={this.state.relationships}
+                                        handleNewRel={this.props.handleNewRel}
+                                        />
                                     : null}
                         <p style={{ padding: '10px' }}>+</p>
                     </div>

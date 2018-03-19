@@ -68,6 +68,14 @@ class Account extends Component {
         this.setState({ userData: { ...this.state.userData, email }})
     }
 
+    _handleNewRel = (data) => {
+        this.setState({ userData: { 
+            ...this.state.userData, 
+            relationships: [ ...this.state.userData.relationships, data ]
+            }
+        })
+    }
+
     render() {
         if (this.state.userData) {
             return(
@@ -75,6 +83,7 @@ class Account extends Component {
                     <PageSubHeader heading={`${this.state.userData.firstname}'s Dashboard`} />
                     <div className="sectionContainer" style={{ margin: '20px' }} style={{ width: '100%'}}>
                         <UserData
+                            handleNewRel={(data) => this._handleNewRel(data)}
                             userBooks={this.state.userBooks}
                             userData={this.state.userData}
                             allUserData={this.state.allUserData}
