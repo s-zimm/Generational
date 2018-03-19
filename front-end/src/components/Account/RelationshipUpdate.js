@@ -75,12 +75,13 @@ class RelationshipUpdate extends Component {
         }
     }
 
-    _handleDeleteClick2 = () => {
+    _handleDeleteClick2 = (event) => {
+        event.preventDefault();
         axios.post('/api/users/relationships/delete', {
             relationId: this.props.relationshipId,
             relatedUserId: this.props.id
         }).then(data => {
-            console.log(data)
+            this.props.deleteRelationship(data.data);
         })
     }
 
@@ -104,7 +105,7 @@ class RelationshipUpdate extends Component {
                         ? <button style={{ width: '150px' }}>{`${this.props.name} added!`}</button>
                         : null}
                 </form>
-                <form onSubmit={() => this._handleDeleteClick2()}>
+                <form onSubmit={(event) => this._handleDeleteClick2(event)}>
                 {this.state.deleteRelationshipConfirm
                     ? <button type="submit" className="delete-btn" style={{ width: '150px' }}>Are you sure?</button>
                     : <button onClick={(event) => this._handleDeleteClick1(event)} className="delete-btn">Delete Relationship</button>}

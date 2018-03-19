@@ -19,7 +19,7 @@ class Relationships extends Component {
     }
 
     setRelationshipItems = () => {
-        if (this.props.userData) {
+        if (this.props.userData.relationships.length > 0) {
             return this.props.userData.relationships.map(person => {
                 return (
                     <RelationshipItem
@@ -30,11 +30,14 @@ class Relationships extends Component {
                         id={person.relatedUserId}
                         relation={person.relation}
                         relationshipId={person.id}
+                        deleteRelationship={this.props.deleteRelationship}
                     />
                 );
             });
         } else {
-            return <div>No relationships</div>
+            return (
+                    <div style={{ marginLeft: '20px' }}>No relationships</div>
+            )
         }
     }
 
@@ -49,8 +52,8 @@ class Relationships extends Component {
     }
 
     _handleNewRel = (data) => {
-        debugger;
-        console.log(this.props.userData, data)
+        this.props.handleNewRel(data);
+        this.setState({ addingRelationship: false });
     }
 
     circleContainerStyle = {
@@ -77,7 +80,7 @@ class Relationships extends Component {
                                         userData={this.props.userData} 
                                         collapseAddRel={this._handleCollapse}
                                         relationships={this.state.relationships}
-                                        handleNewRel={this.props.handleNewRel}
+                                        handleNewRel={(data) => this._handleNewRel(data)}
                                         />
                                     : null}
                         <p style={{ padding: '10px' }}>+</p>

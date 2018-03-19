@@ -41,6 +41,7 @@ class RelationshipAdd extends Component {
                 data = data.data;
                 let foundUser = this.props.allUserData.find(user => user.id === data.relatedUserId);
                 data['name'] = foundUser.firstname;
+                debugger;
                 this.props.handleNewRel(data)
             });
         }
