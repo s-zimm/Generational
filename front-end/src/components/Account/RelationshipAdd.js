@@ -8,7 +8,7 @@ class RelationshipAdd extends Component {
 
         this.state = {
             relatedUserEmail: '',
-            relation: '',
+            relation: 'Spouse',
             isOther: false,
             emailError: false,
             relatedError: false
@@ -16,6 +16,7 @@ class RelationshipAdd extends Component {
     }
 
     _handleRelAdd = (event) => {
+        event.preventDefault();
         let relation = this.props.allUserData.filter(user => {
             return this.props.userData.relationships.find(relation => {
                 return user.id === relation.relatedUserId
@@ -36,7 +37,12 @@ class RelationshipAdd extends Component {
                 relatedUserEmail: this.state.relatedUserEmail,
                 relation: this.state.relation
             })
-            .then(data => this.props.handleNewRel(data));
+            .then(data => {
+                data = data.data;
+                let foundUser = this.props.allUserData.find(user => user.id === data.relatedUserId);
+                data['name'] = foundUser.firstname;
+                this.props.handleNewRel(data)
+            });
         }
         
     }
@@ -45,6 +51,8 @@ class RelationshipAdd extends Component {
         this.setState({ relation: value }, () => {
             if (this.state.relation === 'other') {
                 this.setState({ isOther: true });
+            } else {
+                this.setState({ isOther: false });
             }
         });
     }
