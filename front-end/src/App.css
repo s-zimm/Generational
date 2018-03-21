@@ -126,11 +126,26 @@ input {
   display: none;
 }
 
-.delete-btn { 
-  background-color: white;
+.bookOptionsView { 
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 0;
+}
+
+.delete-btn {
+  font-size: 8px;
+  padding: 5px;
+  bottom: 9px;
+  right: 120px;
+  position: absolute;
+  z-index: 10;
+  background-color: #D8E9F9;
   color: rgba(255, 0, 0, 0.589);
-  border: 1px solid rgba(0, 0, 0, 0.322);
   transition: .2s all ease;
+  border: none;
 }
 
 .delete-btn:hover {
@@ -215,6 +230,8 @@ input {
 }
 
 .bookCoverStyles {
+  position: relative;
+  z-index: 0;
   font-family: 'Dancing Script', cursive;
   cursor: pointer;
   width: 30%;
