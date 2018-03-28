@@ -1,5 +1,4 @@
 import React from 'react';
-import NewBookBtn from './NewBookBtn';
 import UserBookCover from './UserBookCover';
 
 const AccountBooks = ({ userEntries, userBooks, currentUser, filterDeletedBooks }) => {
@@ -22,7 +21,6 @@ const AccountBooks = ({ userEntries, userBooks, currentUser, filterDeletedBooks 
 
     return (
         <div className="sectionContainer" style={{ width: '100%', paddingBottom: '40px' }}>
-            <NewBookBtn currentUser={currentUser}/>
             <div className='AccountBooksStyle'>
                 {renderUserBooks()}
             </div>

@@ -20,23 +20,23 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = { currentUser: 1 }
 
   }
 
-  componentDidMount() {
-    axios.get('/fbid')
-      .then(data => {
-        let facebookId = data.data.fbId;
-        this.setState({ facebookId }, () => {
-          axios.get('/api/users')
-          .then(data => {
-            let theUser = data.data.find(user => user.facebookId === this.state.facebookId);
-            this.setState({ currentUser: theUser.id });
-          });
-        });
-      });
-  }
+  // componentDidMount() {
+  //   axios.get('/fbid')
+  //     .then(data => {
+  //       let facebookId = data.data.fbId;
+  //       this.setState({ facebookId }, () => {
+  //         axios.get('/api/users')
+  //         .then(data => {
+  //           let theUser = data.data.find(user => user.facebookId === this.state.facebookId);
+  //           this.setState({ currentUser: theUser.id });
+  //         });
+  //       });
+  //     });
+  // }
   
   render() {
     if (this.state.currentUser) {

@@ -12,19 +12,19 @@ class Home extends Component {
         this.state= {}
     }
 
-    componentDidMount() {
-        axios.get('/fbid')
-          .then(data => {
-            let facebookId = data.data.fbId;
-            this.setState({ facebookId }, () => {
-              axios.get('/api/users')
-              .then(data => {
-                let theUser = data.data.find(user => user.facebookId === this.state.facebookId);
-                this.setState({ currentUser: theUser });
-              });
-            });
-          });
-      }
+    // componentDidMount() {
+    //     axios.get('/fbid')
+    //       .then(data => {
+    //         let facebookId = data.data.fbId;
+    //         this.setState({ facebookId }, () => {
+    //           axios.get('/api/users')
+    //           .then(data => {
+    //             let theUser = data.data.find(user => user.facebookId === this.state.facebookId);
+    //             this.setState({ currentUser: theUser });
+    //           });
+    //         });
+    //       });
+    //   }
 
     render() {
         if (this.state.currentUser) {

@@ -135,6 +135,34 @@ input {
   z-index: 0;
 }
 
+.userBookDropdown {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+  border: solid rgb(160, 172, 214) 1px;
+  background-color: rgb(175, 197, 216);
+  padding: 5px;
+  margin-bottom: 20px;
+}
+
+.contributionBookDropdown {
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20px;
+  border: solid rgb(160, 172, 214) 1px;
+  background-color: rgb(175, 197, 216);
+  padding: 5px;
+  margin-bottom: 40px;
+}
+
 .delete-btn {
   font-size: 8px;
   padding: 5px;
@@ -390,6 +418,7 @@ input {
 
 .newBookBtn {
   padding: 40px;
+  margin-bottom: 35px;
 }
 
 .circleContainerStyle {
@@ -409,6 +438,28 @@ input {
   background-color: rgb(204, 204, 204);
   transition: all ease .3s;
 }
+
+/* React Transitions */
+
+/* .bookListAnimation-enter {
+  opacity: .01;
+}
+
+.bookListAnimation-enter.bookListAnimation-enter-active {
+  transform: translateY(100px);
+  transition: all ease 300ms;
+  opacity: 1;
+}
+
+.bookListAnimation-leave {
+  opacity: 1;
+}
+
+.bookListAnimation-leave-active {
+  opacity: .01;
+  transform: translateY(-100px);
+  transition: all ease 300ms;
+} */
 
 @keyframes rotate {
   from {
